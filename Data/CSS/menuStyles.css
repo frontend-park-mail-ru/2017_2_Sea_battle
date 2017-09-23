@@ -1,0 +1,90 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    background-image: url("../Resources/Textures/background-texture.png");
+}
+
+.menuContainer
+{
+    position: fixed;
+    left: 25%;
+    right: 25%;
+    top: 15%;
+    bottom: 25%;
+
+    margin: 0;
+    padding: 5% 5% 5% 5%;
+}
+
+.menuTitle
+{
+    color: #080031;
+    text-align: center;
+    font-size: 50px;
+}
+
+.menuText
+{
+    color: #0b0316;
+    text-align: center;
+    font-size: 25px;
+}
+
+.menuItem
+{
+    color: #0b0316;
+    text-align: center;
+    font-size: 35px;
+    cursor: default;
+}
+
+.menuItem:hover
+{
+    background-image: url("../Resources/Textures/background-seleted-menu-item.png");
+
+    text-align: center;
+    font-size: 40px;
+    left: 30%;
+    right: 30%;
+    width: 350px;
+    margin: 2px auto 2px auto;
+
+    border: 2px solid #231a0b;
+}
+
+.validate
+{
+    text-align: center;
+    font-size: 30px;
+    cursor: pointer;
+    color: #1e2123;
+    width: 100px;
+    border: 1px solid #231a0b;
+    margin: auto;
+    margin-top: 5px;
+    background-image: url("../Resources/Textures/background-seleted-menu-item.png");
+    background-size: 80px;
+}
+
+.menuSpacerLarge
+{
+    height: 10%;
+}
+
+.menuSpacerSmall
+{
+    height: 2%;
+}
+
+.inputIdle
+{
+    border: 1px solid #0b0316;
+    background-image: url("../Resources/Textures/background-texture.png");
+}
+
+.errorMessage
+{
+    color: darkred;
+    font-size: 20px;
+}
