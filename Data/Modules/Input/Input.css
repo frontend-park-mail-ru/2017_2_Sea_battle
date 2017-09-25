@@ -1,0 +1,11 @@
+.inputIdle
+{
+    border: 1px solid #0b0316;
+    background-image: url("/Resources/Textures/background-texture.png");
+}
+
+.errorMessage
+{
+    color: darkred;
+    font-size: 20px;
+}

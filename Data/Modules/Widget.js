@@ -1,6 +1,6 @@
 /**
     Widget module
-    provides a basic widget funtionality
+    provides a basic widget functionality
     a widget is represented as a <div></div> by default
  */
 
@@ -28,8 +28,6 @@
         }
 
         // Appearance
-
-        // TODO: show children aswell
         show()
         {
             for(var i = 0; i < this.element.childNodes.length; i++)
@@ -37,12 +35,21 @@
             this.element.style.visibility = "visible";
         }
 
-        // TODO: hide children aswell
         hide()
         {
             for(var i = 0; i < this.element.childNodes.length; i++)
                 this.element.childNodes[i].style.visibility = "hidden";
             this.element.style.visibility = "hidden";
+        }
+
+        addEventHandler(eventName, eventHandler)
+        {
+            this.element.addEventListener(eventName, eventHandler);
+        }
+
+        removeEventHandler(eventName, eventHandler)
+        {
+            this.element.removeEventListener(eventName, eventHandler);
         }
 
         move(left, top, right, bottom)
@@ -51,6 +58,16 @@
             this.element.style.right = right;
             this.element.style.top = top;
             this.element.style.bottom = bottom;
+        }
+
+        appendChildWidget(childWidget)
+        {
+            this.element.appendChild(childWidget.element);
+        }
+
+        appendChildNode(childNode)
+        {
+            this.element.appendChild(childNode);
         }
 
         get positionType()
@@ -88,6 +105,21 @@
             return this.element.className;
         }
 
+        clearClassList()
+        {
+            this.element.classList = null;
+        }
+
+        get classList()
+        {
+            return this.classList;
+        }
+
+        set classList(classListParam)
+        {
+            this.element.classList = classListParam;
+        }
+
         set idName(idName)
         {
             this.element.id = idName;
@@ -106,12 +138,12 @@
 
         set text(msg)
         {
-            this.element.innerHTML = msg;
+            this.element.textContent = msg;
         }
 
         get text()
         {
-            return this.element.innerHTML;
+            return this.element.textContent;
         }
     }
 

@@ -2,16 +2,31 @@
 <head>
     <title> SeaBattle main menu </title>
     <link rel="stylesheet" href="./CSS/menuStyles.css">
+    <link rel="stylesheet" href="./Modules/MenuItem/MenuItem.css">
+    <link rel="stylesheet" href="./Modules/MenuContainer/MenuContainer.css">
+    <link rel="stylesheet" href="./Modules/Input/Input.css">
 </head>
 
 <body>
 
+<!-- predefined variables -->
+<script>
+    // Predefined menu-variables;
+    document.mainMenu = null;
+    document.playMenu = null;
+    document.leaderboardMenu = null;
+    document.aboutMenu = null;
+
+</script>
+
+<!-- Modules go here -->
 <script src="./Modules/Widget.js"></script>
-<script src="./Modules/menuFactory.js"></script>
-<script src="./JS/menu.js"></script>
-<script src="./JS/startGame.js"></script>
-<script src="./JS/validationMenu.js"></script>
-<script src="./ExternalModules/mustache.js"></script>
+<script src="./Modules/Input/Input.js"></script>
+<script src="./Modules/MenuItem/MenuItem.js"></script>
+<script src="./Modules/MenuContainer/MenuContainer.js"></script>
+
+<!-- Menus go here --->
+<script src="Modules/Menus/MainMenu/MainMenu.js"></script>
 
 </body>
 </html>
