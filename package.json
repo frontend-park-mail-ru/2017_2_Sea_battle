@@ -1,19 +1,29 @@
 {
-  "name": "2017_2_Sea_battle",
-  "version": "0.1.0",
-  "description": "Sea battle",
-  "main": "index.js",
+  "name": "seabattle-front-server",
+  "version": "1.0.0",
+  "description": "Front End server for Sea Battle game",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/frontend-park-mail-ru/2017_2_Sea_battle.git"
+    "url": "git+https://github.com/YAXo-O/2017_2_Sea_battle.git"
   },
-  "author": "",
-  "license": "MIT",
+  "keywords": [
+    "TP",
+    "FrontEnd",
+    "JS",
+    "Sea",
+    "Battle"
+  ],
+  "author": "YAX",
+  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/frontend-park-mail-ru/2017_2_Sea_battle/issues"
+    "url": "https://github.com/YAXo-O/2017_2_Sea_battle/issues"
   },
-  "homepage": "https://github.com/frontend-park-mail-ru/2017_2_Sea_battle#readme"
+  "homepage": "https://github.com/YAXo-O/2017_2_Sea_battle#readme",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
 }
