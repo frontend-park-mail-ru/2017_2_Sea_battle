@@ -8,38 +8,38 @@
 
     class Input extends Widget
     {
-        constructor(parent = document.body, inputType = "text",
+        constructor(parent = document.body, containerClass = "centerContainer", inputType = "text",
                     inputClass = "", inputValue = "", labelClass = "", labelText = "",
                     errorClass = "", errorMsg = "")
         {
-            super(parent, "input", inputClass);
-            this.label = new Widget(parent, "label", labelClass);
+            super(parent, "div", containerClass);
+            debugger;
+            this.label = new Widget(this.element, "label", labelClass);
             this.label.text = labelText;
-            this.element.type = inputType;
-            this.error = new Widget(parent, "label", errorClass);
+            this.input = new Widget(this.element,"input", inputClass);
+            this.input.element.type = inputType;
+            this.error = new Widget(this.element, "label", errorClass);
             this.error.text = errorMsg;
-            parent.insertBefore(this.label.element, this.element);
-            parent.appendChild(this.error.element);
         }
 
         set inputType(type)
         {
-            this.element.type = type;
+            this.input.type = type;
         }
 
         get inputType()
         {
-            return this.element.type;
+            return this.input.type;
         }
 
         set inputValue(value)
         {
-            this.element.value = value;
+            this.input.value = value;
         }
 
         get inputValue()
         {
-            return this.element.value;
+            return this.input.value;
         }
 
         getLabel()

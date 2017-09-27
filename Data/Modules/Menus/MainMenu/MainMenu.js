@@ -4,18 +4,12 @@
 ;
 (function()
 {
-    const Widget = document.Widget;
-    const MenuItem = document.MenuItem;
     const MenuContainer = document.MenuContainer;
 
-    const playMenu = document.playMenu;
-    const leaderboardMenu = document.leaderboardMenu;
-    const aboutMenu = document.aboutMenu;
-
     var mainMenu = new MenuContainer(document.body, "menuContainer", "Sea Battle", "menuTitle");
-    mainMenu.createItem("Start Game", "menuItem", function(){mainMenu.hide(); playMenu.show();});
-    mainMenu.createItem("Leaderboard", "menuItem", function(){mainMenu.hide(); leaderboardMenu.show();});
-    mainMenu.createItem("About", "menuItem", function(){mainMenu.hide(); aboutMenu.show();});
+    mainMenu.createItem("Start Game", "menuItem", function(){document.Services.changeMenu(document.playMenu);});
+    mainMenu.createItem("Leaderboard", "menuItem", function(){document.Services.changeMenu(document.leaderboardMenu);});
+    mainMenu.createItem("About", "menuItem", function(){document.Services.changeMenu(document.aboutMenu);});
 
-    document.mainMenu = mainMenu;
+    document.currentMenu = document.mainMenu = mainMenu;
 })()

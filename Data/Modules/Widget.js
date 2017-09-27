@@ -31,15 +31,29 @@
         show()
         {
             for(var i = 0; i < this.element.childNodes.length; i++)
-                this.element.childNodes[i].style.visibility = "visible";
+                if(this.element.childNodes[i].nodeType == 1)
+                    this.element.childNodes[i].style.visibility = "visible";
             this.element.style.visibility = "visible";
+
+            this.onShow();
         }
 
         hide()
         {
             for(var i = 0; i < this.element.childNodes.length; i++)
-                this.element.childNodes[i].style.visibility = "hidden";
+                if(this.element.childNodes[i].nodeType == 1)
+                    this.element.childNodes[i].style.visibility = "hidden";
             this.element.style.visibility = "hidden";
+
+            this.onHide();
+        }
+
+        onShow()
+        {
+        }
+
+        onHide()
+        {
         }
 
         addEventHandler(eventName, eventHandler)

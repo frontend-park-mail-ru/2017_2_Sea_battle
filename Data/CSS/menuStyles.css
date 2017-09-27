@@ -5,16 +5,3 @@ body
     background-image: url("/Resources/Textures/background-texture.png");
 }
 
-.validate
-{
-    text-align: center;
-    font-size: 30px;
-    cursor: pointer;
-    color: #1e2123;
-    width: 100px;
-    border: 1px solid #231a0b;
-    margin: auto;
-    margin-top: 5px;
-    background-image: url("/Resources/Textures/background-seleted-menu-item.png");
-    background-size: 80px;
-}
