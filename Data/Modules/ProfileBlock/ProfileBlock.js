@@ -34,7 +34,7 @@
         changeUser()
         {
             let user = document.currentUser;
-            if(user == null)
+            if(user === null)
             {
                 this.subtitle.text = notLoggedMsg;
                 this.logout.hide();

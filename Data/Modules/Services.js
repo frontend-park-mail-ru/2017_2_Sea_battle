@@ -36,7 +36,6 @@
         static changeUser(pair)
         {
             document.currentUser = {name: pair.name};
-            debugger;
             document.profileBlock.changeUser();
             Services.changeMenu(document.mainMenu);
         }

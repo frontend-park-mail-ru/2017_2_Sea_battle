@@ -15,7 +15,7 @@
 
         onShow()
         {
-            if(document.currentUser == null)
+            if(document.currentUser === null)
                 document.Services.changeMenu(document.profileEntry);
         }
     }

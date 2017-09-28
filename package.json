@@ -16,8 +16,8 @@
     "url": "https://github.com/frontend-park-mail-ru/2017_2_Sea_battle/issues"
   },
   "homepage": "https://github.com/frontend-park-mail-ru/2017_2_Sea_battle#readme",
-
   "dependencies": {
-    "express": "^4.15.4"
+    "express": "^4.15.4",
+    "pug": "^2.0.0-rc.4"
   }
 }

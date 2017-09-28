@@ -105,7 +105,6 @@ function prepareRegisterMenu()
             bError = true;
         }
 
-        debugger;
         if(!bError && Services.checkRegister({mail: mail.input.element.value,
             name: name.input.element.value, password: password.input.element.value}))
                 Services.changeUser({name: name.input.element.value});

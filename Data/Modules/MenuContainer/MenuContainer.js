@@ -24,7 +24,7 @@
              else
                  this.title = null;
 
-             if(previousMenu != null && previousMenu != undefined)
+             if(previousMenu !== null && previousMenu !== undefined)
              {
                  this.backButton = new MenuItem(this.element, backButtonClass);
                  this.backButton.setClickAction(function(){document.Services.changeMenu(previousMenu);});
@@ -42,7 +42,7 @@
 
          appendNode(appendeeNode)
          {
-             if(this.backButton != null)
+             if(this.backButton !== null)
                  this.element.insertBefore(appendeeNode, this.backButton.element);
              else
                  this.element.appendChild(appendeeNode);
@@ -61,7 +61,7 @@
          {
              let node = document.createElement("div");
              node.className = "newLine";
-             if(this.backButton != null)
+             if(this.backButton !== null)
                  this.element.insertBefore(node, this.backButton.element);
              else
                  this.element.appendChild(node);

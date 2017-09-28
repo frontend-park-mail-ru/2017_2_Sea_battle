@@ -26,7 +26,7 @@
         {
             let submit = new Input(this.element, containerClass, "button", submitClass, submitText, "", "", "", "");
             submit.input.element.value = submitText;
-            if(submitHandler != null && submitHandler != undefined)
+            if(submitHandler !== null && submitHandler !== undefined)
                 submit.element.addEventListener("click", submitHandler);
 
             return submit;

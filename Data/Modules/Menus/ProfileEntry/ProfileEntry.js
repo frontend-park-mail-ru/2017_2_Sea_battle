@@ -5,7 +5,7 @@
 {
     const MenuContainer = document.MenuContainer;
 
-    var profileEntry = new MenuContainer(document.parent, "menuContainer",
+    let profileEntry = new MenuContainer(document.parent, "menuContainer",
         "Profile Entry", "menuTitle", document.mainMenu, "menuItem");
     profileEntry.createItem("Log-in", "menuItem", function(){document.Services.changeMenu(document.login);});
     profileEntry.createItem("Register", "menuItem", function(){document.Services.changeMenu(document.register)});

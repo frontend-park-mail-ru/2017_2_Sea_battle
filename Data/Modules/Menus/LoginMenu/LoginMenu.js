@@ -16,7 +16,7 @@
         {
             super(parent, menuClass, menuTitleText, menuTitleTextClass);
             this.form = new Form(this.element, formClass);
-            if(previousMenu != null && previousMenu != undefined)
+            if(previousMenu !== null && previousMenu !== undefined)
             {
                 this.backButton = new MenuItem(this.element, backButtonClass);
                 this.backButton.setClickAction(function(){document.Services.changeMenu(previousMenu);});

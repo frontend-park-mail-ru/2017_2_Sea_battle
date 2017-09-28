@@ -13,7 +13,6 @@
                     errorClass = "", errorMsg = "")
         {
             super(parent, "div", containerClass);
-            debugger;
             this.label = new Widget(this.element, "label", labelClass);
             this.label.text = labelText;
             this.input = new Widget(this.element,"input", inputClass);
