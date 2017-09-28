@@ -45,6 +45,11 @@
             // Should send request
             return true;
         }
+
+        static getLeaders()
+        {
+            return [{name: "YAX", score: 9000}, {name: "Jo", score: 1050}, {name: "Liz", score: 10}];
+        }
     }
 
     document.Services = Services;
