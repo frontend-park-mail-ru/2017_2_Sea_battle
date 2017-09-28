@@ -19,7 +19,7 @@
             if(previousMenu !== null && previousMenu !== undefined)
             {
                 this.backButton = new MenuItem(this.element, backButtonClass);
-                this.backButton.setClickAction(function(){document.Services.changeMenu(previousMenu);});
+                this.backButton.setClickAction(() => document.Services.changeMenu(previousMenu));
                 this.backButton.text = "Back";
                 this.appendChildWidget(this.backButton);
             }

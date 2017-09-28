@@ -20,10 +20,10 @@
             this.subtitle = new MenuItem(this.element, "profileSubtitle", notLoggedMsg);
 
             this.login = new MenuItem(this.element, "profileItem", "Log-in");
-            this.login.setClickAction(function(){Services.changeMenu(document.login);});
+            this.login.setClickAction(() => Services.changeMenu(document.login));
 
             this.register = new MenuItem(this.element, "profileItem", "Register");
-            this.register.setClickAction(function(){Services.changeMenu(document.register);});
+            this.register.setClickAction(() => Services.changeMenu(document.register));
 
             this.logout = new MenuItem(this.element, "profileItem", "Log-out");
             this.logout.setClickAction(function(){document.Services.logout(); this.changeUser();}.bind(this));

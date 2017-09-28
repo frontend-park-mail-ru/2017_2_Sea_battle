@@ -10,17 +10,17 @@
     {
         constructor(parent, tag, className)
         {
-            if(tag != null && tag != undefined)
+            if(tag !== null && tag !== undefined)
                 this.element = document.createElement(tag);
             else
                 this.element = document.createElement("div")
 
-            if(className != null && className != undefined)
+            if(className !== null && className !== undefined)
                 this.element.className = className;
             else
                 this.element.className = "";
 
-            if (parent != undefined && parent != null)
+            if (parent !== undefined && parent !== null)
                 parent.appendChild(this.element);
             else
                 document.body.appendChild(this.element);
