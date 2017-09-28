@@ -50,6 +50,11 @@
         {
             return [{name: "YAX", score: 9000}, {name: "Jo", score: 1050}, {name: "Liz", score: 10}];
         }
+
+        static getAboutText()
+        {
+            return ["Sea Battle Game", "Made for Front End course"];
+        }
     }
 
     document.Services = Services;

@@ -4,27 +4,19 @@
 ;
 (function()
 {
-    const MenuContainer = document.MenuContainer;
+    const TemplateMenu = document.TemplateMenu;
 
-    class Leaderboard extends MenuContainer
+    class Leaderboard extends TemplateMenu
     {
-        constructor(parent = document.body, menuClass = "menuContainer",
-                    menuTitleText = "", menuTitleTextClass = "menuTitle",
-                    previousMenu = null, backButtonClass = "")
-        {
-            super(parent, menuClass, menuTitleText, menuTitleTextClass, previousMenu, backButtonClass);
-            this.tableHolder = document.createElement("div");
-            this.appendNode(this.tableHolder);
-        }
-
         onShow()
         {
-            this.tableHolder.innerHTML = leaderboardTemplate({players: document.Services.getLeaders()});
+            this.innerHolder.innerHTML = leaderboardTemplate({players: document.Services.getLeaders()});
         }
     }
 
     let leaderboard = new Leaderboard(document.body, "menuContainer", "Leaderboard", "menuTitle",
         document.mainMenu, "menuItem");
+    leaderboard.innerHolder.className = "tableHolder";
 
     leaderboard.hide();
     document.Leaderboard = Leaderboard;
