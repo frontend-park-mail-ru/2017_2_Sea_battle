@@ -1,0 +1,28 @@
+.menuText
+{
+    color: #0b0316;
+    text-align: center;
+    font-size: 25px;
+}
+
+.menuItem
+{
+    color: #0b0316;
+    text-align: center;
+    font-size: 35px;
+    cursor: default;
+}
+
+.menuItem:hover
+{
+    background-image: url("/Resources/Textures/background-seleted-menu-item.png");
+
+    text-align: center;
+    font-size: 40px;
+    left: 30%;
+    right: 30%;
+    width: 350px;
+    margin: 2px auto 2px auto;
+
+    border: 2px solid #231a0b;
+}
