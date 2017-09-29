@@ -1,3 +1,5 @@
+const http = document.Http;
+const Services = document.Services;
 
 function prepareProfileBlock()
 {
@@ -15,17 +17,18 @@ function prepareLoginMenu()
 {
     var loginMenu = new document.LoginMenu(document.body, "menuContainer", "Login", "menuTitle",
     document.playMenu, "menuItem", "form");
-    var mail = loginMenu.form.createInput("centerContainer", "text", "inputIdle",
+    let mail = loginMenu.form.createInput("centerContainer", "text", "inputIdle",
         "", "", "E-Mail: ", "errorMessage", "");
     loginMenu.form.appendNewLine();
-    var password = loginMenu.form.createInput("centerContainer", "password", "inputIdle",
+    let password = loginMenu.form.createInput("centerContainer", "password", "inputIdle",
     "", "", "Password: ", "errorMessage", "");
     loginMenu.form.appendNewLine();
+    let formError = loginMenu.form.createFormError();
 
     function callback() {
         let bError = false;
 
-        mail.error.text = password.error.text = "";
+        mail.error.text = password.error.text = formError.text = "";
         if (mail.input.element.value == "") {
             mail.error.text = "EMail field should not be empty!";
             bError = true;
@@ -40,9 +43,19 @@ function prepareLoginMenu()
             bError = true;
         }
 
-        if(!bError &&
-            document.Services.serverCheck({mail: mail.input.element.value, password: password.input.element.value}))
-                document.Services.changeUser({name: mail.input.element.value, password: password.input.element.value});
+        if(!bError)
+        {
+            Services.serverCheck({mail: mail.input.element.value, password: password.input.element.value})
+                .then((response) =>
+            {
+                Services.changeUser({name: mail.input.element.value, password: password.input.element.value});
+            })
+                .catch((response) =>
+            {
+                formError.text = response.body.error;
+            });
+        }
+
 
         return false;
     }
@@ -57,26 +70,26 @@ function prepareLoginMenu()
 function prepareRegisterMenu()
 {
     const LoginMenu = document.LoginMenu;
-    const Services = document.Services;
 
-    var registerMenu = new LoginMenu(document.body, "menuContainer", "Register", "menuTitle",
+    let registerMenu = new LoginMenu(document.body, "menuContainer", "Register", "menuTitle",
         document.mainMenu, "menuItem", "form");
-    var name = registerMenu.form.createInput("centerContainer", "text", "inputIdle", "",
+    let name = registerMenu.form.createInput("centerContainer", "text", "inputIdle", "",
     "", "Nickname: ", "errorMessage", "");
     registerMenu.form.appendNewLine();
-    var mail = registerMenu.form.createInput("centerContainer", "text", "inputIdle", "",
+    let mail = registerMenu.form.createInput("centerContainer", "text", "inputIdle", "",
     "", "EMail: ", "errorMessage", "");
     registerMenu.form.appendNewLine();
-    var password = registerMenu.form.createInput("centerContainer", "password", "inputIdle", "",
+    let password = registerMenu.form.createInput("centerContainer", "password", "inputIdle", "",
     "", "Password: ", "errorMessage", "");
     registerMenu.form.appendNewLine();
-    var confirmPassword = registerMenu.form.createInput("centerContainer", "password", "inputIdle", "",
+    let confirmPassword = registerMenu.form.createInput("centerContainer", "password", "inputIdle", "",
     "", "Confirm Password", "errorMessage", "");
     registerMenu.form.appendNewLine();
+    let formError = registerMenu.form.createFormError();
 
     function callback()
     {
-        name.error.text = mail.error.text = password.error.text = confirmPassword.error.text = "";
+        name.error.text = mail.error.text = password.error.text = confirmPassword.error.text = formError.text = "";
         bError = false;
 
         if(name.input.element.value == "")
@@ -105,9 +118,19 @@ function prepareRegisterMenu()
             bError = true;
         }
 
-        if(!bError && Services.checkRegister({mail: mail.input.element.value,
-            name: name.input.element.value, password: password.input.element.value}))
-                Services.changeUser({name: name.input.element.value});
+        if(!bError)
+        {
+            Services.checkRegister({mail: mail.input.element.value,
+                name: name.input.element.value, password: password.input.element.value})
+                    .then((response) =>
+                    {
+                        Services.changeUser({name: name.input.element.value});
+                    })
+                    .catch((response) =>
+                    {
+                        formError.text = response.error;
+                    });
+        }
 
         return false;
     }
@@ -115,6 +138,47 @@ function prepareRegisterMenu()
     registerMenu.form.createSubmit("centerContainer", "submit", "Register", callback);
     registerMenu.hide();
     document.register = registerMenu;
+}
+
+function prepareLeaderboard()
+{
+    const TemplateMenu = document.TemplateMenu;
+
+    let leaderboard = new TemplateMenu(document.body, "menuContainer", "Leaderboard", "menuTitle",
+        document.mainMenu, "menuItem");
+
+    leaderboard.innerHolder.className = "tableHolder";
+    leaderboard.onShow =
+        () =>
+        {
+            Services.getLeaders().then((response) =>
+            {
+                leaderboard.innerHolder.innerHTML = leaderboardTemplate({players: response});
+            })
+        };
+    leaderboard.hide();
+
+    document.leaderboardMenu = leaderboard;
+}
+
+function prepareAbout()
+{
+    const TemplateMenu = document.TemplateMenu;
+
+    let about = new TemplateMenu(document.body, "menuContainer", "About", "menuTitle",
+        document.mainMenu, "menuItem");
+
+    about.onShow =
+        (() =>
+        {
+            Services.getAboutText().then((response) =>
+            {
+              about.innerHolder.innerHTML = aboutTemplate(response)
+            })
+        });
+    about.hide();
+
+    document.aboutMenu = about;
 }
 
 function isValidMail(text)
@@ -133,3 +197,7 @@ prepareProfileBlock();
 preparePlayMenu();
 prepareLoginMenu();
 prepareRegisterMenu();
+prepareLeaderboard();
+prepareAbout();
+
+document.Http.BaseUrl = "http://" + window.location.host;

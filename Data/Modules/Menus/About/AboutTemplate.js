@@ -8,9 +8,9 @@ function pug_rethrow(n,e,r,t){if(!(n instanceof Error))throw n;if(!("undefined"=
       for (var pug_index0 = 0, $$l = $$obj.length; pug_index0 < $$l; pug_index0++) {
         var string = $$obj[pug_index0];
 ;pug_debug_line = 2;pug_debug_filename = "D:\\Study\\TP\\Sea-Battle\\2017_2_Sea_battle\\Data\u002FModules\u002FMenus\u002FAbout\u002FAbout.pug";
-pug_html = pug_html + "\u003Ch2 class=\"text\"\u003E";
+pug_html = pug_html + "\u003Cdiv class=\"info\"\u003E";
 ;pug_debug_line = 2;pug_debug_filename = "D:\\Study\\TP\\Sea-Battle\\2017_2_Sea_battle\\Data\u002FModules\u002FMenus\u002FAbout\u002FAbout.pug";
-pug_html = pug_html + (pug_escape(null == (pug_interp = {string}) ? "" : pug_interp)) + "\u003C\u002Fh2\u003E";
+pug_html = pug_html + (pug_escape(null == (pug_interp = string) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E";
       }
   } else {
     var $$l = 0;
@@ -18,9 +18,9 @@ pug_html = pug_html + (pug_escape(null == (pug_interp = {string}) ? "" : pug_int
       $$l++;
       var string = $$obj[pug_index0];
 ;pug_debug_line = 2;pug_debug_filename = "D:\\Study\\TP\\Sea-Battle\\2017_2_Sea_battle\\Data\u002FModules\u002FMenus\u002FAbout\u002FAbout.pug";
-pug_html = pug_html + "\u003Ch2 class=\"text\"\u003E";
+pug_html = pug_html + "\u003Cdiv class=\"info\"\u003E";
 ;pug_debug_line = 2;pug_debug_filename = "D:\\Study\\TP\\Sea-Battle\\2017_2_Sea_battle\\Data\u002FModules\u002FMenus\u002FAbout\u002FAbout.pug";
-pug_html = pug_html + (pug_escape(null == (pug_interp = {string}) ? "" : pug_interp)) + "\u003C\u002Fh2\u003E";
+pug_html = pug_html + (pug_escape(null == (pug_interp = string) ? "" : pug_interp)) + "\u003C\u002Fdiv\u003E";
     }
   }
 }).call(this);

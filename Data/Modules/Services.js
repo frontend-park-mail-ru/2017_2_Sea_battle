@@ -5,6 +5,8 @@
 ;
 (function()
 {
+    const Http = document.Http;
+
     class Services
     {
         static placeItem(element)
@@ -27,33 +29,39 @@
             document.currentUser = null;
         }
 
-        static serverCheck(pair)
+        static serverCheck(body)
         {
-            // Should send request
-            return true;
+            return http.FetchPost("/login", body);
         }
 
-        static changeUser(pair)
+        static changeUser(user)
         {
-            document.currentUser = {name: pair.name};
-            document.profileBlock.changeUser();
-            Services.changeMenu(document.mainMenu);
+            http.FetchGet("/myName")
+                .then((response) =>
+            {
+                document.currentUser = response;
+                Services.changeMenu(document.mainMenu);
+                document.profileBlock.changeUser(response);
+            })
+                .catch((response) =>
+            {
+                document.currentUser= null;
+            });
         }
 
-        static checkRegister(userInfo)
+        static checkRegister(body)
         {
-            // Should send request
-            return true;
+            return http.FetchPost("/register", body);
         }
 
         static getLeaders()
         {
-            return [{name: "YAX", score: 9000}, {name: "Jo", score: 1050}, {name: "Liz", score: 10}];
+            return http.FetchGet("/leaderboard");
         }
 
         static getAboutText()
         {
-            return ["Sea Battle Game", "Made for Front End course"];
+            return http.FetchGet("/about");
         }
     }
 
