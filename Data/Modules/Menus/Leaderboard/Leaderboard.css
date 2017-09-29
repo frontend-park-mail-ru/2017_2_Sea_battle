@@ -1,0 +1,25 @@
+.tableHolder
+{
+    background-image: url("/Resources/Textures/background-table-holder-texture.png");
+    width: 40%;
+    margin: auto;
+    border: 2px solid #0c0b23;
+}
+
+.leaderTable
+{
+    margin: auto;
+    width: 60%;
+}
+
+.header
+{
+    font-size: 25px;
+    color: #190c09;
+}
+
+.contents
+{
+    font-size: 20px;
+    color: #222031;
+}

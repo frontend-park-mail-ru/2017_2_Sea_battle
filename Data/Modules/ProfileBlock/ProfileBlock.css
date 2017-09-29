@@ -1,0 +1,51 @@
+.profileBlock
+{
+    background-image: url("/Resources/Textures/background-profile-block.png");
+    background-size: 430px 165px;
+    width: 410px;
+    height: 145px;
+    text-align: center;
+    padding: 10px;
+    margin: 15px;
+}
+
+.profileTitle
+{
+    font-size: 35px;
+    color: #171a1c;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profileSubtitle
+{
+    font-size: 25px;
+    color: #2a130e;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.profileItem
+{
+    color: #0b0316;
+    text-align: center;
+    font-size: 20px;
+    cursor: default;
+    display: inline;
+    margin: 15px;
+}
+
+.profileItem:hover
+{
+    background-image: url("/Resources/Textures/background-seleted-menu-item.png");
+
+    text-align: center;
+    font-size: 25px;
+    left: 30%;
+    right: 30%;
+    width: 50px;
+    margin: 2px auto 2px auto;
+
+    border: 2px solid #231a0b;
+}
