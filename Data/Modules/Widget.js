@@ -31,7 +31,7 @@
         show()
         {
             for(var i = 0; i < this.element.childNodes.length; i++)
-                if(this.element.childNodes[i].nodeType == 1)
+                if(this.element.childNodes[i].nodeType === Node.ELEMENT_NODE)
                     this.element.childNodes[i].style.visibility = "visible";
             this.element.style.visibility = "visible";
 
@@ -41,7 +41,7 @@
         hide()
         {
             for(var i = 0; i < this.element.childNodes.length; i++)
-                if(this.element.childNodes[i].nodeType == 1)
+                if(this.element.childNodes[i].nodeType === Node.ELEMENT_NODE)
                     this.element.childNodes[i].style.visibility = "hidden";
             this.element.style.visibility = "hidden";
 
@@ -89,14 +89,14 @@
             return this.element.position;
         }
 
-        set positoinType(type)
+        set positionType(type)
         {
             this.element.position = type;
         }
 
         get background()
         {
-            this.element.style.background;
+            return this.element.style.background;
         }
 
         set background(bg)

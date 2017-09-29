@@ -18,3 +18,11 @@
     align-content: center;
     text-align: center;
 }
+
+.formError
+{
+    text-align: center;
+    margin: auto;
+    font-size: 25px;
+    color: darkred;
+}

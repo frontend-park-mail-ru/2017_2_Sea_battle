@@ -12,7 +12,8 @@ fs.writeFileSync(LEADERBOARD + "LeaderboardTemplate.js", leaderboardFunc);
 
 // About
 const ABOUT = DATA + "/Modules/Menus/About/";
-let aboutFunc = pug.compileFileClient(ABOUT + "About.pug", {name: "aboutTemplate"});
+let aboutFunc = pug.compileFileClient(ABOUT
+    + "About.pug", {name: "aboutTemplate"});
 fs.writeFileSync(ABOUT + "AboutTemplate.js", aboutFunc);
 
 console.log("Baked!");

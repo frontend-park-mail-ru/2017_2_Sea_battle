@@ -38,6 +38,14 @@
             node.className = "newLine";
             this.element.appendChild(node);
         }
+
+        createFormError(errorTag = "div", errorClass = "formError", errorText = "")
+        {
+            let eMessage = new Widget(this.element, errorTag, errorClass);
+            eMessage.text = errorText;
+
+            return eMessage;
+        }
     }
 
     document.Form = Form;

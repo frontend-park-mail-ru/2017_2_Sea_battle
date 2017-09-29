@@ -6,8 +6,11 @@
 
 .errorMessage
 {
+    display: block;
     color: darkred;
     font-size: 20px;
+    text-align: center;
+    margin: auto;
 }
 
 .centerContainer
