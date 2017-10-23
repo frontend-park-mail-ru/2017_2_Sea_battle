@@ -1,0 +1,13 @@
+.aboutText
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    left: 25%;
+    text-align: center;
+}
+
+.aboutLine
+{
+    font-size: 25px;
+}

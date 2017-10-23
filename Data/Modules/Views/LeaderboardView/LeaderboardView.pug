@@ -1,0 +1,15 @@
+include ../BaseMenuView/BaseMenuHeader.pug
+
+table.leaderTable
+    thead
+        tr
+            th.tableHeader Name
+            th.tableHeader Score
+
+    tbody
+        each player in players
+            tr
+                th.contents #{player.name}
+                th.contents #{player.score}
+
+include ../BaseMenuView/BaseMenuFoot.pug

@@ -1,0 +1,16 @@
+.leaderTable
+{
+    border: 1px solid black;
+    width: 60%;
+    margin: auto;
+}
+
+.tableHeader
+{
+    border: 1px solid black;
+}
+
+.contents
+{
+    border: 1px solid black;
+}

@@ -2,68 +2,22 @@
  * designService
  * This module is designed to provide additional functionality for easier page decoration
  */
-;
-(function()
+
+'use strict';
+
+import Http from "./Http/http.js";
+
+class Services
 {
-    const Http = document.Http;
-
-    class Services
+    static getLeaders()
     {
-        static placeItem(element)
-        {
-            element.style.left = (Math.random() * 100) + "%";
-            element.style.top = (Math.random() * 100) + "%";
-            element.style.position = "absolute";
-        }
-
-        static changeMenu(newMenu)
-        {
-            document.currentMenu.hide();
-            document.currentMenu = newMenu;
-            newMenu.show();
-
-        }
-
-        static logout()
-        {
-            document.currentUser = null;
-        }
-
-        static serverCheck(body)
-        {
-            return http.FetchPost("/login", body);
-        }
-
-        static changeUser(user)
-        {
-            http.FetchGet("/myName")
-                .then((response) =>
-            {
-                document.currentUser = response;
-                Services.changeMenu(document.mainMenu);
-                document.profileBlock.changeUser(response);
-            })
-                .catch((response) =>
-            {
-                document.currentUser= null;
-            });
-        }
-
-        static checkRegister(body)
-        {
-            return http.FetchPost("/register", body);
-        }
-
-        static getLeaders()
-        {
-            return http.FetchGet("/leaderboard");
-        }
-
-        static getAboutText()
-        {
-            return http.FetchGet("/about");
-        }
+        return Http.FetchGet("/leaderboard");
     }
 
-    document.Services = Services;
-})();
+    static getAboutText()
+    {
+        return Http.FetchGet("/about");
+    }
+}
+
+export default Services;
