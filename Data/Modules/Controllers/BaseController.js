@@ -15,17 +15,7 @@ class BaseController
     {
         this.view = view;
 
-        this.view.element.childNodes.forEach((item) =>
-        {
-            if(item.dataset.id === "back")
-            {
-                this.backButton = new Button(item);
-                this.backButton.addEventHandler("click", function()
-                {
-                    eventBus.emitEvent({type: "goBack"});
-                }.bind(eventBus));
-            }
-        });
+        this.createBackButton();
 
         this.title = "Base Menu";
         this.url = "baseUrl";
@@ -45,6 +35,29 @@ class BaseController
 
     onShow(){}
     onHide(){}
+
+    goBackHandler()
+    {
+        eventBus.emitEvent({type: "goBack"});
+    }
+
+    deleteBackButton()
+    {
+        this.backButton.removeEventHandler("click", this.goBackHandler);
+        delete this.backButton;
+    }
+
+    createBackButton()
+    {
+        this.view.element.childNodes.forEach((item) =>
+        {
+            if(item.dataset.id === "back")
+            {
+                this.backButton = new Button(item);
+                this.backButton.addEventHandler("click", this.goBackHandler);
+            }
+        });
+    }
 }
 
 export default BaseController;

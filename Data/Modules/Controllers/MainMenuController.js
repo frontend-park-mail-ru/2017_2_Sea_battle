@@ -11,11 +11,12 @@ class MainMenuController extends BaseController
     constructor(view)
     {
         super(view);
+
         this.buttons = {};
         this.view.element.childNodes.forEach((item) =>
         {
             let id = item.dataset.id;
-            if(id === undefined)
+            if(id === undefined || id === "back")
                 return;
 
             this.buttons[id] = new Button(item);

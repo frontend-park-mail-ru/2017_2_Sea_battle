@@ -15,5 +15,7 @@ function bake(path, fileName, functionName, jsName)
 bake("/Modules/Views/MainMenuView/", "MainMenuView.pug", "generateMainMenuView", "MainMenuViewTemplate.js");
 bake("/Modules/Views/AboutMenuView/", "AboutMenuView.pug", "generateAboutMenuView", "AboutMenuViewTemplate.js");
 bake("/Modules/Views/LeaderboardView/", "LeaderboardView.pug", "generateLeaderboardView", "LeaderboardViewTemplate.js");
+bake("/Modules/Views/StartGameMenuView/", "StartGameMenuView.pug",
+                                          "generateStartGameMenuView", "StartGameMenuViewTemplate.js");
 
 console.log("Baked!");

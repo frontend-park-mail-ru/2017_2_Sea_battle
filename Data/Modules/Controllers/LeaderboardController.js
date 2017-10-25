@@ -19,13 +19,16 @@ class LeaderboardController extends BaseController
         Services.getLeaders()
             .then(result =>
             {
-               this.view.changeData({title: "Leaderboard", players: result});
+                this.deleteBackButton();
+                this.view.changeData({title: "Leaderboard", players: result});
+                this.createBackButton();
             })
             .catch(error =>
             {
+                this.deleteBackButton();
                 this.view.changeData({title: "Leaderboard", players: [error]});
+                this.createBackButton();
             });
-
     }
 }
 

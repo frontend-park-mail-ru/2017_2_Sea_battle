@@ -19,11 +19,15 @@ class AboutMenuController extends BaseController
         Services.getAboutText()
             .then((res) =>
             {
+                this.deleteBackButton();
                 this.view.changeData({title: "About", text: res.text});
+                this.createBackButton();
             })
             .catch((error) =>
             {
+                this.deleteBackButton();
                 this.view.changeData({title: "About", text: [error]});
+                this.createBackButton();
             });
     }
 }
