@@ -44,7 +44,7 @@ class Http
             {
                 method: 'POST',
                 mode: 'cors',
-                //credentials: 'include',
+                credentials: 'include',
                 body: JSON.stringify(body),
                 headers:
                     {

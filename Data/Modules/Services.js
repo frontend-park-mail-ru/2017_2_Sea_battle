@@ -31,6 +31,11 @@ class Services
     {
         return Http.FetchPost("/login", {"loginEmail": mail, "password": pwd});
     }
+
+    static registerUser(mail, nickname, pwd)
+    {
+        return Http.FetchPost("/users", {"login": nickname, "email": mail, "password": pwd});
+    }
 }
 
 export default Services;

@@ -12,6 +12,7 @@ eventBus.subscribe(menuManager);
 window.onpopstate = menuManager.go.bind(menuManager);
 
 // Butch stuff
+/*
 let testGame = new Widget(document.body, "div", "button");
 testGame.text = "Start Game";
 testGame.element.style.top = "70%";
@@ -21,6 +22,7 @@ testGame.addEventHandler("click", () =>
     createFirstGameScene();
     eventBus.emitEvent({type: "changeMenu", newMenuName: "/game"})
 });
+*/
 //
 
 //import Http from "./Modules/Http/http.js";

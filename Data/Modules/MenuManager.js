@@ -7,13 +7,14 @@ import leaderboardView from "./Views/LeaderboardView/LeaderboardView.js";
 import startGameMenuView from "./Views/StartGameMenuView/StartGameMenuView.js";
 import gameModeMenuView from "./Views/GameModeMenuView/GameModeMenuView.js";
 import loginMenuView from "./Views/LoginMenuView/LoginMenuView.js";
+import registerMenuView from "./Views/RegisterMenuView/RegisterMenuView.js";
 import MainMenuController from "./Controllers/MainMenuController.js";
 import AboutMenuController from "./Controllers/AboutMenuController.js";
 import LeaderboardController from "./Controllers/LeaderboardController.js";
 import StartGameMenuController from "./Controllers/StartGameMenuController.js";
 import GameModeMenuController from "./Controllers/GameModeMenuController.js";
-import LoginMenuController from "./COntrollers/LoginMenuController.js";
-
+import LoginMenuController from "./Controllers/LoginMenuController.js";
+import RegisterMenuController from "./Controllers/RegisterMenuController.js";
 
 class MenuManager extends Subscriber
 {
@@ -31,6 +32,7 @@ class MenuManager extends Subscriber
                 "/startGame": new StartGameMenuController(startGameMenuView),
                 "/selectMode": new GameModeMenuController(gameModeMenuView),
                 "/startGame/login": new LoginMenuController(loginMenuView),
+                "/startGame/register": new RegisterMenuController(registerMenuView),
             };
 
         this.currentMenu = this.menus["/"];

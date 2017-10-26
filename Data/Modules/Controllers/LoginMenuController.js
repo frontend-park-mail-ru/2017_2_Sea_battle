@@ -1,7 +1,7 @@
 "use strict";
 
 import BaseController from "./BaseController.js";
-import Input from "../Blocks/Input.js";;
+import Input from "../Blocks/Input/Input.js";
 import Services from "../Services.js";
 
 class LoginMenuController extends BaseController

@@ -18,5 +18,7 @@ bake("/Modules/Views/LeaderboardView/", "LeaderboardView.pug", "generateLeaderbo
 bake("/Modules/Views/StartGameMenuView/", "StartGameMenuView.pug",
                                           "generateStartGameMenuView", "StartGameMenuViewTemplate.js");
 bake("/Modules/Views/LoginMenuView/", "LoginMenuView.pug", "generateLoginMenuView", "LoginMenuViewTemplate.js");
+bake("/Modules/Views/RegisterMenuView/", "RegisterMenuView.pug",
+                                         "generateRegisterMenuView", "RegisterMenuViewTemplate.js");
 
 console.log("Baked!");

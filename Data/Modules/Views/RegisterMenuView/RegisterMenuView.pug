@@ -1,0 +1,38 @@
+include ../BaseMenuView/BaseMenuHeader.pug
+
+form.loginForm(name="registerForm")
+    table.alignCenter
+        tbody
+            tr
+                th
+                    label.info Mail:
+                th
+                    input(type="text" value="" name="registerMailInput").flatLightGray
+                th
+                    label.error(id="registerMailError")
+            tr
+                th
+                    label.info Nickname:
+                th
+                    input(type="text" value="" name="registerNicknameInput").flatLightGray
+                th
+                    label.error(id="registerNicknameError")
+            tr
+                th
+                    label.info Password:
+                th
+                    input(type="password" value="" name="registerPasswordInput").flatLightGray
+                th
+                    label.error(id="registerPasswordError")
+            tr
+                th
+                    label.info Repeat Password:
+                th
+                    input(type="password" value="" name="registerRepeatPasswordInput").flatLightGray
+                th
+                    label.error(id="registerRepeatPasswordError")
+            tr
+                th(colspan=3)
+                    input(type="submit" value="Register" name="registerSubmit").alignCenter.submitButton
+
+include ../BaseMenuView/BaseMenuFoot.pug

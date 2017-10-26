@@ -20,7 +20,6 @@ class LeaderboardController extends BaseController
             .then(result =>
             {
                 this.deleteBackButton();
-                debugger;
                 this.view.changeData({title: "Leaderboard", players: result});
                 this.createBackButton();
             })

@@ -13,6 +13,12 @@
     color: darkred;
 }
 
+.submitButton
+{
+    background: lightgray;
+    border: 1px solid #212121;
+}
+
 .alignCenter
 {
     margin: auto;
