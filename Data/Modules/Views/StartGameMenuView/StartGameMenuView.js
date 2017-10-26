@@ -7,8 +7,8 @@ const startGameMenuView = new BaseView(document.body, generateStartGameMenuView,
         title: "Start Game",
         menus:
             [
-                {name: "Log-in", id: "/start/login"},
-                {name: "Register", id: "/start/register"},
+                {name: "Log-in", id: "/startGame/login"},
+                {name: "Register", id: "/startGame/register"},
             ]
     });
 

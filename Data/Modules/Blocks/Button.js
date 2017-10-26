@@ -1,6 +1,6 @@
 "use strict";
 
-import Widget from "../Widget.js";
+import Widget from "./Widget.js";
 
 class Button extends Widget
 {

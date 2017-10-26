@@ -20,7 +20,7 @@ class Http
             {
                 method: 'GET',
                 mode: 'cors',
-                credentials: 'include'
+                //credentials: 'include'
             })
             .then(function (response)
             {
@@ -44,7 +44,7 @@ class Http
             {
                 method: 'POST',
                 mode: 'cors',
-                credentials: 'include',
+                //credentials: 'include',
                 body: JSON.stringify(body),
                 headers:
                     {
@@ -60,6 +60,6 @@ class Http
     }
 }
 
-Http.BaseUrl = null;
+Http.BaseUrl = "http://sea-battle-back.herokuapp.com/api";
 
 export default Http;

@@ -18,6 +18,19 @@ class Services
     {
         return Http.FetchGet("/about");
     }
+
+    static isValidMail(text)
+    {
+        let reg = /[0-9A-Za-z\-\_]+@[A-Za-z\-\_]+\.[A-Za-z\-\_]+/; // RegExp for mail
+        let match = text.match(reg);
+
+        return (match != null && match[0] == text);
+    }
+
+    static checkUser(mail, pwd)
+    {
+        return Http.FetchPost("/login", {"loginEmail": mail, "password": pwd});
+    }
 }
 
 export default Services;

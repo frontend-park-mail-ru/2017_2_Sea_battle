@@ -1,0 +1,19 @@
+.loginForm
+{
+}
+
+.info
+{
+    font-size: 15px;
+}
+
+.error
+{
+    font-size: 15px;
+    color: darkred;
+}
+
+.alignCenter
+{
+    margin: auto;
+}

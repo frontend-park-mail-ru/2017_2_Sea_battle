@@ -1,7 +1,7 @@
 "use strict";
 
 import BaseController from "./BaseController.js";
-import Button from "../Blocks/Button/Button.js";
+import Button from "../Blocks/Button.js";
 import EventBus from "../EventBus.js";
 
 const eventBus = new EventBus();
