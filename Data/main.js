@@ -2,11 +2,26 @@
 import MenuManager from "./Modules/MenuManager.js";
 import EventBus from "./Modules/EventBus.js";
 
+import {createFirstGameScene, createSecoundGameScene} from "./Game/CreateGame.js"; // нужна только create_game1
+import Widget from "./Modules/Blocks/Widget.js";
+
 const eventBus = new EventBus();
 const menuManager = new MenuManager();
 eventBus.subscribe(menuManager);
 
 window.onpopstate = menuManager.go.bind(menuManager);
+
+// Butch stuff
+let testGame = new Widget(document.body, "div", "button");
+testGame.text = "Start Game";
+testGame.element.style.top = "70%";
+testGame.element.style.position = "fixed";
+testGame.addEventHandler("click", () =>
+{
+    createFirstGameScene();
+    eventBus.emitEvent({type: "changeMenu", newMenuName: "/game"})
+});
+//
 
 //import Http from "./Modules/Http/http.js";
 //import Services from "./Modules/Services.js";
