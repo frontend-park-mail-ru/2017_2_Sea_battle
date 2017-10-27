@@ -175,12 +175,12 @@ function field_Lighting(event, flag_turn, ship = 0) {
         dragObject.avatar.hidden = true;
         // получить самый вложенный элемент по координатам
         if (flag_turn == 0) {
-            x = event.clientX + i * 35;
+            x = event.clientX + i * 32;
             y = event.clientY;
         }
         else {
             x = event.clientX;
-            y = event.clientY + i * 35;
+            y = event.clientY + i * 32;
         }
 
         elem = document.elementFromPoint(x, y);
@@ -209,7 +209,7 @@ function field_Lighting(event, flag_turn, ship = 0) {
             dragObject.avatar.hidden = true;
 
             if (flag_turn == 0) {
-                x = event.clientX + i * 35;
+                x = event.clientX + i * 32;
                 y = event.clientY;
             }
             else {
@@ -246,7 +246,7 @@ function field_Lighting(event, flag_turn, ship = 0) {
                 // верх и лево
                 for (let k = -1; k < num; k++) {
                     if (flag_turn == 0) {
-                        x = event.clientX + 34*k;
+                        x = event.clientX + 32*k;
                         y = event.clientY - 32;
                     }
                     else {
@@ -265,7 +265,7 @@ function field_Lighting(event, flag_turn, ship = 0) {
                 // низ и право
                 for (let k = -1; k < num; k++) {
                     if (flag_turn == 0) {
-                        x = event.clientX + 34*k;
+                        x = event.clientX + 32*k;
                         y = event.clientY + 32;
                     }
                     else {
@@ -303,7 +303,7 @@ function field_Lighting(event, flag_turn, ship = 0) {
                 }
                 if (i == num_ship-1) {
                     if (flag_turn == 0) {
-                        x = event.clientX + 34*(i+1);
+                        x = event.clientX + 32*(i+1);
                         y = event.clientY;
                     }
                     else {

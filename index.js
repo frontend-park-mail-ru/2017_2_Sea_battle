@@ -64,7 +64,10 @@ app.post("/users", function (req, res)
 app.get("/leaderboard", function (req, res)
 {
     const scorelist = Object.values(users).sort((x, y) => y.score - x.score).map(
-        user => {return {email: user.mail, login: user.name, score: user.score}});
+        function(user)
+    {
+        return {email: user.mail, login: user.name, score: user.score};
+    });
 
     res.status(201);
     res.json(scorelist);
