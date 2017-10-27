@@ -1,4 +1,7 @@
 import Widget from "../Modules/Blocks/Widget.js";
+import EventBus from "../Modules/EventBus.js";
+
+const eventBus = new EventBus();
 
 function BackButton(AllGame) {
     let backButton = new Widget(document.body, "button", "backButton");
@@ -10,7 +13,7 @@ function BackButton(AllGame) {
 function BackMenu() {
     let AllGame = document.getElementsByClassName("all_game");
     document.body.removeChild(AllGame[0]);
-    // показать основное меню
+    eventBus.emitEvent({type: "changeMenu", newMenuName: "/"});
 }
 
 function WinScene() {

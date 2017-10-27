@@ -36,6 +36,11 @@ class Services
     {
         return Http.FetchPost("/users", {"login": nickname, "email": mail, "password": pwd});
     }
+
+    static getUser()
+    {
+        return Http.FetchGet("/info");
+    }
 }
 
 export default Services;

@@ -3,6 +3,9 @@
 import BaseController from "./BaseController.js";
 import Input from "../Blocks/Input/Input.js";
 import Services from "../Services.js";
+import EventBus from "../EventBus.js";
+
+const eventBus = new EventBus();
 
 class RegisterMenuController extends BaseController
 {
@@ -51,7 +54,8 @@ class RegisterMenuController extends BaseController
             Services.registerUser(this.inputMail.value, this.inputNickname.value, this.inputPassword.value)
                 .then(response =>
                 {
-                    console.log(response);
+                    eventBus.emitEvent({type: "updateUser"});
+                    eventBus.emitEvent({type: "goBack"});
                 })
                 .catch(error =>
                 {

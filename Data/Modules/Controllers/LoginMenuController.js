@@ -3,6 +3,9 @@
 import BaseController from "./BaseController.js";
 import Input from "../Blocks/Input/Input.js";
 import Services from "../Services.js";
+import EventBus from "../EventBus.js";
+
+const eventBus = new EventBus();
 
 class LoginMenuController extends BaseController
 {
@@ -33,13 +36,12 @@ class LoginMenuController extends BaseController
             Services.checkUser(this.inputMail.value, this.inputPassword.value)
                 .then(response =>
                 {
-                    response;
-                    debugger;
+                    eventBus.emitEvent({type: "updateUser"});
+                    eventBus.emitEvent({type: "goBack"});
                 })
                 .catch(error =>
                 {
-                    error;
-                    debugger;
+                    // Throw message box;
                 });
 
         return false;
