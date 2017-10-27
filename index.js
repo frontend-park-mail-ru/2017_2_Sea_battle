@@ -1,4 +1,3 @@
-"use strict";
 const express = require("express");
 const path = require("path");
 const body = require('body-parser');
@@ -62,6 +61,7 @@ app.post("/users", function (req, res)
     res.cookie("Special seal", id, {expires: new Date(Date.now() + 1000 * 60 * 15)});
     res.json({name: name, email: mail, score: 0});
 });
+
 app.get("/leaderboard", function (req, res)
 {
 
@@ -78,14 +78,13 @@ app.get("/leaderboard", function (req, res)
 app.get("/info", function (req, res)
 {
     const id = req.cookies["Special seal"];
-    console.log(id);
     const mail = ids[id];
+
     if (!mail || !users[mail])
     {
         res.status(201);
         res.json({status: 0, response: "You are not currently logged in!"});
     }
-
 
     let result = {login: name, score, email = mail} = users[ids[id]];
     result.password = null;
