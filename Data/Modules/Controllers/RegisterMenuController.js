@@ -55,7 +55,7 @@ class RegisterMenuController extends BaseController
                 .then(response =>
                 {
                     eventBus.emitEvent({type: "updateUser"});
-                    eventBus.emitEvent({type: "goBack"});
+                    eventBus.emitEvent({type: "changeMenu", newMenuName: "/"});
                 })
                 .catch(error =>
                 {
