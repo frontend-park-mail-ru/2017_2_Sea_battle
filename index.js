@@ -64,7 +64,7 @@ app.post("/users", function (req, res)
 app.get("/leaderboard", function (req, res)
 {
     const scorelist = Object.values(users).sort((x, y) => y.score - x.score).map(
-        user => {return {mail: user.mail, name: user.name, score: user.score}});
+        user => {return {email: user.mail, login: user.name, score: user.score}});
 
     res.status(201);
     res.json(scorelist);
@@ -87,6 +87,14 @@ app.get("/info", function (req, res)
 
     res.status(201);
     res.json(result);
+});
+
+app.post("/logout", function(req, res)
+{
+    res.cookie("Special seal", -1, {expires: new Date(Date.now() + 1000*60*15)});
+
+    res.status(201);
+    res.json({status: 0});
 });
 
 app.get("/about", function(req, res)

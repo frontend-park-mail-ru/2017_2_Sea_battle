@@ -41,6 +41,11 @@ class Services
     {
         return Http.FetchGet("/info");
     }
+
+    static logoutUser()
+    {
+        return Http.FetchPost("/logout");
+    }
 }
 
 export default Services;

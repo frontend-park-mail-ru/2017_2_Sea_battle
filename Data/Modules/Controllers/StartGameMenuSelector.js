@@ -10,6 +10,8 @@ class StartGameMenuSelector
     constructor()
     {
         this.startGameMenuController = new StartGameMenuController(startGameMenuView);
+        this.url = "/startGame";
+        this.title = "Start Game";
     }
 
     show()
@@ -18,7 +20,7 @@ class StartGameMenuSelector
             .then(response =>
         {
             if(response.status === 0)
-                startGameMenuView.show();
+                this.startGameMenuController.show();
             else
                 createFirstGameScene();
         })
@@ -33,7 +35,7 @@ class StartGameMenuSelector
             .then(response =>
             {
                 if(response.status === 0)
-                    startGameMenuView.hide();
+                    this.startGameMenuController.hide();
             })
             .catch(exit =>
             {

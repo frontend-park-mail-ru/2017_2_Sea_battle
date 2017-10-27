@@ -63,7 +63,12 @@ class MenuManager extends Subscriber
     eventFired(event)
     {
         if(event.type === "changeMenu")
-            this.changeMenu(event.newMenuName);
+        {
+            if(event.bPushState === true)
+                this.changeMenu(event.newMenuName, true);
+            else
+                this.changeMenu(event.newMenuName);
+        }
         else if(event.type === "goBack")
             window.history.back();
         else if(event.type === "updateUser")

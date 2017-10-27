@@ -8,10 +8,10 @@ table
         if loggedIn
             tr.alignCenter
                 th(colspan=2).alignCenter
-                    div.smallButton.alignCenter Logout
+                    div.smallButton.alignCenter(id="logout") Logout
         else
             tr.alignCenter
                 th.alignCenter
-                    div.smallButton.alignCenter Login
+                    div.smallButton.alignCenter(id="login") Login
                 th.alignCenter
-                    div.smallButton.alignCenter Register
+                    div.smallButton.alignCenter(id="register") Register
