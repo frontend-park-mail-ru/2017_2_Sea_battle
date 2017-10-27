@@ -1,0 +1,17 @@
+.messageBox
+{
+    border: 1px solid black;
+    background-color: cornsilk;
+
+    position: absolute;
+    margin: auto;
+    align-content: center;
+    text-align: center;
+    padding: 10px;
+}
+
+.messageBoxTitle
+{
+    color: #212121;
+    font-size: 35px;
+}
