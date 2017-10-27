@@ -1,0 +1,6 @@
+include ../BaseMenuView/BaseMenuHeader.pug
+
+each menu in menus
+    div(class="button" data-id=menu.id) #{menu.name}
+
+include ../BaseMenuView/BaseMenuFoot.pug

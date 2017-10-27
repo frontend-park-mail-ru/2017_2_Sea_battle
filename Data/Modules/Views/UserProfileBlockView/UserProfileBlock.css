@@ -1,0 +1,17 @@
+.profileBlock
+{
+    width: 200px;
+    height: 80px;
+    border: 1px solid black;
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    align-content: center;
+    text-align: center;
+}
+
+h3
+{
+    margin: auto;
+    font-size: 20px;
+}

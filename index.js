@@ -23,7 +23,7 @@ const aboutText = {text: ["Sea battle game", "Made for TP sem-2"]};
 app.post("/login", function(req, res)
 {
     let password = req.body.password;
-    let mail = req.body.mail;
+    let mail = req.body.loginEmail;
 
     if(!password || !mail || !isValidMail(mail))
         return res.status(400).json({error: "Invalid data!"});
@@ -36,13 +36,13 @@ app.post("/login", function(req, res)
 
     res.status(201);
     res.cookie("Special seal", id, {expires: new Date(Date.now() + 1000*60*15)});
-    res.json({id: id});
+    res.json({login: users[mail].name, email: mail, password: null, score: users[mail].score});
 });
 
-app.post("/register", function (req, res)
+app.post("/users", function (req, res)
 {
-    const name = req.body.name;
-    const mail = req.body.mail;
+    const name = req.body.login;
+    const mail = req.body.email;
     const password = req.body.password;
 
     if (!password || !mail || !name || !isValidMail(mail))
@@ -58,42 +58,49 @@ app.post("/register", function (req, res)
 
     res.status(201)
     res.cookie("Special seal", id, {expires: new Date(Date.now() + 1000 * 60 * 15)});
-    res.json({id: id});
+    res.json({name: name, email: mail, score: 0});
 });
 
 app.get("/leaderboard", function (req, res)
 {
     const scorelist = Object.values(users).sort((x, y) => y.score - x.score).map(
-        user => {return {mail: user.mail, name: user.name, score: user.score}});
+        user => {return {email: user.mail, login: user.name, score: user.score}});
 
     res.status(201);
     res.json(scorelist);
 });
 
-app.get("/user", function (req, res)
+app.get("/info", function (req, res)
 {
     const id = req.cookies["Special seal"];
+    console.log(id);
     const mail = ids[id];
     if (!mail || !users[mail])
-        return res.status(401).end();
+    {
+        res.status(201);
+        res.json({status: 0, response: "You are not currently logged in!"});
+    }
+
+
+    let result = {login: name, score, email = mail} = users[ids[id]];
+    result.password = null;
 
     res.status(201);
-    res.json(users[mail]);
+    res.json(result);
+});
+
+app.post("/logout", function(req, res)
+{
+    res.cookie("Special seal", -1, {expires: new Date(Date.now() + 1000*60*15)});
+
+    res.status(201);
+    res.json({status: 0});
 });
 
 app.get("/about", function(req, res)
 {
    res.status(201);
    res.json(aboutText);
-});
-
-app.get("/myName", function(req, res)
-{
-    let id = req.cookies["Special seal"];
-    if(req.cookies === undefined || !ids[id])
-        res.status(400).json({error: "Player not found!"});
-    else
-        res.status(201).json({name: users[ids[id]].name});
 });
 
 app.get("/", function(req, res)

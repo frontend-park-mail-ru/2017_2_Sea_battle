@@ -1,4 +1,5 @@
 # Sea Battle
+Game link: [Sea Battle](http://sea-battle-front.herokuapp.com/)
 
 ## Team
 - [@YAXo-O](https://github.com/YAXo-O)

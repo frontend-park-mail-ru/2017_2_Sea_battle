@@ -1,0 +1,24 @@
+include ../BaseMenuView/BaseMenuHeader.pug
+
+form.loginForm(name="loginForm")
+    table.alignCenter
+        tbody
+            tr
+                th
+                    label.info Mail:
+                th
+                    input(type="text" value="" name="loginMailInput").flatLightGray
+                th
+                    label.error(id="loginMailError")
+            tr
+                th
+                    label.info Password:
+                th
+                    input(type="password" value="" name="loginPasswordInput").flatLightGray
+                th
+                    label.error(id="loginPasswordError")
+            tr
+                th(colspan=3)
+                    input(type="submit" value="Log-in" name="loginSubmit").alignCenter.submitButton
+
+include ../BaseMenuView/BaseMenuFoot.pug

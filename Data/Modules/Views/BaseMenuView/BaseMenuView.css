@@ -1,0 +1,33 @@
+.viewTitle
+{
+    font-size: 55px;
+    text-align: center;
+    margin: 0px;
+
+}
+
+.button
+{
+    font-size: 30px;
+    text-align: center;
+    cursor: hand;
+}
+
+.button:hover
+{
+    font-size: 35px;
+    text-align: center;
+}
+
+.smallButton
+{
+    font-size: 15px;
+    text-align: center;
+    cursor: hand;
+}
+
+.smallButton:hover
+{
+    font-size: 20px;
+    text-align: center;
+}

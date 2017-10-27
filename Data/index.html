@@ -1,58 +1,30 @@
 <html>
 <head>
     <title> SeaBattle </title>
-    <link rel="stylesheet" href="CSS/Styles.css">
-    <link rel="stylesheet" href="./Modules/MenuItem/MenuItem.css">
-    <link rel="stylesheet" href="./Modules/MenuContainer/MenuContainer.css">
-    <link rel="stylesheet" href="./Modules/Input/Input.css">
-    <link rel="stylesheet" href="./Modules/Form/Form.css">
-    <link rel="stylesheet" href="./Modules/ProfileBlock/ProfileBlock.css">
-    <link rel="stylesheet" href="./Modules/Menus/PlayMenu/PlayMenu.css">
-    <link rel="stylesheet" href="./Modules/Menus/LoginMenu/LoginMenu.css">
-    <link rel="stylesheet" href="./Modules/Menus/Leaderboard/Leaderboard.css">
-    <link rel="stylesheet" href="./Modules/Menus/About/About.css">
+    <link rel="stylesheet" href="./CSS/Styles.css">
+    <link rel="stylesheet" href="./Modules/Views/BaseMenuView/BaseMenuView.css">
+    <link rel="stylesheet" href="./Modules/Views/BaseView/BaseView.css">
+    <link rel="stylesheet" href="./Modules/Views/AboutMenuView/AboutMenuView.css">
+    <link rel="stylesheet" href="./Modules/Views/LeaderboardView/LeaderboardView.css">
+    <link rel="stylesheet" href="./Modules/Views/LoginMenuView/LoginMenuView.css">
+    <link rel="stylesheet" href="./Modules/Blocks/Input/Input.css">
+    <link rel="stylesheet" href="./Modules/Views/UserProfileBlockView/UserProfileBlock.css">
+
+    <link rel="stylesheet" href="./Game/CSS/GameStyle.css">
 </head>
 
 <body>
 
-<!-- predefined variables -->
-<script>
-    // Menus
-    document.mainMenu = null;
-    document.playMenu = null; // Game field
-    document.profileEntry = null; // Log-in/Register
-    document.leaderboardMenu = null;
-    document.aboutMenu = null;
-    document.profileBlock = null;
-    document.login = null;
-    document.register = null;
+<!-- Pug modules - pug doesn't support ES6 modules  -->
+<script src="./Modules/Views/MainMenuView/MainMenuViewTemplate.js"></script>
+<script src="./Modules/Views/AboutMenuView/AboutMenuViewTemplate.js"></script>
+<script src="./Modules/Views/LeaderboardView/LeaderboardViewTemplate.js"></script>
+<script src="./Modules/Views/StartGameMenuView/StartGameMenuViewTemplate.js"></script>
+<script src="./Modules/Views/LoginMenuView/LoginMenuViewTemplate.js"></script>
+<script src="./Modules/Views/RegisterMenuView/RegisterMenuViewTemplate.js"></script>
+<script src="./Modules/Views/UserProfileBlockView/UserProfileBlockViewTemplate.js"></script>
 
-    // Current User
-    document.currentUser = null;
-</script>
-
-<!-- Modules go here -->
-<script src="./Modules/Services.js"></script>
-<script src="./Modules/Widget.js"></script>
-<script src="./Modules/Input/Input.js"></script>
-<script src="./Modules/MenuItem/MenuItem.js"></script>
-<script src="./Modules/MenuContainer/MenuContainer.js"></script>
-<script src="./Modules/Menus/TemplateMenu/TemplateMenu.js"></script>
-<script src="./Modules/Form/Form.js"></script>
-<script src="./Modules/ProfileBlock/ProfileBlock.js"></script>
-<script src="./Modules/Http/http.js"></script>
-
-<!-- Templates go here -->
-<script src="./Modules/Menus/Leaderboard/LeaderboardTemplate.js"></script>
-<script src="./Modules/Menus/About/AboutTemplate.js"></script>
-
-<!-- Menus go here --->
-<script src="./Modules/Menus/MainMenu/MainMenu.js"></script>
-<script src="./Modules/Menus/PlayMenu/PlayMenu.js"></script>
-<script src="./Modules/Menus/ProfileEntry/ProfileEntry.js"></script>
-<script src="./Modules/Menus/LoginMenu/LoginMenu.js"></script>
-
-<script src="./main.js"></script>
+<script src="./main.js" type="module"></script>
 
 </body>
 </html>

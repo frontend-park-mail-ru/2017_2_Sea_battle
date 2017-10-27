@@ -1,0 +1,212 @@
+
+.all_game {
+    position: absolute;
+    left: 20px;
+}
+
+.draggable {
+    cursor: pointer;
+}
+
+.table_field td
+{
+    border: 1px solid #1d2d3b;
+    padding: 5px;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+}
+
+.table_field
+{
+    margin: auto;
+    position: absolute;
+    top: 60%;
+    left: 85%;
+    /*
+    position: relative;
+    bottom: 150px;
+    left: 400px;
+    */
+}
+
+/*
+.img_field
+{
+    background-image: url("/Resources/Texturex/background-table-holder-texture.png");
+}
+*/
+
+
+.inline_block
+{
+    display: inline-block;
+}
+
+.next_button
+{
+    position: absolute;
+    top: 65%;
+    left: 185%;
+}
+
+.turnButton
+{
+    position: relative;
+    bottom: 15px;
+
+}
+
+.ship
+{
+    border: 3px solid #1d2d3b;
+    padding: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: greenyellow;
+    color: transparent;
+}
+
+.shipX1
+{
+    border: 3px solid #1d2d3b;
+    padding: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: greenyellow;
+    color: transparent;
+}
+
+.shipX2
+{
+    border: 3px solid #1d2d3b;
+    padding: 5px;
+    width: 56px;
+    height: 20px;
+    background-color: greenyellow;
+    color: transparent;
+}
+
+.shipX3
+{
+    border: 3px solid #1d2d3b;
+    padding: 5px;
+    width: 88px;
+    height: 20px;
+    background-color: greenyellow;
+    color: transparent;
+}
+
+.shipX4
+{
+    border: 3px solid #1d2d3b;
+    padding: 5px;
+    width: 121px;
+    height: 20px;
+    background-color: greenyellow;
+    color: transparent;
+}
+
+
+
+
+
+
+.field_ship
+{
+    color: transparent;
+}
+
+.my_field td
+{
+    border: 1px solid #1d2d3b;
+    padding: 5px;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+}
+
+.enemy_field td
+{
+    border: 1px solid #1d2d3b;
+    padding: 5px;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+}
+
+.h1_my
+{
+    position: absolute;
+    left: 65%;
+    top: 10%;
+}
+
+.my_field
+{
+    position: relative;
+    left: 40%;
+    top: 106px;
+}
+
+.h1_enemy
+{
+    position: absolute;
+    left: 210%;
+    top: 10%;
+}
+
+.enemy_field
+{
+    position: absolute;
+    left: 185%;
+    top: 30%;
+}
+
+.shipDie
+{
+    background-color: red;
+}
+
+.shipFire
+{
+    background-color: yellow;
+}
+
+.shipOK
+{
+    background-color: greenyellow;
+}
+
+.Fire
+{
+    background-color: indigo;
+}
+
+.youWinLose
+{
+    position: relative;
+    left: 600px;
+    top: 220px;
+    width: 200px;
+}
+
+.newScore
+{
+    position: relative;
+    left: 580px;
+    top: 220px;
+    width: 200px;
+}
+
+.backButton
+{
+    position: relative;
+    left: 615px;
+    top: 227px;
+}
+
+
+
+
+
