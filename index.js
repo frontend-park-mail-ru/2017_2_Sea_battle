@@ -1,23 +1,25 @@
+"use strict";
 const express = require("express");
 const path = require("path");
 const body = require('body-parser');
 const cors = require('cors');
 const cookie = require('cookie-parser');
-const uuid = require('uuid/v4');
 
+const uuid = require('uuid/v4');
 const app = express();
+
 const DATA = path.resolve("./Data/"); // Where to get files from?
 const port = process.env.PORT || 8080;
-
 app.use(express.static(DATA));
 app.use(body.json());
-app.use(cookie());
 
+app.use(cookie());
 const ids = {};
 const users = {
     "aa@mail.ru": {name: "Alex", password: "a3", score: 0},
     "aaazzzx@mail.ru": {name: "YAX", password: "pas", score: 42}
 };
+
 const aboutText = {text: ["Sea battle game", "Made for TP sem-2"]};
 
 app.post("/login", function(req, res)
@@ -60,17 +62,13 @@ app.post("/users", function (req, res)
     res.cookie("Special seal", id, {expires: new Date(Date.now() + 1000 * 60 * 15)});
     res.json({name: name, email: mail, score: 0});
 });
-
 app.get("/leaderboard", function (req, res)
 {
-    const scorelist = Object.values(users).sort(
-        function(x, y)
-        {
-            return y.score - x.score;
-        }).map(
-        function(user)
-    {
-        return {email: user.mail, login: user.name, score: user.score};
+
+    let scorelist = Object.values(users).sort(function (x, y) {
+        return y.score - x.score;
+    }).map(function (user) {
+        return { email: user.mail, login: user.name, score: user.score };
     });
 
     res.status(201);
@@ -99,7 +97,6 @@ app.get("/info", function (req, res)
 app.post("/logout", function(req, res)
 {
     res.cookie("Special seal", -1, {expires: new Date(Date.now() + 1000*60*15)});
-
     res.status(201);
     res.json({status: 0});
 });
