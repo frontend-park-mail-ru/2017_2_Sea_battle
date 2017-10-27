@@ -48,4 +48,4 @@ function LoseScene() {
     BackButton(AllGame);
 }
 
-export {WinScene, LoseScene};
+export {WinScene, LoseScene, BackMenu};
