@@ -27,10 +27,10 @@ app.post("/login", function(req, res)
     let mail = req.body.loginEmail;
 
     if(!password || !mail || !isValidMail(mail))
-        return res.status(400).json({error: "Invalid data!"});
+        return res.status(400).json({response: "Invalid data!"});
 
     if(!users[mail] || users[mail].password != password)
-        return res.status(400).json({error: "Mail/password pair is not found"});
+        return res.status(400).json({response: "Mail/password pair is not found"});
 
     const id = uuid();
     ids[id] = mail;
@@ -47,9 +47,9 @@ app.post("/users", function (req, res)
     const password = req.body.password;
 
     if (!password || !mail || !name || !isValidMail(mail))
-        return res.status(400).json({error: 'Invalid data!'});
+        return res.status(400).json({response: 'Invalid data!'});
     if (users[name])
-        return res.status(400).json({error: 'Mail is already used!'});
+        return res.status(400).json({response: 'Mail is already used!'});
 
     const id = uuid();
     const user = {name: name, password: password, score: 0};
@@ -84,10 +84,10 @@ app.get("/info", function (req, res)
     {
         res.status(201);
         res.json({status: 0, response: "You are not currently logged in!"});
+        return;
     }
 
-    let result = {login: name, score, email = mail} = users[ids[id]];
-    result.password = null;
+    let result = {login: users[ids[id]].name, email: ids[id], score: users[ids[id]].score, password: null};
 
     res.status(201);
     res.json(result);

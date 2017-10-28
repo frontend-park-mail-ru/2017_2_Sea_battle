@@ -4,6 +4,7 @@ import BaseController from "./BaseController.js";
 import Input from "../Blocks/Input/Input.js";
 import Services from "../Services.js";
 import EventBus from "../EventBus.js";
+import MessageBox from "../Blocks/MessageBox/MessageBox.js";
 
 const eventBus = new EventBus();
 
@@ -59,7 +60,7 @@ class RegisterMenuController extends BaseController
                 })
                 .catch(error =>
                 {
-                   console.log(error);
+                   let mb = new MessageBox("Register error", error.response);
                 });
 
         return false;

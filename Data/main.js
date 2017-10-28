@@ -7,4 +7,3 @@ const menuManager = new MenuManager();
 eventBus.subscribe(menuManager);
 
 window.onpopstate = menuManager.go.bind(menuManager);
-

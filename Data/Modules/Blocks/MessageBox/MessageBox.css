@@ -4,10 +4,10 @@
     background-color: cornsilk;
 
     position: absolute;
-    margin: auto;
     align-content: center;
     text-align: center;
     padding: 10px;
+    width: auto;
 }
 
 .messageBoxTitle
