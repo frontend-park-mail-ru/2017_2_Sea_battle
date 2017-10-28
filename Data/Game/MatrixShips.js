@@ -1,4 +1,5 @@
 "use strict";
+import MessageBox from "../Modules/Blocks/MessageBox/MessageBox.js";
 
 import {createFirstGameScene, createSecoundGameScene} from "./CreateGame.js"; // нужна только create_game2
 
@@ -23,7 +24,7 @@ function getMatrixShips () {
         // и делается видимой статические части страницы (matrix_ships передаем)
     }
     else {
-        alert("Вы не расставили все корабли");
+        let mb = new MessageBox("Placement error", "You haven't placed all the ships!");
     }
 };
 
