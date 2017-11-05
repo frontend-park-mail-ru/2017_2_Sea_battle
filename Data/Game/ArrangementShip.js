@@ -161,17 +161,20 @@ function getCoords(elem) { // кроме IE8-
 
 // __________________________________________
 
-// подсчитуем к-во свободных клеток
-function getFreeFields(num_ship, flag_turn, event) {
-
-    let elem;
-    let el;
-
+function getElemUnderMouse(event) {
     dragObject.avatar.hidden = true;
     let x = event.clientX;
     let y = event.clientY;
-    elem = document.elementFromPoint(x, y);
+    let elem = document.elementFromPoint(x, y);
     dragObject.avatar.hidden = false;
+    return elem;
+}
+
+// подсчитуем к-во свободных клеток
+function getFreeFields(num_ship, flag_turn, event) {
+    let el;
+
+    let elem = getElemUnderMouse(event);
 
     if (elem == null) {
 
@@ -182,16 +185,16 @@ function getFreeFields(num_ship, flag_turn, event) {
     // возвращает элемент класса droppable по координатам
     el = elem.closest('.droppable');
     if (el == null) {
-
-        return false; // break??
+        return false;
     }
+
 
     for (let i = 0; i < num_ship; i++){
         if (!flag_turn) {
-            elem = document.getElementById((el.id[0] + i) + " " + (el.id[2]));
+            elem = document.getElementById((+el.id[0]) + " " + (+el.id[2] + i));
         }
         else {
-            elem = document.getElementById((el.id[0]) + " " + (el.id[2] + i));
+            elem = document.getElementById((+el.id[0] + i) + " " + (+el.id[2]));
         }
         if (elem == null) {
             return false;
@@ -204,134 +207,64 @@ function getFreeFields(num_ship, flag_turn, event) {
     return true;
 }
 
+function putShip(num_ship, flag_turn, event, ship) {
+
+    let elem = getElemUnderMouse(event); // крайняя левая клетка корабля
+    let el; // исследуемая клетка
+    let delEl; // удаляемся область
+
+    // удаление клеток вокруг корабля
+    if (ship) {
+        for (let i = 0; i < num_ship; i++) {
+            if (!flag_turn) {
+                el = document.getElementById((+elem.id[0]) + " " + (+elem.id[2] + i));
+            }
+            else {
+                el = document.getElementById((+elem.id[0] + i) + " " + (+elem.id[2]));
+            }
+            for (let k = -1; k < 2; k++) {
+                for (let z = -1; z < 2; z++) {
+                    delEl = document.getElementById((+el.id[0] + k) + " " + (+el.id[2] + z));
+                    if (!delEl) {
+                        continue;
+                    }
+                    delEl.classList.remove("droppable");
+                    delEl.style.cssText = "background-color: yellow;";
+                }
+            }
+        }
+    }
+
+    for (let i = 0; i < num_ship; i++){
+        if (!flag_turn) {
+            el = document.getElementById((+elem.id[0]) + " " + (+elem.id[2] + i));
+        }
+        else {
+            el = document.getElementById((+elem.id[0] + i) + " " + (+elem.id[2]));
+        }
+
+        if (!ship) {
+            // метка - можем поставить сюда корабль
+            el.style.cssText = "background-color: red;";
+        }
+        else{
+            // ставим корабль на метку
+            el.style.cssText = "background-color: greenyellow;";
+            el.classList.add("ship");
+            el.classList.remove("droppable");
+
+        }
+    }
+}
+
 // ставим метки для корабля или сам корабль
 function field_Lighting(event, flag_turn, ship = 0) {
-    let x = 0;
-    let y = 0;
-    let elem;
-    let el;
-
 
     // Можем поставить корабль (к-во незанятых клеток равно размеру корабля)
     if (getFreeFields(num_ship, flag_turn, event)) {
-        for (let i = 0; i < num_ship; i++){
-            dragObject.avatar.hidden = true;
 
-            if (flag_turn == 0) {
-                x = event.clientX + i * 32;
-                y = event.clientY;
-            }
-            else {
-                x = event.clientX;
-                y = event.clientY + i * 32; // 35 не работает на 2 и 4
-            }
+        putShip(num_ship, flag_turn, event, ship);
 
-            elem = document.elementFromPoint(x, y);
-
-            dragObject.avatar.hidden = false;
-
-            el = elem.closest('.droppable');
-
-            if (ship == 0) {
-                // метка - можем поставить сюда корабль
-                el.style.cssText = "background-color: red;";
-            }
-            else{
-                // ставим корабль на метку
-                el.style.cssText = "background-color: greenyellow;";
-                el.classList.add("ship");
-                el.classList.remove("droppable");
-                // удаление клеток вокруг корабля
-                let num = 3;
-                if (num_ship == 1){
-                    num = 2;
-                }
-                if (num_ship == 3){
-                    num = 4
-                }
-                if (num_ship == 4){
-                    num = 5
-                }
-                // верх и лево
-                for (let k = -1; k < num; k++) {
-                    if (flag_turn == 0) {
-                        x = event.clientX + 32*k;
-                        y = event.clientY - 32;
-                    }
-                    else {
-                        x = event.clientX - 35;
-                        y = event.clientY + 32*k;
-                    }
-                    elem = document.elementFromPoint(x, y);
-                    if (elem) {
-                        el = elem.closest('.droppable');
-                        if (el) {
-                            el.classList.remove("droppable");
-                            el.style.cssText = "background-color: yellow;";
-                        }
-                    }
-                }
-                // низ и право
-                for (let k = -1; k < num; k++) {
-                    if (flag_turn == 0) {
-                        x = event.clientX + 32*k;
-                        y = event.clientY + 32;
-                    }
-                    else {
-                        x = event.clientX + 33;
-                        y = event.clientY + 32*k;
-                    }
-
-                    elem = document.elementFromPoint(x, y);
-                    if (elem) {
-                        el = elem.closest('.droppable');
-                        if (el) {
-                            el.classList.remove("droppable");
-                            el.style.cssText = "background-color: yellow;";
-                        }
-                    }
-                }
-                if (i == 0) {
-                    if (flag_turn == 0) {
-                        x = event.clientX - 35;
-                        y = event.clientY;
-                    }
-                    else {
-                        x = event.clientX;
-                        y = event.clientY - 32;
-                    }
-
-                    elem = document.elementFromPoint(x, y);
-                    if (elem) {
-                        el = elem.closest('.droppable');
-                        if (el) {
-                            el.classList.remove("droppable");
-                            el.style.cssText = "background-color: yellow;";
-                        }
-                    }
-                }
-                if (i == num_ship-1) {
-                    if (flag_turn == 0) {
-                        x = event.clientX + 32*(i+1);
-                        y = event.clientY;
-                    }
-                    else {
-                        x = event.clientX;
-                        y = event.clientY + 32*(i+1);
-                    }
-
-                    elem = document.elementFromPoint(x, y);
-                    if (elem) {
-                        el = elem.closest('.droppable');
-                        if (el) {
-                            el.classList.remove("droppable");
-                            el.style.cssText = "background-color: yellow;";
-                        }
-                    }
-                }
-            }
-
-        }
         return 1;
     }
     return 0;
