@@ -26,6 +26,7 @@ function createFirstGameScene() {
 
     // Добавляем корабли
     let ship = 1;
+    let shipNum = 1;
     for (let i = 4; i > 0; i--) {
         let space = new Widget();
         all_game.appendChildWidget(space);
@@ -36,7 +37,9 @@ function createFirstGameScene() {
             inline_block.appendChildWidget(table_ship);
             let td_ship = new Widget(document.body, "td", "shipX"+ship);
             td_ship.text = ship;
+            td_ship.idName = shipNum;
             table_ship.appendChildWidget(td_ship);
+            shipNum++;
         }
         ship++;
     }
@@ -66,6 +69,7 @@ function createFirstGameScene() {
                 }
                 else {
                     let td_field = new Widget(document.body, "td", "droppable field");
+                    td_field.idName = (i-1) + " " + (j-1);
                     tr_field.appendChildWidget(td_field);
                 }
             }

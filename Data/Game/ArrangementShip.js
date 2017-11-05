@@ -161,51 +161,60 @@ function getCoords(elem) { // кроме IE8-
 
 // __________________________________________
 
+// подсчитуем к-во свободных клеток
+function getFreeFields(num_ship, flag_turn, event) {
+
+    let elem;
+    let el;
+
+    dragObject.avatar.hidden = true;
+    let x = event.clientX;
+    let y = event.clientY;
+    elem = document.elementFromPoint(x, y);
+    dragObject.avatar.hidden = false;
+
+    if (elem == null) {
+
+        // такое возможно, если курсор мыши "вылетел" за границу окна
+        return false;
+    }
+
+    // возвращает элемент класса droppable по координатам
+    el = elem.closest('.droppable');
+    if (el == null) {
+
+        return false; // break??
+    }
+
+    for (let i = 0; i < num_ship; i++){
+        if (!flag_turn) {
+            elem = document.getElementById((el.id[0] + i) + " " + (el.id[2]));
+        }
+        else {
+            elem = document.getElementById((el.id[0]) + " " + (el.id[2] + i));
+        }
+        if (elem == null) {
+            return false;
+        }
+        if (!elem.classList.contains('droppable')) {
+            return false;
+        }
+    }
+
+    return true;
+}
 
 // ставим метки для корабля или сам корабль
 function field_Lighting(event, flag_turn, ship = 0) {
-    let count = 0; // к-во возможных клеток для корабля (красные поля)
     let x = 0;
     let y = 0;
     let elem;
     let el;
-    // подсчитуем к-во свободных клеток
-    for (let i = 0; i < num_ship; i++){
-        // спрячем переносимый элемент
-        dragObject.avatar.hidden = true;
-        // получить самый вложенный элемент по координатам
-        if (flag_turn == 0) {
-            x = event.clientX + i * 32;
-            y = event.clientY;
-        }
-        else {
-            x = event.clientX;
-            y = event.clientY + i * 32;
-        }
 
-        elem = document.elementFromPoint(x, y);
-
-        // показать переносимый элемент обратно
-        dragObject.avatar.hidden = false;
-
-        if (elem == null) {
-
-            // такое возможно, если курсор мыши "вылетел" за границу окна
-            return;
-        }
-
-        // возвращает элемент класса droppable по координатам
-        el = elem.closest('.droppable');
-        if (el == null) {
-            break;
-        }
-        count++;
-
-    }
 
     // Можем поставить корабль (к-во незанятых клеток равно размеру корабля)
-    if (num_ship == count) {
-        for (let i = 0; i < count; i++){
+    if (getFreeFields(num_ship, flag_turn, event)) {
+        for (let i = 0; i < num_ship; i++){
             dragObject.avatar.hidden = true;
 
             if (flag_turn == 0) {
@@ -234,13 +243,13 @@ function field_Lighting(event, flag_turn, ship = 0) {
                 el.classList.remove("droppable");
                 // удаление клеток вокруг корабля
                 let num = 3;
-                if (count == 1){
+                if (num_ship == 1){
                     num = 2;
                 }
-                if (count == 3){
+                if (num_ship == 3){
                     num = 4
                 }
-                if (count == 4){
+                if (num_ship == 4){
                     num = 5
                 }
                 // верх и лево
