@@ -4,6 +4,8 @@ import BaseController from "./BaseController.js";
 import Services from "../Services.js";
 import Button from "../Blocks/Button.js";
 import EventBus from "../EventBus.js";
+import {BackMenu} from "../../Game/WinLoseScene.js";
+
 
 const eventBus = new EventBus();
 
@@ -70,6 +72,7 @@ class UserProfileBlockController extends BaseController
             .then((response) =>
             {
                 eventBus.emitEvent({type: "updateUser"});
+                BackMenu();
             });
     }
 
@@ -91,7 +94,7 @@ class UserProfileBlockController extends BaseController
                 this.removeButtons();
 
                 if(res.status === undefined)
-                    this.view.changeData({name: res.name, loggedIn: true});
+                    this.view.changeData({name: res.login, loggedIn: true, score: res.score});
                 else
                     this.view.changeData({loggedIn: false});
 

@@ -1,16 +1,20 @@
 .leaderTable
 {
     border: 1px solid black;
-    width: 60%;
+    width: 50%;
     margin: auto;
+    background-color: #212121;
 }
 
 .tableHeader
 {
-    border: 1px solid black;
+    border: 1px solid #212121;
+    color: #1d2d3b;
+    background-color: cornsilk;
 }
 
 .contents
 {
-    border: 1px solid black;
+    border: 1px solid #212121;
+    background-color: lightgray;
 }

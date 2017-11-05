@@ -4,13 +4,19 @@
     height: 80px;
     border: 1px solid black;
     position: fixed;
-    left: 10px;
+    right: 10px;
     top: 10px;
     align-content: center;
     text-align: center;
 }
 
 h3
+{
+    margin: auto;
+    font-size: 30px;
+}
+
+h4
 {
     margin: auto;
     font-size: 20px;

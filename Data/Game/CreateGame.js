@@ -18,6 +18,7 @@ function createFirstGameScene() {
     all_game.appendChildWidget(text);
 
     let turnButton = new Widget(document.body, "button", "turnButton");
+    turnButton.element.classList.add("flatLightGray");
     turnButton.text = "Turn ships";
     all_game.appendChildWidget(turnButton);
     turnButton.element.addEventListener('click', TurnShips);
@@ -75,6 +76,7 @@ function createFirstGameScene() {
 
     let next_button = new Widget(document.body, "button", "next_button");
     next_button.text = "Next";
+    next_button.element.classList.add("flatLightGray");
     all_game.appendChildWidget(next_button);
     next_button.element.addEventListener('click', getMatrixShips);
 

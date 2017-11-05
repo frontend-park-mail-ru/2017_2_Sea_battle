@@ -12,6 +12,8 @@ let enemy_matrix = [0,1,1,0,0,0,0,0,1,0,
                     0,0,0,0,0,0,0,0,1,0,
                     1,0,0,0,0,1,0,0,0,0];
 
+
+
 let countMyShip = 20;
 let countEnemyShip = 20;
 
@@ -53,9 +55,12 @@ function myFire(field) {
     let i = +field.id[0];
     let j = +field.id[2];
     if (enemy_matrix[10*i+j]) {
-        enemy_matrix[10*i+j] = 4; // [3]
+        enemy_matrix[10*i+j] = 3; // [3]
+
         field.classList.add("shipDie");
+
         countEnemyShip--;
+
         return false;
     }
     else {
@@ -73,7 +78,8 @@ function botFire(matrix_ships) {
     let iRand = Math.floor(Math.random() * (9 + 1));
     let jRand = Math.floor(Math.random() * (9 + 1));
 
-    if (matrix_ships[10*iRand+jRand] > 1) {
+    if (matrix_ships[10*iRand+jRand] > 1)
+    {
         botFire(matrix_ships);
     }
     else if (matrix_ships[10*iRand+jRand]) {
@@ -90,5 +96,14 @@ function botFire(matrix_ships) {
         el.classList.add("Fire");
     }
 };
+
+function die (i,j) {
+    if(enemy_matrix[10*i+j] == 4) {
+        let flag1 = die(i+1,j);
+        let flag2 = die(i-1,j);
+        let flag3 = die(i,j+1);
+        let flag4 = die(i,j-1);
+    }
+}
 
 export default gameLogic;

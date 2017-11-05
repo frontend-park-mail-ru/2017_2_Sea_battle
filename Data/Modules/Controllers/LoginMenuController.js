@@ -4,6 +4,7 @@ import BaseController from "./BaseController.js";
 import Input from "../Blocks/Input/Input.js";
 import Services from "../Services.js";
 import EventBus from "../EventBus.js";
+import MessageBox from "../Blocks/MessageBox/MessageBox.js";
 
 const eventBus = new EventBus();
 
@@ -37,11 +38,11 @@ class LoginMenuController extends BaseController
                 .then(response =>
                 {
                     eventBus.emitEvent({type: "updateUser"});
-                    eventBus.emitEvent({type: "goBack"});
+                    eventBus.emitEvent({type: "changeMenu", newMenuName: "/"});
                 })
                 .catch(error =>
                 {
-                    // Throw message box;
+                    let mb = new MessageBox("Login Error", error.response);
                 });
 
         return false;

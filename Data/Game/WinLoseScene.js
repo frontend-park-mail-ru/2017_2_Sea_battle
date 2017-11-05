@@ -8,6 +8,7 @@ function BackButton(AllGame) {
     backButton.text = "Back to Menu";
     AllGame.appendChildWidget(backButton);
     backButton.element.addEventListener('click', BackMenu);
+    backButton.element.classList.add("flatLightGray");
 }
 
 function BackMenu() {
@@ -47,4 +48,4 @@ function LoseScene() {
     BackButton(AllGame);
 }
 
-export {WinScene, LoseScene};
+export {WinScene, LoseScene, BackMenu};
