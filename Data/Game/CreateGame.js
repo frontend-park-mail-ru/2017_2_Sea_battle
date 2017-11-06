@@ -4,11 +4,18 @@ import Widget from "../Modules/Blocks/Widget.js";
 import {AddMouseEvent, TurnShips} from "./ArrangementShip.js";
 import getMatrixShips from "./MatrixShips.js";
 import gameLogic from "./GameLogic.js";
+import ShipList from "./ShipList.js";
+import Ship from "./Ship.js";
 
 
 // Кнопки [перезагрузки поля], чтобы поле и кнопки не бегали вверх/вниз, фон за полем
 // убрать _
 // Добавить кнопку назад в меню [прекратить игру]
+
+ /*
+    TO DO - Добавить класс Scene где будут show (собрать) и hide (удалить) и от него унаследовать все сцены
+    [ будут создаваться объеты сцен и удалятсья при переходе ]
+ */
 
 function createFirstGameScene() {
     let all_game = new Widget(document.body,"div", "all_game");
@@ -25,23 +32,17 @@ function createFirstGameScene() {
 
 
     // Добавляем корабли
-    let ship = 1;
+    let shipCount = 1;
     let shipNum = 1;
+    let shipList = new ShipList;
     for (let i = 4; i > 0; i--) {
         let space = new Widget();
         all_game.appendChildWidget(space);
         for (let j = i; j > 0; j--){
-            let inline_block = new Widget(document.body, "div", "inline_block");
-            all_game.appendChildWidget(inline_block);
-            let table_ship = new Widget(document.body, "table", "draggable");
-            inline_block.appendChildWidget(table_ship);
-            let td_ship = new Widget(document.body, "td", "shipX"+ship);
-            td_ship.text = ship;
-            td_ship.idName = shipNum;
-            table_ship.appendChildWidget(td_ship);
+            shipList.setShip(new Ship(all_game, shipNum, shipCount), shipNum - 1);
             shipNum++;
         }
-        ship++;
+        shipCount++;
     }
 
     // Добавляем фон за полем

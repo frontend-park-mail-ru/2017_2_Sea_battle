@@ -1,6 +1,5 @@
 "use strict";
 
-
 /**
  * составной объект для хранения информации о переносе:
  * {
@@ -11,6 +10,11 @@
    * }
  */
 
+import ShipList from "./ShipList.js";
+
+ /*
+    TO DO - разбить на 3 модуля (события мыши; подсветка и установка корабля; поворот кораблей)
+ */
 
 let dragObject = {};
 
@@ -235,6 +239,8 @@ function putShip(num_ship, flag_turn, event, ship) {
         }
     }
 
+
+
     for (let i = 0; i < num_ship; i++){
         if (!flag_turn) {
             el = document.getElementById((+elem.id[0]) + " " + (+elem.id[2] + i));
@@ -253,6 +259,12 @@ function putShip(num_ship, flag_turn, event, ship) {
             el.classList.add("ship");
             el.classList.remove("droppable");
 
+            // добавляем в ShipList
+            let shipList = new ShipList;
+            let x = event.clientX;
+            let y = event.clientY;
+            let ship = document.elementFromPoint(x, y);
+            shipList.setShipLiveField (+ship.id - 1, el.id); // добавляем в ячейку (ship.id - 1) значение el.id
         }
     }
 }
