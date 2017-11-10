@@ -1,11 +1,12 @@
 "use strict";
 
 import Widget from "../Modules/Blocks/Widget.js";
-import {AddMouseEvent, TurnShips} from "./ArrangementShip.js";
+import AddMouseEvent from "./ArrangementShip.js";
 import getMatrixShips from "./MatrixShips.js";
 import gameLogic from "./GameLogic.js";
 import ShipList from "./ShipList.js";
 import Ship from "./Ship.js";
+import TurnManager from "./TurnManager.js";
 
 
 // Кнопки [перезагрузки поля], чтобы поле и кнопки не бегали вверх/вниз, фон за полем
@@ -28,13 +29,15 @@ function createFirstGameScene() {
     turnButton.element.classList.add("flatLightGray");
     turnButton.text = "Turn ships";
     all_game.appendChildWidget(turnButton);
-    turnButton.element.addEventListener('click', TurnShips);
-
+    let turnManager = new TurnManager();
+    turnManager.clearFlag();
+    turnButton.element.addEventListener('click', () => {turnManager.turnShips();});
 
     // Добавляем корабли
     let shipCount = 1;
     let shipNum = 1;
     let shipList = new ShipList;
+    shipList.clearList();
     for (let i = 4; i > 0; i--) {
         let space = new Widget();
         all_game.appendChildWidget(space);

@@ -11,6 +11,7 @@
  */
 
 import ShipList from "./ShipList.js";
+import TurnManager from "./TurnManager.js";
 
  /*
     TO DO - разбить на 3 модуля (события мыши; подсветка и установка корабля; поворот кораблей)
@@ -20,7 +21,8 @@ let dragObject = {};
 
 
 let num_ship = 0;
-let flag_turn = 0; // 0 - x, 1 - y
+
+let turnManager = new TurnManager();
 
 
 // перетаскивание кораблей
@@ -78,7 +80,7 @@ function onMouseMove(e) {
 
 
     backlight_removal();
-    field_Lighting(e, flag_turn);
+    field_Lighting(e, turnManager.getFlag());
 
 
     return false;
@@ -97,7 +99,7 @@ function onMouseUp(e) {
 
 function finishDrag(e) {
     // flag = 0, нет свободного места, = 1 - можем ставить
-    let flag = field_Lighting(e, flag_turn, 1);
+    let flag = field_Lighting(e, turnManager.getFlag(), 1);
     if (flag == 0) {
         dragObject.avatar.style.opacity = 1;
         dragObject.avatar.rollback();
@@ -290,68 +292,9 @@ function backlight_removal () {
     for (let i = 0; i<field.length; i++) {
         field[i].style.cssText = "background-color: transparent;";
     }
-};
-
-// __________________________________________
-// поворот кораблей
-
-function turn_2 () {
-    let shipX4 = document.getElementsByClassName("shipX2");
-    if (flag_turn == 0){
-        for (let i = 0; i< shipX4.length; i++){
-            shipX4[i].style.height = "56px";
-            shipX4[i].style.width = "20px";
-        }
-    }
-    else {
-        for (let i = 0; i< shipX4.length; i++){
-            shipX4[i].style.width = "56px";
-            shipX4[i].style.height = "20px";
-        }
-    }
-};
-
-function turn_3 () {
-    let shipX4 = document.getElementsByClassName("shipX3");
-    if (flag_turn == 0){
-        for (let i = 0; i< shipX4.length; i++){
-            shipX4[i].style.height = "88px";
-            shipX4[i].style.width = "20px";
-        }
-    }
-    else {
-        for (let i = 0; i< shipX4.length; i++){
-            shipX4[i].style.width = "88px";
-            shipX4[i].style.height = "20px";
-        }
-    }
-};
+}
 
 
-function turn_4 () {
-    let shipX4 = document.getElementsByClassName("shipX4");
-    if (flag_turn == 0){
-        for (let i = 0; i< shipX4.length; i++){
-            shipX4[i].style.height = "121px";
-            shipX4[i].style.width = "20px";
-        }
-        flag_turn = 1;
-    }
-    else {
-        for (let i = 0; i< shipX4.length; i++){
-            shipX4[i].style.width = "121px";
-            shipX4[i].style.height = "20px";
-        }
-        flag_turn = 0;
-    }
-};
 
-function TurnShips () {
-    turn_2();
-    turn_3();
-    turn_4();
-};
-
-
-export {AddMouseEvent, TurnShips};
+export default AddMouseEvent;
 

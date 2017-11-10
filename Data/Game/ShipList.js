@@ -60,5 +60,10 @@ export default class ShipList
         return matrixShips;
     }
 
+    clearList()
+    {
+        this.listShip = [];
+    }
+
 }
 
