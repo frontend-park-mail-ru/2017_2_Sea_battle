@@ -11,7 +11,7 @@ deploy:
   provider: heroku
   app:
     master: top-sea-battle
-    development: sea-battle-front
+    dev: sea-battle-front
   on:
     branch:
       - dev
