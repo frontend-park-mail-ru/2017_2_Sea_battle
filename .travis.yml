@@ -9,6 +9,7 @@ branches:
   - dev
 deploy:
   provider: heroku
+  skip_cleanup: true
   app:
     master: top-sea-battle
     dev: sea-battle-front
