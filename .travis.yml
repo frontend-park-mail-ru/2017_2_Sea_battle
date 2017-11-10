@@ -12,5 +12,9 @@ deploy:
   app:
     master: top-sea-battle
     development: sea-battle-front
+  on:
+    branch:
+      - dev
+      - master
   api_key:
     secure: iVw+Pp4m6JiwIe5HDI42TB3GYtwd0u1buDOYeVKizIUu880TmofXXsV7M41kfXw5KDmk1zOJuny7gBK73CE9esv481uTBSd5nCWZ4pp5eflwFY/dcC59i0UJn610iqEy+chZ1S1r29ga2cdVJMa+DK1GCl/u6ib3wl852GDiNoKF3YoP/DIJOA+jbarAgNIV5M0yjWm6JhZuLvIyvv10FDa3y5RkdY1+BCTjX5Jsn/wqbUijQTOo7hf9Af9x8B1c6LCTDl/qJZWQLik2k9SWKYUF5zoFNWhW9d50bryAIQ+I1ZuiMkWvamfT7oY1DxTQ6piOh01RSWpV9LHJgZznXA+/0FbGEF+TjwOTbWLoyEG8y2eFLLVgSctgqLn2x3G/G2Droq92EMOtRABtyNsuf/gsQQPIGav7sne8pK97Smwx7nNIt2+bRxD1wQLP9+4r0wf86gtRb9VB+GuuwxIDl+boPA+cTy7ISP37x1g+q169rYXUafpM+BsZs2YpMdcgsp9Cc4m64Vuki6CFcy2oywbwESlfk55LoEzMdUhmMVB4/d24ksIW5vNfocu0h+DATt2XAjS0U9fxyq+7htoQOcc2zET7D49D5QYywnm7hdIoXIvHQGC5EuWZjZVarQcc15KWth3oQ4MbdDiAaY/dOY/kLZ7MPTjT3+tfD8V368w=
