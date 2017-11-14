@@ -39,14 +39,14 @@ function gameLogic (field, matrixShips)
     if (!countEnemyShip) {
         let AllGame = document.getElementsByClassName("all_game");
         document.body.removeChild(AllGame[0]);
-        WinScene();
+        let winScene = new WinScene();
     }
     if (!countMyShip) {
         let AllGame = document.getElementsByClassName("all_game");
         document.body.removeChild(AllGame[0]);
-        LoseScene();
+        let loseScene = new LoseScene();
     }
-};
+}
 
 
 function myFire(fieldFire) {
