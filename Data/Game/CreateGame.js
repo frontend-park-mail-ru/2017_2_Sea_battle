@@ -3,7 +3,7 @@
 import Widget from "../Modules/Blocks/Widget.js";
 import AddDragAndDropEvent from "./DragAndDrop.js";
 import getMatrixShips from "./MatrixShips.js";
-import gameLogic from "./GameLogic.js";
+import GameLogic from "./GameLogic.js";
 import ShipList from "./ShipList.js";
 import Ship from "./Ship.js";
 import TurnManager from "./TurnManager.js";
@@ -95,7 +95,7 @@ function createFirstGameScene() {
     // createFirstGameScreen();
 
 
-};
+}
 
 function createSecoundGameScene(matrix_ships) {
     let all_game = new Widget(document.body,"div", "all_game");
@@ -108,10 +108,14 @@ function createSecoundGameScene(matrix_ships) {
     all_game.appendChildWidget(text);
 
     createField(all_game, matrix_ships);
-    createField(all_game, matrix_ships, 1);
+
+    let gameLogic = new GameLogic();
+    gameLogic.newGameLogic();
+
+    createField(all_game, matrix_ships, gameLogic, 1);
 }
 
-function createField(all_game, matrix_ships, flag = 0) {
+function createField(all_game, matrix_ships, gameLogic, flag = 0) {
     let table_class = "enemy_field";
     if (flag) {
         table_class = "my_field";
@@ -144,14 +148,17 @@ function createField(all_game, matrix_ships, flag = 0) {
                         td_field.element.id = (i-1) + "+" + (j-1);
                     }
                     else {
-                        td_field.addEventHandler("click", () => {gameLogic(td_field.element, matrix_ships);});
+                        td_field.addEventHandler("click", () => {
+                            let gameLogic = new GameLogic();
+                            gameLogic.shot(td_field.element, matrix_ships);
+                        });
                         td_field.element.id = (i-1) + "-" + (j-1);
                     }
                 }
             }
         }
     }
-};
+}
 
 
 export {createFirstGameScene, createSecoundGameScene};
