@@ -1,4 +1,5 @@
-import {WinScene, LoseScene} from "./WinLoseScene.js"
+import {WinScene, LoseScene} from "./GameSceneWinLose.js"
+import SecondGameScene from "./GameSceneSecond.js";
 
 /*
   [ TO DO - переписать логику выстрелов  (уничтодения кораблей) c матрицы на ShipList ]
@@ -64,13 +65,13 @@ export default class GameLogic
             this.botFire(matrixShips);
         }
         if (!(this.countEnemyShip)) {
-            let AllGame = document.getElementsByClassName("all_game");
-            document.body.removeChild(AllGame[0]);
+            let secondGameScene = new SecondGameScene();
+            secondGameScene.hide();
             let winScene = new WinScene();
         }
         if (!(this.countMyShip)) {
-            let AllGame = document.getElementsByClassName("all_game");
-            document.body.removeChild(AllGame[0]);
+            let secondGameScene = new SecondGameScene();
+            secondGameScene.hide();
             let loseScene = new LoseScene();
         }
     }

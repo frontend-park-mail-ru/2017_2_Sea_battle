@@ -1,15 +1,11 @@
 import Widget from "../Modules/Blocks/Widget.js";
 import EventBus from "../Modules/EventBus.js";
+import GameScene from "./GameScene.js";
 
 const eventBus = new EventBus();
 
-class WinScene
+class WinScene extends GameScene
 {
-    constructor ()
-    {
-        this.show();
-    }
-
     show()
     {
         let AllGame = new Widget(document.body,"div", "all_game");
@@ -26,24 +22,21 @@ class WinScene
         let backButton = new Widget(document.body, "button", "backButton");
         backButton.text = "Back to Menu";
         AllGame.appendChildWidget(backButton);
-        backButton.element.addEventListener('click', BackMenu);
+        backButton.element.addEventListener('click', () => {
+            BackMenu();
+            /*
+            let winScene = new WinScene();
+            winScene.hide();
+            eventBus.emitEvent({type: "changeMenu", newMenuName: "/"}); // ?
+            */
+        });
         backButton.element.classList.add("flatLightGray");
     }
 
-    hide()
-    {
-        let AllGame = document.getElementsByClassName("all_game");
-        document.body.removeChild(AllGame[0]);
-    }
 }
 
-class LoseScene
+class LoseScene extends GameScene
 {
-    constructor ()
-    {
-        this.show();
-    }
-
     show() {
         let AllGame = new Widget(document.body, "div", "all_game");
 
@@ -59,21 +52,24 @@ class LoseScene
         let backButton = new Widget(document.body, "button", "backButton");
         backButton.text = "Back to Menu";
         AllGame.appendChildWidget(backButton);
-        backButton.element.addEventListener('click', BackMenu);
+        backButton.element.addEventListener('click', () => {
+            BackMenu();
+            /*
+            let loseScene = new LoseScene();
+            loseScene.hide();
+            eventBus.emitEvent({type: "changeMenu", newMenuName: "/"}); // ?
+            */
+        });
         backButton.element.classList.add("flatLightGray");
     }
 
-    hide()
-    {
-        let AllGame = document.getElementsByClassName("all_game");
-        document.body.removeChild(AllGame[0]);
-    }
 }
 
-// Пока оставлю, для перехода в меню, хз зачем нужно
+
+// Или перенести в отдельный файл или просто прописывать все вручную, если разные параметры EventBus
 function BackMenu() {
-    let AllGame = document.getElementsByClassName("all_game");
-    document.body.removeChild(AllGame[0]);
+    let gameScene = new GameScene();
+    gameScene.hide();
     eventBus.emitEvent({type: "changeMenu", newMenuName: "/"});
 }
 

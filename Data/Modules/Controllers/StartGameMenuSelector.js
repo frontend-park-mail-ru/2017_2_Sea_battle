@@ -3,7 +3,7 @@
 import StartGameMenuController from "./StartGameMenuController.js";
 import startGameMenuView from "../Views/StartGameMenuView/StartGameMenuView.js";
 import Services from "../Services.js";
-import {createFirstGameScene} from "../../Game/CreateGame.js";
+import startGame from "../../Game/StartGame.js";
 
 class StartGameMenuSelector
 {
@@ -22,7 +22,7 @@ class StartGameMenuSelector
             if(response.status === 0)
                 this.startGameMenuController.show();
             else
-                createFirstGameScene();
+                startGame();
         })
             .catch(exit =>
         {

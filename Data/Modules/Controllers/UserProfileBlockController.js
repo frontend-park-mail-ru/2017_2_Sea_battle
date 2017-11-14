@@ -4,7 +4,8 @@ import BaseController from "./BaseController.js";
 import Services from "../Services.js";
 import Button from "../Blocks/Button.js";
 import EventBus from "../EventBus.js";
-import {BackMenu} from "../../Game/WinLoseScene.js";
+import GameScene from "../../Game/GameScene.js";
+import {BackMenu} from "../../Game/GameSceneWinLose";
 
 
 const eventBus = new EventBus();
@@ -73,6 +74,11 @@ class UserProfileBlockController extends BaseController
             {
                 eventBus.emitEvent({type: "updateUser"});
                 BackMenu();
+                /*
+                let gameScene = new GameScene();
+                gameScene.hide();
+                eventBus.emitEvent({type: "changeMenu", newMenuName: "/"});
+                */
             });
     }
 
