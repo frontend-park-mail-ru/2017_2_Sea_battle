@@ -1,7 +1,7 @@
 "use strict";
 
 import Widget from "../Modules/Blocks/Widget.js";
-import AddMouseEvent from "./ArrangementShip.js";
+import AddDragAndDropEvent from "./DragAndDrop.js";
 import getMatrixShips from "./MatrixShips.js";
 import gameLogic from "./GameLogic.js";
 import ShipList from "./ShipList.js";
@@ -36,7 +36,7 @@ function createFirstGameScene() {
     // Добавляем корабли
     let shipCount = 1;
     let shipNum = 1;
-    let shipList = new ShipList;
+    let shipList = new ShipList();
     shipList.clearList();
     for (let i = 4; i > 0; i--) {
         let space = new Widget();
@@ -88,7 +88,7 @@ function createFirstGameScene() {
     all_game.appendChildWidget(next_button);
     next_button.element.addEventListener('click', getMatrixShips);
 
-    AddMouseEvent();
+    AddDragAndDropEvent();
 
     // Перезагрузка поля
     // document.body.removeChild(all_game.element);

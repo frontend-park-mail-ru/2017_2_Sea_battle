@@ -12,8 +12,8 @@ let enemyMatrix =  [1, 0, 0, 0, 6, 6, 0, 0, 7, 0,
                      0, 10, 0, 0, 8, 0, 0, 9, 9, 9,
                      0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-let countMyShip = 20;
-let countEnemyShip = 20;
+let countMyShip = 20; // не сохраняет = 20
+let countEnemyShip = 20; // не сохраняет = 20
 
  /*
    [ TO DO - переписать логику выстрелов  (уничтодения кораблей) c матрицы на ShipList ]
