@@ -68,11 +68,13 @@ export default class GameLogic
             let secondGameScene = new SecondGameScene();
             secondGameScene.hide();
             let winScene = new WinScene();
+            winScene.show();
         }
         if (!(this.countMyShip)) {
             let secondGameScene = new SecondGameScene();
             secondGameScene.hide();
             let loseScene = new LoseScene();
+            loseScene.show();
         }
     }
 

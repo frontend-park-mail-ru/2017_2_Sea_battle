@@ -5,7 +5,7 @@ import Services from "../Services.js";
 import Button from "../Blocks/Button.js";
 import EventBus from "../EventBus.js";
 import GameScene from "../../Game/GameScene.js";
-import {BackMenu} from "../../Game/GameSceneWinLose";
+import {BackMenu} from "../../Game/GameSceneWinLose.js";
 
 
 const eventBus = new EventBus();
