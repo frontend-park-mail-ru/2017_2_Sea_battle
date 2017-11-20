@@ -11,18 +11,31 @@ import WebSocketManager from "./WebSocket.js";
 // Добавить кнопку назад в меню [прекратить игру]
 
 
-function lol (e) {
+function startFirstGameScene (e) {
+    let fieldClass = e.data;
+    fieldClass = JSON.parse(fieldClass);
+    fieldClass = fieldClass.class;
     debugger;
+    if ( fieldClass == "MsgYouInQueue" ){
+        alert("Ожидание игрока");
+    }
+    else if ( fieldClass == "MsgLobbyCreated" ) {
+        let firstScene = new FirstGameScene();
+        firstScene.show();
+    }
+    else {
+        alert("Ошибка");
+    }
 }
 
 function startGame() {
 
     let webSocketManager = new WebSocketManager();
-    webSocketManager.messageSocket(lol);
-    webSocketManager.openSocket(lol);
+    webSocketManager.messageSocket(startFirstGameScene);
+    webSocketManager.openSocket(function(){});
 
-    let firstScene = new FirstGameScene();
-    firstScene.show();
+    // let firstScene = new FirstGameScene();
+    // firstScene.show();
 
 
     // let firstScene;

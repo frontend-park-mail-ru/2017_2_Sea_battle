@@ -30,6 +30,11 @@ class Ship
         this.turn = 0;
     }
 
+    getSize()
+    {
+        return this.shipSize;
+    }
+
     getLive ()
     {
         return this.liveFields;
