@@ -2,6 +2,7 @@
 
 
 import FirstGameScene from "./GameSceneFirst.js";
+import WebSocketManager from "./WebSocket.js";
 
 
 // Все комментарии для GameScene (1 и 2)
@@ -10,9 +11,31 @@ import FirstGameScene from "./GameSceneFirst.js";
 // Добавить кнопку назад в меню [прекратить игру]
 
 
+function lol (e) {
+    debugger;
+}
+
 function startGame() {
+
+    let webSocketManager = new WebSocketManager();
+    webSocketManager.messageSocket(lol);
+    webSocketManager.openSocket(lol);
+
     let firstScene = new FirstGameScene();
     firstScene.show();
+
+
+    // let firstScene;
+    // if (!(navigator.connection.rtt)) {
+    //     // нет интернета
+    //     firstScene = new FirstGameScene();
+    //     firstScene.show();
+    // }
+    // else {
+    //     // есть интернет
+    //     firstScene = new FirstGameScene();
+    //     firstScene.show();
+    // }
 }
 
 export default startGame

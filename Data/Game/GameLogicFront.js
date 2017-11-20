@@ -8,15 +8,15 @@ import SecondGameScene from "./GameSceneSecond.js";
 
 // 0 - путое поле, (1-10) - корабль не поврежден, 100 - промах, -(1-10) - корабль поврежден
 
-export default class GameLogic
+export default class GameLogicFront
 {
     constructor()
     {
-        if (GameLogic.__instance) {
-            return GameLogic.__instance;
+        if (GameLogicFront.__instance) {
+            return GameLogicFront.__instance;
         }
 
-        GameLogic.__instance = this;
+        GameLogicFront.__instance = this;
 
         this.enemyMatrix = [1, 0, 0, 0, 6, 6, 0, 0, 7, 0,
                             0, 0, 0, 0, 0, 0, 0, 0, 7, 0,
