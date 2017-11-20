@@ -27,6 +27,7 @@ class Ship
         this.shipHP = countShip; // health point ship
         this.liveFields = [];
         this.deadFields = [];
+        this.turn = 0;
     }
 
     getLive ()
@@ -37,6 +38,16 @@ class Ship
     getDead ()
     {
         return this.deadFields;
+    }
+
+    getTurn ()
+    {
+        return this.turn;
+    }
+
+    setTurn (turn)
+    {
+        this.turn = turn;
     }
 
     setLiveField (field) {

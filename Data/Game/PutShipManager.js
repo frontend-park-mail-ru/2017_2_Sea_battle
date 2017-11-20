@@ -69,7 +69,7 @@ export default class PutShipManager
         return true;
     }
 
-    putShip(numShip, flag_turn, event, dragObject, ship)
+    putShip(numShip, flagTurn, event, dragObject, ship)
     {
         let elem = this.getElemUnderMouse(event, dragObject); // крайняя левая клетка корабля
         let el; // исследуемая клетка
@@ -78,7 +78,7 @@ export default class PutShipManager
         // удаление клеток вокруг корабля
         if (ship) {
             for (let i = 0; i < numShip; i++) {
-                if (!flag_turn) {
+                if (!flagTurn) {
                     el = document.getElementById((+elem.id[0]) + " " + (+elem.id[2] + i));
                 }
                 else {
@@ -100,7 +100,7 @@ export default class PutShipManager
 
 
         for (let i = 0; i < numShip; i++){
-            if (!flag_turn) {
+            if (!flagTurn) {
                 el = document.getElementById((+elem.id[0]) + " " + (+elem.id[2] + i));
             }
             else {
@@ -131,6 +131,7 @@ export default class PutShipManager
                 }
                 let ship = document.elementFromPoint(x, y);
                 shipList.setShipLiveField (+ship.id - 1, el.id); // добавляем в ячейку (ship.id - 1) значение el.id
+                shipList.setTurnShip(+ship.id - 1, flagTurn)
             }
         }
     }

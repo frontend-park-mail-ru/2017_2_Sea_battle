@@ -22,6 +22,11 @@ export default class ShipList
         return this.listShip[i];
     }
 
+    getTurnShip (i)
+    {
+        return (this.getShip(i)).getTurn();
+    }
+
     setShip(ship, i)
     {
         this.listShip[i] = ship;
@@ -30,6 +35,11 @@ export default class ShipList
     setShipLiveField (i, field)
     {
         (this.getShip(i)).setLiveField(field);
+    }
+
+    setTurnShip (i, turn)
+    {
+        (this.getShip(i)).setTurn(turn);
     }
 
     canDoMatrix ()
