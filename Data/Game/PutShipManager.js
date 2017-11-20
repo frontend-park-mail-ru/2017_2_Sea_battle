@@ -13,9 +13,7 @@ export default class PutShipManager
 
         // Можем поставить корабль (к-во незанятых клеток равно размеру корабля)
         if (this.getFreeFields(numShip, turnManager.getFlag(), event, dragObject)) {
-
             this.putShip(numShip, turnManager.getFlag(), event, dragObject, ship);
-
             return 1;
         }
         return 0;
@@ -38,6 +36,7 @@ export default class PutShipManager
 
         let elem = this.getElemUnderMouse(event, dragObject);
 
+
         if (elem == null) {
 
             // такое возможно, если курсор мыши "вылетел" за границу окна
@@ -46,6 +45,7 @@ export default class PutShipManager
 
         // возвращает элемент класса droppable по координатам
         el = elem.closest('.droppable');
+
         if (el == null) {
             return false;
         }
@@ -119,8 +119,16 @@ export default class PutShipManager
 
                 // добавляем в ShipList
                 let shipList = new ShipList();
-                let x = event.clientX;
-                let y = event.clientY;
+                let x = 0;
+                let y = 0;
+                if (event.clientX) {
+                    x = event.clientX;
+                    y = event.clientY;
+                }
+                else {
+                    x = event.changedTouches[0].clientX;
+                    y = event.changedTouches[0].clientY;
+                }
                 let ship = document.elementFromPoint(x, y);
                 shipList.setShipLiveField (+ship.id - 1, el.id); // добавляем в ячейку (ship.id - 1) значение el.id
             }
@@ -130,10 +138,20 @@ export default class PutShipManager
     getElemUnderMouse(event, dragObject)
     {
         dragObject.avatar.hidden = true;
-        let x = event.clientX;
-        let y = event.clientY;
+        let x = 0;
+        let y = 0;
+        if (event.clientX) {
+            x = event.clientX;
+            y = event.clientY;
+        }
+        else {
+            x = event.changedTouches[0].clientX;
+            y = event.changedTouches[0].clientY;
+        }
+
         let elem = document.elementFromPoint(x, y);
         dragObject.avatar.hidden = false;
+
         return elem;
     }
 

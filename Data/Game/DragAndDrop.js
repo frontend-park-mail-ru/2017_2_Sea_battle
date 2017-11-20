@@ -22,35 +22,47 @@ let numShip = 0;
 function onMouseDown(e)
 {
 
-    if (e.which != 1) return;
-
     let elem = e.target.closest('.draggable');
+
     if (!elem) return;
 
     dragObject.elem = elem;
     numShip = +elem.textContent;
 
-    // запомним, что элемент нажат на текущих координатах pageX/pageY
-    dragObject.downX = e.pageX;
-    dragObject.downY = e.pageY;
-
+    if (e.pageX) {
+        dragObject.downX = e.pageX;
+        dragObject.downY = e.pageY;
+    }
+    else {
+        dragObject.downX = e.changedTouches[0].pageX;
+        dragObject.downY = e.changedTouches[0].pageY;
+    }
 
     return false;
 }
 
 function onMouseMove(e)
 {
-
     if (!dragObject.elem) return; // элемент не зажат
-
     if (!dragObject.avatar) { // если перенос не начат...
-        let moveX = e.pageX - dragObject.downX;
-        let moveY = e.pageY - dragObject.downY;
+
+        let moveX = 0;
+        let moveY = 0;
+        if (e.pageX) {
+            moveX = e.pageX - dragObject.downX;
+            moveY = e.pageY - dragObject.downY;
+        }
+        else {
+            moveX = e.changedTouches[0].pageX - dragObject.downX;
+            moveY = e.changedTouches[0].pageY - dragObject.downY;
+        }
+
 
         // если мышь передвинулась в нажатом состоянии недостаточно далеко
         if (Math.abs(moveX) < 3 && Math.abs(moveY) < 3) {
             return;
         }
+
 
         // начинаем перенос
         dragObject.avatar = createAvatar(); // создать аватар
@@ -70,9 +82,14 @@ function onMouseMove(e)
     }
 
     // отобразить перенос объекта при каждом движении мыши
-    dragObject.avatar.style.left = e.pageX - 15 + 'px';
-    dragObject.avatar.style.top = e.pageY - 15 + 'px';
-
+    if (e.pageX) {
+        dragObject.avatar.style.left = e.pageX - 15 + 'px';
+        dragObject.avatar.style.top = e.pageY - 15 + 'px';
+    }
+    else {
+        dragObject.avatar.style.left = e.changedTouches[0].pageX - 15 + 'px';
+        dragObject.avatar.style.top = e.changedTouches[0].pageY - 15 + 'px';
+    }
 
     putShipManager.removalBacklight();
     putShipManager.fieldLighting(event, numShip, dragObject);
@@ -142,23 +159,6 @@ function startDrag()
     avatar.style.position = 'absolute';
 }
 
-function AddDragAndDropEvent ()
-{
-    document.onmousedown = onMouseDown;
-    document.onmousemove = onMouseMove;
-    document.onmouseup = onMouseUp;
-
-    document.touchstart = onMouseDown;
-    document.touchmove = onMouseMove;
-    document.touchend = onMouseUp;
-
-    document.pointerdown = onMouseDown;
-    document.pointermove = onMouseMove;
-    document.pointerup = onMouseUp;
-}
-
-
-
 function getCoords(elem) // кроме IE8-
 {
     let box = elem.getBoundingClientRect();
@@ -169,6 +169,22 @@ function getCoords(elem) // кроме IE8-
     };
 
 }
+
+function AddDragAndDropEvent ()
+{
+    document.onmousedown = onMouseDown;
+    document.onmousemove = onMouseMove;
+    document.onmouseup = onMouseUp;
+
+    document.ontouchstart = onMouseDown;
+    document.ontouchmove = onMouseMove;
+    document.ontouchend = onMouseUp;
+
+    document.onpointerdown = onMouseDown;
+    document.onpointermove = onMouseMove;
+    document.onpointerup = onMouseUp;
+}
+
 
 
 export default AddDragAndDropEvent;

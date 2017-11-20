@@ -9,10 +9,6 @@ import FirstGameScene from "./GameSceneFirst.js";
 // убрать _
 // Добавить кнопку назад в меню [прекратить игру]
 
- /*
-    TO DO - Добавить класс Scene где будут show (собрать) и hide (удалить) и от него унаследовать все сцены
-    [ будут создаваться объеты сцен и удалятсья при переходе ]
- */
 
 function startGame() {
     let firstScene = new FirstGameScene();
