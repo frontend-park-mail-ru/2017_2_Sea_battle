@@ -15,7 +15,6 @@ function startFirstGameScene (e) {
     let fieldClass = e.data;
     fieldClass = JSON.parse(fieldClass);
     fieldClass = fieldClass.class;
-    debugger;
     if ( fieldClass == "MsgYouInQueue" ){
         alert("Ожидание игрока");
     }

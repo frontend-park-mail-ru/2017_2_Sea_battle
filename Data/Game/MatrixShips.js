@@ -8,11 +8,17 @@ import WebSocketManager from "./WebSocket.js";
 
 
 function startSecondGameScene (e, matrixShips) {
-    debugger;
     let secondGameScene = new SecondGameScene();
     secondGameScene.show(matrixShips);
 }
 
+function createShipArrayMessage(shipArray) {
+    let massage = {};
+    massage.class = "MsgShipPosition";
+    massage.ships = shipArray;
+    massage = JSON.stringify(massage, "");
+    return massage;
+}
 
 function getMatrixShips () {
 
@@ -28,12 +34,14 @@ function getMatrixShips () {
 
 
         let webSocketManager = new WebSocketManager();
-        let shipArray = shipList.createShipArray();
-
+        let shipMessage = createShipArrayMessage (shipList.createShipArray());
         webSocketManager.messageSocket( function(e) {
             debugger;
-            startSecondGameScene(e, matrixShips)} );
-        webSocketManager.sendSocket(shipArray);
+            startSecondGameScene(e, matrixShips)} ); // Может не знать о matrixShips??
+
+        webSocketManager.openSocket(function(){});
+        webSocketManager.sendSocket(shipMessage);
+        
 
         alert("Ожидание игрока")
 

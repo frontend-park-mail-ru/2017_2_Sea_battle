@@ -76,10 +76,10 @@ export default class ShipList
         for (let i = 0; i < 10; i++) {
             let ship = {};
             ship.length = this.getShip(i).getSize();
-            ship.isVertical = this.getTurnShip(i);
-            ship.rowPos = (this.getShip(i).getLive())[0][0];
-            ship.colPos = (this.getShip(i).getLive())[0][2];
-            shipArray[i] = ship;
+            ship.isVertical = (this.getTurnShip(i)) ? true : false;
+            ship.rowPos = +((this.getShip(i).getLive())[0][0]);
+            ship.colPos = +((this.getShip(i).getLive())[0][2]);
+            shipArray[i] = ship; //JSON.stringify(ship);
         }
         return shipArray;
     }
