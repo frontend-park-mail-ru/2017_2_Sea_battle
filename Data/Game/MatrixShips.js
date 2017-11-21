@@ -23,10 +23,10 @@ function getMatrixShips () {
         let firstGameScene = new FirstGameScene();
         firstGameScene.hide();
 
-        let secondGameScene = new SecondGameScene();
-        secondGameScene.show(matrixShips);
+        // let secondGameScene = new SecondGameScene();
+        // secondGameScene.show(matrixShips);
 
-        /*
+
         let webSocketManager = new WebSocketManager();
         let shipArray = shipList.createShipArray();
 
@@ -36,7 +36,7 @@ function getMatrixShips () {
         webSocketManager.sendSocket(shipArray);
 
         alert("Ожидание игрока")
-        */
+
 
     }
     else {

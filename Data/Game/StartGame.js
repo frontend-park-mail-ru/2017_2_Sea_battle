@@ -30,12 +30,12 @@ function startFirstGameScene (e) {
 
 function startGame() {
 
-    // let webSocketManager = new WebSocketManager();
-    // webSocketManager.messageSocket(startFirstGameScene);
-    // webSocketManager.openSocket(function(){});
+    let webSocketManager = new WebSocketManager();
+    webSocketManager.messageSocket(startFirstGameScene);
+    webSocketManager.openSocket(function(){});
 
-    let firstScene = new FirstGameScene();
-    firstScene.show();
+    // let firstScene = new FirstGameScene();
+    // firstScene.show();
 
 
     // let firstScene;
