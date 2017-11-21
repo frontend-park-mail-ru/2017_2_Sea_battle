@@ -25,6 +25,7 @@ export default class WebSocketManager {
 
     messageSocket (func)
     {
+        debugger;
         this.socket.onmessage = function(event) {
             func(event);
         };

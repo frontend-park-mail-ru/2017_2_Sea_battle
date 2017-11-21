@@ -8,6 +8,7 @@ import WebSocketManager from "./WebSocket.js";
 
 
 function startSecondGameScene (e, matrixShips) {
+    debugger;
     let secondGameScene = new SecondGameScene();
     secondGameScene.show(matrixShips);
 }
@@ -38,10 +39,9 @@ function getMatrixShips () {
         webSocketManager.messageSocket( function(e) {
             debugger;
             startSecondGameScene(e, matrixShips)} ); // Может не знать о matrixShips??
-
-        webSocketManager.openSocket(function(){});
-        webSocketManager.sendSocket(shipMessage);
         
+        webSocketManager.sendSocket(shipMessage);
+
 
         alert("Ожидание игрока")
 
