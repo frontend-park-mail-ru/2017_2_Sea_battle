@@ -13,6 +13,10 @@ export default class GameScene
     hide()
     {
         let AllGame = document.getElementsByClassName("all_game");
-        document.body.removeChild(AllGame[0]);
+        // TO DO - костыль, при выходе всегда пытается удалить all_game, даже если его нет
+        if (AllGame[0]) {
+            document.body.removeChild(AllGame[0]);
+        }
+        //document.body.removeChild(AllGame[0]);
     }
 }
