@@ -15,6 +15,8 @@ function startSecondGameScene (e, matrixShips) {
 
 function createShipArrayMessage(shipArray) {
     let massage = {};
+    let sh = new WebSocketManager();
+    massage.userId = sh.id;
     massage.class = "MsgShipPosition";
     massage.ships = shipArray;
     massage = JSON.stringify(massage, "");
@@ -39,7 +41,7 @@ function getMatrixShips () {
         webSocketManager.messageSocket( function(e) {
             debugger;
             startSecondGameScene(e, matrixShips)} ); // Может не знать о matrixShips??
-        
+
         webSocketManager.sendSocket(shipMessage);
 
 

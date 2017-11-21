@@ -15,7 +15,10 @@ function startFirstGameScene (e) {
     let fieldClass = e.data;
     fieldClass = JSON.parse(fieldClass);
     fieldClass = fieldClass.class;
+    debugger;
     if ( fieldClass == "MsgYouInQueue" ){
+        let sh = new WebSocketManager();
+        sh.id = fieldClass.id;
         alert("Ожидание игрока");
     }
     else if ( fieldClass == "MsgLobbyCreated" ) {
