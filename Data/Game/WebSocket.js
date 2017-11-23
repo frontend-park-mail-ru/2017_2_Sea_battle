@@ -10,8 +10,6 @@ export default class WebSocketManager {
 
         this.socket = new WebSocket("ws://sea-battle-back.herokuapp.com/game");
 
-        this.id = 0;
-
         WebSocketManager.__instance = this;
     }
 
