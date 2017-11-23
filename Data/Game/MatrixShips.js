@@ -36,11 +36,12 @@ function getMatrixShips () {
         let webSocketManager = new WebSocketManager();
         let shipMessage = createShipArrayMessage (shipList.createShipArray());
         webSocketManager.messageSocket( function(e) {
-            let fieldClass = e.data;
-            fieldClass = JSON.parse(fieldClass);
-            fieldClass = fieldClass.class;
+            let fieldData = e.data;
+            fieldData = JSON.parse(fieldData);
+            let fieldClass = fieldData.class;
             if ( fieldClass == "MsgGameStarted" ){
-                startSecondGameScene(matrixShips, move);
+                debugger;
+                startSecondGameScene(matrixShips, fieldData.first);
             }
             else {
                 alert("Ошибка");
