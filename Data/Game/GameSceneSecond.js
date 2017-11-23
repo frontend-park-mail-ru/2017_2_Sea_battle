@@ -1,6 +1,7 @@
 import GameScene from "./GameScene.js";
 import Widget from "../Modules/Blocks/Widget.js";
 import GameLogicFront from "./GameLogicFront.js";
+import GameLogic from "./GameLogic.js";
 
 /*
    TO DO - в GameScene
@@ -8,7 +9,7 @@ import GameLogicFront from "./GameLogicFront.js";
 
 export default class FirstGameScene extends GameScene
 {
-    show(matrix_ships)
+    show(matrix_ships, move)
     {
         let all_game = new Widget(document.body,"div", "all_game");
 
@@ -21,8 +22,10 @@ export default class FirstGameScene extends GameScene
 
         this.createField(all_game, matrix_ships);
 
-        let gameLogicFront = new GameLogicFront();
-        gameLogicFront.newGameLogic();
+        // let gameLogicFront = new GameLogicFront();
+        // gameLogicFront.newGameLogic();
+
+        let gameLogic = new GameLogic(move);
 
         this.createField(all_game, matrix_ships, 1);
     }
@@ -62,8 +65,10 @@ export default class FirstGameScene extends GameScene
                         }
                         else {
                             td_field.addEventHandler("click", () => {
-                                let gameLogicFront = new GameLogicFront();
-                                gameLogicFront.shot(td_field.element, matrix_ships);
+                                // let gameLogicFront = new GameLogicFront();
+                                // gameLogicFront.shot(td_field.element, matrix_ships);
+                                let gameLogic = new GameLogic();
+                                gameLogic.shot(td_field.element);
                             });
                             td_field.element.id = (i-1) + "-" + (j-1);
                         }

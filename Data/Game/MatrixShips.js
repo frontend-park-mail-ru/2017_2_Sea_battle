@@ -7,9 +7,9 @@ import ShipList from "./ShipList.js";
 import WebSocketManager from "./WebSocket.js";
 
 
-function startSecondGameScene (matrixShips) {
+function startSecondGameScene (matrixShips, move) {
     let secondGameScene = new SecondGameScene();
-    secondGameScene.show(matrixShips);
+    secondGameScene.show(matrixShips, move);
 }
 
 function createShipArrayMessage(shipArray) {
@@ -40,7 +40,7 @@ function getMatrixShips () {
             fieldClass = JSON.parse(fieldClass);
             fieldClass = fieldClass.class;
             if ( fieldClass == "MsgGameStarted" ){
-                startSecondGameScene(matrixShips);
+                startSecondGameScene(matrixShips, move);
             }
             else {
                 alert("Ошибка");
@@ -50,7 +50,7 @@ function getMatrixShips () {
         webSocketManager.sendSocket(shipMessage);
 
 
-        alert("Ожидание игрока")
+        alert("Ожидание противника");
 
 
     }
