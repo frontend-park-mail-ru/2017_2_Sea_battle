@@ -7,8 +7,7 @@ import ShipList from "./ShipList.js";
 import WebSocketManager from "./WebSocket.js";
 
 
-function startSecondGameScene (e, matrixShips) {
-    debugger;
+function startSecondGameScene (matrixShips) {
     let secondGameScene = new SecondGameScene();
     secondGameScene.show(matrixShips);
 }
@@ -37,8 +36,16 @@ function getMatrixShips () {
         let webSocketManager = new WebSocketManager();
         let shipMessage = createShipArrayMessage (shipList.createShipArray());
         webSocketManager.messageSocket( function(e) {
-            debugger;
-            startSecondGameScene(e, matrixShips)} ); // Может не знать о matrixShips??
+            let fieldClass = e.data;
+            fieldClass = JSON.parse(fieldClass);
+            fieldClass = fieldClass.class;
+            if ( fieldClass == "MsgGameStarted" ){
+                startSecondGameScene(matrixShips);
+            }
+            else {
+                alert("Ошибка");
+            }
+        } );
 
         webSocketManager.sendSocket(shipMessage);
 
