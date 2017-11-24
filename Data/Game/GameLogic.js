@@ -23,16 +23,17 @@ export default class GameLogic
                 let fieldData = e.data;
                 fieldData = JSON.parse(fieldData);
                 let fieldClass = fieldData.class;
-                if ( fieldClass == "MsgResultMove" ){
-                    this.fireEnemy (e.data);
+                if ( fieldClass == "MsgResultMove" || fieldClass == "MsgShipIsDestroyed") {
+                    this.fireEnemy (fieldData);
+                }
+                else if (fieldClass == "MsgEndGame") {
+                    this.endGame(fieldData)
                 }
                 else {
                     alert("Ошибка");
                 }
             }.bind(this));
         }
-
-        this.won = -1; // 0 - проиграл, 1 - выиграл
     }
 
     shot (fieldFire)
@@ -46,30 +47,20 @@ export default class GameLogic
 
             // жду ответа, попал ли я
             webSocketManager.messageSocket( function(e) {
-                let fieldClass = e.data;
-                fieldClass = JSON.parse(fieldClass);
-                fieldClass = fieldClass.class;
-                if ( fieldClass == "MsgResultMove" ){
-                    this.fireMe(e.data, fieldFire);
+                let fieldData = e.data;
+                fieldData = JSON.parse(fieldData);
+                let fieldClass = fieldData.class;
+                if ( fieldClass == "MsgResultMove" || fieldClass == "MsgShipIsDestroyed"){
+                    this.fireMe(fieldData, fieldFire);
+                }
+                else if (fieldClass == "MsgEndGame") {
+                    this.endGame(fieldData)
                 }
                 else {
                     alert("Ошибка");
                 }
             }.bind(this));
         }
-
-        // if (this.won == 1) {
-        //     let secondGameScene = new SecondGameScene();
-        //     secondGameScene.hide();
-        //     let winScene = new WinScene();
-        //     winScene.show();
-        // }
-        // else if (!(this.won)) {
-        //     let secondGameScene = new SecondGameScene();
-        //     secondGameScene.hide();
-        //     let loseScene = new LoseScene();
-        //     loseScene.show();
-        // }
     }
 
     createShot(fieldFire)
@@ -87,10 +78,23 @@ export default class GameLogic
 
     fireEnemy (data)
     {
-        debugger;
-        // если попал, то отрисовываю
-        // иниче мой ход
-        this.move = true;
+        let fieldFire = document.getElementById(data.cell.rowPos  + "+" + data.cell.colPos);
+        if (data.cellStatus == "ON_FIRE")
+        {
+            fieldFire.classList.add("shipFire");
+            this.move = false;
+        }
+        if (data.cellStatus == "BLOCKED")
+        {
+            fieldFire.classList.add("Fire");
+            this.move = true;
+        }
+        if (data.class == "MsgShipIsDestroyed")
+        {
+            fieldFire.classList.add("shipFire");
+            this.shipDead(data, "+");
+            this.move = false;
+        }
     }
 
     fireMe(data, fieldFire)
@@ -105,10 +109,60 @@ export default class GameLogic
             fieldFire.classList.add("Fire");
             this.move = false;
         }
-        // обработка куда попал
-        // если попал, то мой ход
-        // иначе ход противника и стреляют по мне
+        if (data.class == "MsgShipIsDestroyed")
+        {
+            fieldFire.classList.add("shipFire");
+            this.shipDead(data, "-");
+            this.move = true;
+        }
+
+        if (!(this.move)) {
+            let webSocketManager = new WebSocketManager();
+            webSocketManager.messageSocket( function(e) {
+                let fieldData = e.data;
+                fieldData = JSON.parse(fieldData);
+                let fieldClass = fieldData.class;
+                if ( fieldClass == "MsgResultMove" || fieldClass == "MsgShipIsDestroyed") {
+                    this.fireEnemy (fieldData);
+                }
+                else if (fieldClass == "MsgEndGame") {
+                    this.endGame(fieldData)
+                }
+                else {
+                    alert("Ошибка");
+                }
+            }.bind(this));
+        }
+
         // сообщение - стреляют по мне
+    }
+
+    shipDead (data, flag)
+    {
+        let fieldDie;
+        for (let i = 0; i < data.length) {
+            if (data.isVertical) {
+                fieldDie = document.getElementById((data.rowPos + i) + flag + data.colPos);
+            }
+            else {
+                fieldDie = document.getElementById(data.rowPos + flag + (data.colPos + i));
+            }
+            fieldDie.classList.add("shipDie");
+        }
+    }
+
+    endGame (data)
+    {
+        let secondGameScene = new SecondGameScene();
+        secondGameScene.hide();
+        if (data.won) {
+            let winScene = new WinScene();
+            winScene.show();
+        }
+        else {
+            let loseScene = new LoseScene();
+            loseScene.show();
+        }
     }
 
 }
