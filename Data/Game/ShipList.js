@@ -22,6 +22,11 @@ export default class ShipList
         return this.listShip[i];
     }
 
+    getTurnShip (i)
+    {
+        return (this.getShip(i)).getTurn();
+    }
+
     setShip(ship, i)
     {
         this.listShip[i] = ship;
@@ -30,6 +35,11 @@ export default class ShipList
     setShipLiveField (i, field)
     {
         (this.getShip(i)).setLiveField(field);
+    }
+
+    setTurnShip (i, turn)
+    {
+        (this.getShip(i)).setTurn(turn);
     }
 
     canDoMatrix ()
@@ -58,6 +68,20 @@ export default class ShipList
         }
 
         return matrixShips;
+    }
+
+    createShipArray ()
+    {
+        let shipArray = [];
+        for (let i = 0; i < 10; i++) {
+            let ship = {};
+            ship.length = this.getShip(i).getSize();
+            ship.isVertical = (this.getTurnShip(i)) ? true : false;
+            ship.rowPos = +((this.getShip(i).getLive())[0][0]);
+            ship.colPos = +((this.getShip(i).getLive())[0][2]);
+            shipArray[i] = ship;
+        }
+        return shipArray;
     }
 
     clearList()

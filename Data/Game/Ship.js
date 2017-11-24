@@ -12,10 +12,10 @@ import Widget from "../Modules/Blocks/Widget.js";
 
 class Ship
 {
-    constructor(allGame, shipNum, countShip)
+    constructor(shipField, shipNum, countShip)
     {
         let inlineBlock = new Widget(document.body, "div", "inline_block");
-        allGame.appendChildWidget(inlineBlock);
+        shipField.appendChildWidget(inlineBlock);
         let tableShip = new Widget(document.body, "table", "draggable");
         inlineBlock.appendChildWidget(tableShip);
         let tdShip = new Widget(document.body, "td", "shipX" + countShip);
@@ -27,6 +27,12 @@ class Ship
         this.shipHP = countShip; // health point ship
         this.liveFields = [];
         this.deadFields = [];
+        this.turn = 0;
+    }
+
+    getSize()
+    {
+        return this.shipSize;
     }
 
     getLive ()
@@ -37,6 +43,16 @@ class Ship
     getDead ()
     {
         return this.deadFields;
+    }
+
+    getTurn ()
+    {
+        return this.turn;
+    }
+
+    setTurn (turn)
+    {
+        this.turn = turn;
     }
 
     setLiveField (field) {

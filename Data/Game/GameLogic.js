@@ -1,144 +1,177 @@
-import {WinScene, LoseScene} from "./WinLoseScene.js"
-
-// Логика игры с ботом без интернета
-let enemyMatrix =  [1, 0, 0, 0, 6, 6, 0, 0, 7, 0,
-                     0, 0, 0, 0, 0, 0, 0, 0, 7, 0,
-                     0, 0, 0, 5, 5, 0, 0, 0, 0, 0,
-                     3, 0, 0, 0, 0, 0, 4, 0, 0, 0,
-                     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                     0, 10, 0, 0, 0, 0, 0, 2, 0, 0,
-                     0, 10, 0, 0, 8, 0, 0, 0, 0, 0,
-                     0, 10, 0, 0, 8, 0, 0, 0, 0, 0,
-                     0, 10, 0, 0, 8, 0, 0, 9, 9, 9,
-                     0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
-let countMyShip = 20;
-let countEnemyShip = 20;
-
- /*
-   [ TO DO - переписать логику выстрелов  (уничтодения кораблей) c матрицы на ShipList ]
-   А можно оставить так же на матрицах, хз что лучше (на матрицах не так запутанно)
- */
+import {WinScene, LoseScene} from "./GameSceneWinLose.js"
+import SecondGameScene from "./GameSceneSecond.js";
+import WebSocketManager from "./WebSocket.js";
 
 // 0 - путое поле, (1-10) - корабль не поврежден, 100 - промах, -(1-10) - корабль поврежден
 
-function gameLogic (field, matrixShips)
+export default class GameLogic
 {
-    // for (let i = 0; i < 10; i++) {
-    //     for (let j = 0; j < 10; j++) {
-    //         if (enemy_matrix[10*i + j]) {
-    //             let el = document.getElementById(i + "-" + j);
-    //             el.classList.add("shipDie");
-    //         }
-    //     }
-    // }
-    if (myFire(field))
+    constructor(move = true)
     {
-        botFire(matrixShips);
-    }
-    if (!countEnemyShip) {
-        let AllGame = document.getElementsByClassName("all_game");
-        document.body.removeChild(AllGame[0]);
-        WinScene();
-    }
-    if (!countMyShip) {
-        let AllGame = document.getElementsByClassName("all_game");
-        document.body.removeChild(AllGame[0]);
-        LoseScene();
-    }
-};
+        if (GameLogic.__instance) {
+            return GameLogic.__instance;
+        }
 
+        GameLogic.__instance = this;
 
-function myFire(fieldFire) {
+        this.move = move;
 
-    let i = +fieldFire.id[0];
-    let j = +fieldFire.id[2];
-
-    if (enemyMatrix[10*i+j] < 0 || enemyMatrix[10*i+j] == 100) {
-        return false;
-    }
-    /*
-    if (field.classList.contains("shipDie") || field.classList.contains("shipFire") ||
-        field.classList.contains("Fire"))
-    {
-        return false;
-    }
-     */
-    else if (enemyMatrix[10*i+j]) { // попал
-        fieldFire.classList.add("shipFire");
-        enemyMatrix[10*i+j] = -(enemyMatrix[10*i+j]);
-
-        // Если убил
-        if (killShip(-enemyMatrix[10*i+j], enemyMatrix)) {
-            for (let k = 0; k < 10; k++) {
-                for (let z = 0; z < 10; z++) {
-                    if (enemyMatrix[10*k+z] == enemyMatrix[10*i+j]) {
-                        let fieldDie = document.getElementById(k + "-" + z);
-                        fieldDie.classList.remove("shipFire");
-                        fieldDie.classList.add("shipDie");
-                    }
+        // стреляют по мне
+        if (!(this.move)) {
+            let webSocketManager = new WebSocketManager();
+            webSocketManager.messageSocket( function(e) {
+                let fieldData = e.data;
+                fieldData = JSON.parse(fieldData);
+                let fieldClass = fieldData.class;
+                if ( fieldClass == "MsgResultMove" || fieldClass == "MsgShipIsDestroyed") {
+                    this.fireEnemy (fieldData);
                 }
-            }
-        }
-
-        countEnemyShip--;
-
-        return false;
-    }
-    else { // промах
-        enemyMatrix[10*i+j] = 100;
-        fieldFire.classList.add("Fire");
-        return true;
-    }
-
-};
-
-function botFire(matrixShips) {
-    let iRand = Math.floor(Math.random() * (9 + 1));
-    let jRand = Math.floor(Math.random() * (9 + 1));
-
-    if (matrixShips[10*iRand+jRand] < 0 || matrixShips[10*iRand+jRand] == 100)
-    {
-        botFire(matrixShips);
-    }
-
-    else if (matrixShips[10*iRand+jRand]) { // попал
-
-        let el = document.getElementById(iRand + "+" + jRand);
-        el.classList.remove("shipOK");
-        el.classList.add("shipFire");
-        matrixShips[10*iRand+jRand] = -(matrixShips[10*iRand+jRand])
-
-        // Если убил
-        if (killShip(-matrixShips[10*iRand+jRand], matrixShips)) {
-            for (let k = 0; k < 10; k++) {
-                for (let z = 0; z < 10; z++) {
-                    if (matrixShips[10*k+z] == matrixShips[10*iRand+jRand]) {
-                        let fieldDie = document.getElementById(k + "+" + z);
-                        fieldDie.classList.remove("shipFire");
-                        fieldDie.classList.add("shipDie");
-                    }
+                else if (fieldClass == "MsgEndGame") {
+                    this.endGame(fieldData)
                 }
+                else {
+                    alert("Ошибка");
+                }
+            }.bind(this));
+        }
+    }
+
+    shot (fieldFire)
+    {
+        if (this.move) {
+            let shotMessage = this.createShot(fieldFire);
+
+            let webSocketManager = new WebSocketManager();
+
+            webSocketManager.sendSocket(shotMessage);
+
+            // жду ответа, попал ли я
+            webSocketManager.messageSocket( function(e) {
+                let fieldData = e.data;
+                fieldData = JSON.parse(fieldData);
+                let fieldClass = fieldData.class;
+                if ( fieldClass == "MsgResultMove" || fieldClass == "MsgShipIsDestroyed"){
+                    this.fireMe(fieldData, fieldFire);
+                }
+                else if (fieldClass == "MsgEndGame") {
+                    this.endGame(fieldData)
+                }
+                else if (fieldClass == "MsgError" && fieldData.error == "unacceptable move ") {
+
+                }
+                else {
+                    alert("Ошибка");
+                }
+            }.bind(this));
+        }
+    }
+
+    createShot(fieldFire)
+    {
+        let coordinates = {};
+        coordinates.rowPos = +fieldFire.id[0];
+        coordinates.colPos = +fieldFire.id[2];
+
+        let massage = {};
+        massage.class = "MsgFireCoordinates";
+        massage.coordinates = coordinates;
+        massage = JSON.stringify(massage, "");
+        return massage;
+    }
+
+    fireEnemy (data)
+    {
+        let fieldFire;
+        if (data.cellStatus == "ON_FIRE")
+        {
+            fieldFire = document.getElementById(data.cell.rowPos  + "+" + data.cell.colPos);
+            fieldFire.classList.remove("shipOK");
+            fieldFire.classList.add("shipFire");
+            this.move = false;
+        }
+        if (data.cellStatus == "BLOCKED")
+        {
+            fieldFire = document.getElementById(data.cell.rowPos  + "+" + data.cell.colPos);
+            fieldFire.classList.add("Fire");
+            this.move = true;
+        }
+        if (data.class == "MsgShipIsDestroyed")
+        {
+            fieldFire = document.getElementById(data.destroyedShip.lastCell.rowPos  + "+" + data.destroyedShip.lastCell.colPos);
+            fieldFire.classList.remove("shipOK");
+            fieldFire.classList.add("shipFire");
+            this.shipDead(data, "+");
+            this.move = false;
+        }
+    }
+
+    fireMe(data, fieldFire)
+    {
+        if (data.cellStatus == "ON_FIRE")
+        {
+            fieldFire.classList.add("shipFire");
+            this.move = true;
+        }
+        if (data.cellStatus == "BLOCKED")
+        {
+            fieldFire.classList.add("Fire");
+            this.move = false;
+        }
+        if (data.class == "MsgShipIsDestroyed")
+        {
+            fieldFire.classList.add("shipFire");
+            this.shipDead(data, "-");
+            this.move = true;
+        }
+
+        if (!(this.move)) {
+            let webSocketManager = new WebSocketManager();
+            webSocketManager.messageSocket( function(e) {
+                let fieldData = e.data;
+                fieldData = JSON.parse(fieldData);
+                let fieldClass = fieldData.class;
+                if ( fieldClass == "MsgResultMove" || fieldClass == "MsgShipIsDestroyed") {
+                    this.fireEnemy (fieldData);
+                }
+                else if (fieldClass == "MsgEndGame") {
+                    this.endGame(fieldData)
+                }
+                else {
+                    alert("Ошибка");
+                }
+            }.bind(this));
+        }
+
+        // сообщение - стреляют по мне
+    }
+
+    shipDead (data, flag)
+    {
+        let fieldDie;
+        for (let i = 0; i < data.destroyedShip.length; i++) {
+            if (data.destroyedShip.isVertical) {
+                fieldDie = document.getElementById((data.destroyedShip.rowPos + i) + flag + data.destroyedShip.colPos);
             }
-        }
-
-        countMyShip--;
-        botFire(matrixShips);
-    }
-    else {
-        matrixShips[10*iRand+jRand] = 100;
-        let el = document.getElementById(iRand + "+" + jRand);
-        el.classList.add("Fire");
-    }
-};
-
-function killShip (num, matrix) {
-    for (let i = 0; i < matrix.length; i++) {
-        if (matrix[i] == num) {
-            return false;
+            else {
+                fieldDie = document.getElementById(data.destroyedShip.rowPos + flag + (data.destroyedShip.colPos + i));
+            }
+            fieldDie.classList.remove("shipFire");
+            fieldDie.classList.add("shipDie");
         }
     }
-    return true;
+
+    endGame (data)
+    {
+        let secondGameScene = new SecondGameScene();
+        secondGameScene.hide();
+        if (data.won) {
+            let winScene = new WinScene();
+            winScene.show();
+        }
+        else {
+            let loseScene = new LoseScene();
+            loseScene.show();
+        }
+    }
+
 }
-
-export default gameLogic;
