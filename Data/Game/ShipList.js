@@ -79,7 +79,7 @@ export default class ShipList
             ship.isVertical = (this.getTurnShip(i)) ? true : false;
             ship.rowPos = +((this.getShip(i).getLive())[0][0]);
             ship.colPos = +((this.getShip(i).getLive())[0][2]);
-            shipArray[i] = ship; //JSON.stringify(ship);
+            shipArray[i] = ship;
         }
         return shipArray;
     }

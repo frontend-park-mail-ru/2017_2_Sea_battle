@@ -31,7 +31,8 @@ function startGame() {
 
     let webSocketManager = new WebSocketManager();
     webSocketManager.messageSocket(startFirstGameScene);
-    webSocketManager.openSocket(function(){});
+    webSocketManager.openSocket();
+    webSocketManager.closeSocket();
 
     // let firstScene = new FirstGameScene();
     // firstScene.show();

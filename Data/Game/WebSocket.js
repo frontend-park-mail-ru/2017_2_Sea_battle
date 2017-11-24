@@ -13,9 +13,11 @@ export default class WebSocketManager {
         WebSocketManager.__instance = this;
     }
 
-    openSocket (callback)
+    openSocket ()
     {
-        this.socket.onopen = callback;
+        this.socket.onopen = function(event) {
+            alert("Сессия открыта");
+        };
     }
 
     sendSocket (message)
@@ -33,12 +35,7 @@ export default class WebSocketManager {
     closeSocket ()
     {
         this.socket.onclose = function(event) {
-            // if (event.wasClean) {
-            //     alert('Соединение закрыто чисто');
-            // } else {
-            //     alert('Обрыв соединения'); // например, "убит" процесс сервера
-            // }
-            // alert('Код: ' + event.code + ' причина: ' + event.reason);
+            alert("Сессия закрыта");
         };
     }
 }

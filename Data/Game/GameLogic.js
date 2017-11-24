@@ -56,6 +56,9 @@ export default class GameLogic
                 else if (fieldClass == "MsgEndGame") {
                     this.endGame(fieldData)
                 }
+                else if (fieldClass == "MsgError" && fieldData.error == "unacceptable move ") {
+
+                }
                 else {
                     alert("Ошибка");
                 }
