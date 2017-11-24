@@ -152,6 +152,7 @@ export default class GameLogic
             else {
                 fieldDie = document.getElementById(data.destroyedShip.rowPos + flag + (data.destroyedShip.colPos + i));
             }
+            fieldDie.classList.remove("shipFire");
             fieldDie.classList.add("shipDie");
         }
     }
