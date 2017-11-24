@@ -40,7 +40,6 @@ function getMatrixShips () {
             fieldData = JSON.parse(fieldData);
             let fieldClass = fieldData.class;
             if ( fieldClass == "MsgGameStarted" ){
-                debugger;
                 startSecondGameScene(matrixShips, fieldData.first);
             }
             else {
