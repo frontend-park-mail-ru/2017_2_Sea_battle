@@ -55,7 +55,7 @@ export default class GameLogic
                 else {
                     alert("Ошибка");
                 }
-            } );
+            }.bind(this));
         }
 
         // if (this.won == 1) {
