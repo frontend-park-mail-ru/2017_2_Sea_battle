@@ -29,15 +29,17 @@ export default class FirstGameScene extends GameScene
         turnButton.element.addEventListener('click', () => {turnManager.turnShips();});
 
         // Добавляем корабли
+        let shipField = new Widget(document.body,"div", "shipField");
+        all_game.appendChildWidget(shipField);
         let shipCount = 1;
         let shipNum = 1;
         let shipList = new ShipList();
         shipList.clearList();
         for (let i = 4; i > 0; i--) {
             let space = new Widget();
-            all_game.appendChildWidget(space);
+            shipField.appendChildWidget(space);
             for (let j = i; j > 0; j--){
-                shipList.setShip(new Ship(all_game, shipNum, shipCount), shipNum - 1);
+                shipList.setShip(new Ship(shipField, shipNum, shipCount), shipNum - 1);
                 shipNum++;
             }
             shipCount++;

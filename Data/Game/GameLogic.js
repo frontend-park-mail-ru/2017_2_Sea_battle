@@ -16,44 +16,46 @@ export default class GameLogic
 
         this.move = move;
 
+        // стреляют по мне
         if (!(this.move)) {
             let webSocketManager = new WebSocketManager();
             webSocketManager.messageSocket( function(e) {
-                let fieldClass = e.data;
-                fieldClass = JSON.parse(fieldClass);
-                fieldClass = fieldClass.class;
-                if ( true ){
+                let fieldData = e.data;
+                fieldData = JSON.parse(fieldData);
+                let fieldClass = fieldData.class;
+                if ( fieldClass == "MsgResultMove" ){
                     this.fireEnemy (e.data);
                 }
                 else {
                     alert("Ошибка");
                 }
-            } );
+            }.bind(this));
         }
 
         this.won = -1; // 0 - проиграл, 1 - выиграл
     }
 
-    shot (field)
+    shot (fieldFire)
     {
         if (this.move) {
-            let shotMessage = this.createShot(field);
+            let shotMessage = this.createShot(fieldFire);
 
             let webSocketManager = new WebSocketManager();
 
             webSocketManager.sendSocket(shotMessage);
 
-            // webSocketManager.messageSocket( function(e) {
-            //     let fieldClass = e.data;
-            //     fieldClass = JSON.parse(fieldClass);
-            //     fieldClass = fieldClass.class;
-            //     if ( fieldClass == "MsgGameStarted" ){
-            //         startSecondGameScene(matrixShips, move);
-            //     }
-            //     else {
-            //         alert("Ошибка");
-            //     }
-            // } );
+            // жду ответа, попал ли я
+            webSocketManager.messageSocket( function(e) {
+                let fieldClass = e.data;
+                fieldClass = JSON.parse(fieldClass);
+                fieldClass = fieldClass.class;
+                if ( fieldClass == "MsgResultMove" ){
+                    this.fireMe(e.data, fieldFire);
+                }
+                else {
+                    alert("Ошибка");
+                }
+            } );
         }
 
         // if (this.won == 1) {
@@ -86,6 +88,27 @@ export default class GameLogic
     fireEnemy (data)
     {
         debugger;
+        // если попал, то отрисовываю
+        // иниче мой ход
+        this.move = true;
+    }
+
+    fireMe(data, fieldFire)
+    {
+        if (data.cellStatus == "ON_FIRE")
+        {
+            fieldFire.classList.add("shipFire");
+            this.move = true;
+        }
+        if (data.cellStatus == "BLOCKED")
+        {
+            fieldFire.classList.add("Fire");
+            this.move = false;
+        }
+        // обработка куда попал
+        // если попал, то мой ход
+        // иначе ход противника и стреляют по мне
+        // сообщение - стреляют по мне
     }
 
 }

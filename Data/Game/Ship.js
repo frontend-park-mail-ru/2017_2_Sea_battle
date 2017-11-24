@@ -12,10 +12,10 @@ import Widget from "../Modules/Blocks/Widget.js";
 
 class Ship
 {
-    constructor(allGame, shipNum, countShip)
+    constructor(shipField, shipNum, countShip)
     {
         let inlineBlock = new Widget(document.body, "div", "inline_block");
-        allGame.appendChildWidget(inlineBlock);
+        shipField.appendChildWidget(inlineBlock);
         let tableShip = new Widget(document.body, "table", "draggable");
         inlineBlock.appendChildWidget(tableShip);
         let tdShip = new Widget(document.body, "td", "shipX" + countShip);

@@ -1,7 +1,7 @@
 
 .all_game {
-    position: absolute;
-    left: 20px;
+    height: 90%;
+    padding: 20px;
 }
 
 .draggable {
@@ -19,15 +19,15 @@
 
 .table_field
 {
-    margin: auto;
     position: absolute;
-    top: 60%;
-    left: 85%;
-    /*
-    position: relative;
-    bottom: 150px;
-    left: 400px;
-    */
+    top: 20%;
+    left: 40%;
+}
+
+.shipField
+{
+    width: auto;
+    height: auto;
 }
 
 /*
@@ -47,7 +47,7 @@
 {
     position: absolute;
     top: 65%;
-    left: 185%;
+    left: 85%;
 }
 
 .turnButton
