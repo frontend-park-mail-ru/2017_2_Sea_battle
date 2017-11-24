@@ -78,6 +78,7 @@ export default class GameLogic
 
     fireEnemy (data)
     {
+        data.cell = JSON.parse(data.cell);
         let fieldFire = document.getElementById(data.cell.rowPos  + "+" + data.cell.colPos);
         if (data.cellStatus == "ON_FIRE")
         {
@@ -141,8 +142,9 @@ export default class GameLogic
 
     shipDead (data, flag)
     {
+        data.destroyedShip = JSON.parse(data.destroyedShip);
         let fieldDie;
-        for (let i = 0; i < data.length; i++) {
+        for (let i = 0; i < data.destroyedShip.length; i++) {
             if (data.destroyedShip.isVertical) {
                 fieldDie = document.getElementById((data.destroyedShip.rowPos + i) + flag + data.destroyedShip.colPos);
             }
