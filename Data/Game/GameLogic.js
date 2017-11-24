@@ -78,20 +78,23 @@ export default class GameLogic
 
     fireEnemy (data)
     {
-        let fieldFire = document.getElementById(data.cell.rowPos  + "+" + data.cell.colPos);
+        let fieldFire;
         if (data.cellStatus == "ON_FIRE")
         {
+            fieldFire = document.getElementById(data.cell.rowPos  + "+" + data.cell.colPos);
             fieldFire.classList.remove("shipOK");
             fieldFire.classList.add("shipFire");
             this.move = false;
         }
         if (data.cellStatus == "BLOCKED")
         {
+            fieldFire = document.getElementById(data.cell.rowPos  + "+" + data.cell.colPos);
             fieldFire.classList.add("Fire");
             this.move = true;
         }
         if (data.class == "MsgShipIsDestroyed")
         {
+            fieldFire = document.getElementById(data.destroyedShip.lastCell.rowPos  + "+" + data.destroyedShip.lastCell.colPos);
             fieldFire.classList.remove("shipOK");
             fieldFire.classList.add("shipFire");
             this.shipDead(data, "+");
@@ -142,8 +145,6 @@ export default class GameLogic
     shipDead (data, flag)
     {
         let fieldDie;
-        let a = data.destroyedShip.rowPos;
-        debugger;
         for (let i = 0; i < data.destroyedShip.length; i++) {
             if (data.destroyedShip.isVertical) {
                 fieldDie = document.getElementById((data.destroyedShip.rowPos + i) + flag + data.destroyedShip.colPos);
