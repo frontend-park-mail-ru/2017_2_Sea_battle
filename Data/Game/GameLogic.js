@@ -143,11 +143,11 @@ export default class GameLogic
     {
         let fieldDie;
         for (let i = 0; i < data.length; i++) {
-            if (data.isVertical) {
-                fieldDie = document.getElementById((data.rowPos + i) + flag + data.colPos);
+            if (data.destroyedShip.isVertical) {
+                fieldDie = document.getElementById((data.destroyedShip.rowPos + i) + flag + data.destroyedShip.colPos);
             }
             else {
-                fieldDie = document.getElementById(data.rowPos + flag + (data.colPos + i));
+                fieldDie = document.getElementById(data.destroyedShip.rowPos + flag + (data.destroyedShip.colPos + i));
             }
             fieldDie.classList.add("shipDie");
         }
