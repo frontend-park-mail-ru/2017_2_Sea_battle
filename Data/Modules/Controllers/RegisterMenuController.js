@@ -51,13 +51,14 @@ class RegisterMenuController extends BaseController
 
     submitHandler()
     {
+        let password = this.inputPassword.value; // Костыль, чтобы передать потом для логина
         if(this.validate())
             Services.registerUser(this.inputMail.value, this.inputNickname.value, this.inputPassword.value)
-                .then(response =>
+                .then(function(response)
                 {
-                    eventBus.emitEvent({type: "updateUser"});
+                    Services.checkUser(response.email, password).then(() => {eventBus.emitEvent({type: "updateUser"});});
                     eventBus.emitEvent({type: "changeMenu", newMenuName: "/"});
-                })
+                }.bind(password))
                 .catch(error =>
                 {
                    let mb = new MessageBox("Register error", error.response);
