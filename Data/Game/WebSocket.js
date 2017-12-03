@@ -12,17 +12,17 @@ export default class WebSocketManager {
 
         WebSocketManager.__instance = this;
 
-        this.massage = {};
-        this.massage.class = "MsgPing";
-        this.massage = JSON.stringify(this.massage, "");
+        this.messagePing = {};
+        this.messagePing.class = "MsgPing";
+        this.messagePing = JSON.stringify(this.messagePing, "");
     }
 
     openSocket ()
     {
         this.socket.onopen = function(event) {
-            alert("Сессия открыта");
             this.pingSocket();
-        };
+            alert("Сессия открыта");
+        }.bind(this);
     }
 
     sendSocket (message)
@@ -46,6 +46,6 @@ export default class WebSocketManager {
 
     pingSocket()
     {
-        this.sendSocket(this.massage);
+        this.sendSocket(this.messagePing);
     }
 }
