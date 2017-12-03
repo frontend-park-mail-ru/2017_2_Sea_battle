@@ -42,6 +42,10 @@ function getMatrixShips () {
             if ( fieldClass == "MsgGameStarted" ){
                 startSecondGameScene(matrixShips, fieldData.first);
             }
+            else if ( fieldClass == "MsgPing") {
+                let webSocketManager = new WebSocketManager();
+                webSocketManager.pingSocket();
+            }
             else {
                 alert("Ошибка");
             }

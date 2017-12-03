@@ -11,12 +11,17 @@ export default class WebSocketManager {
         this.socket = new WebSocket("ws://sea-battle-back.herokuapp.com/game"); // wss
 
         WebSocketManager.__instance = this;
+
+        this.massage = {};
+        this.massage.class = "MsgPing";
+        this.massage = JSON.stringify(this.massage, "");
     }
 
     openSocket ()
     {
         this.socket.onopen = function(event) {
             alert("Сессия открыта");
+            this.pingSocket();
         };
     }
 
@@ -38,4 +43,11 @@ export default class WebSocketManager {
             alert("Сессия закрыта");
         };
     }
+
+    pingSocket()
+    {
+        this.sendSocket(this.massage);
+    }
+
+    massage = {};
 }

@@ -29,6 +29,10 @@ export default class GameLogic
                 else if (fieldClass == "MsgEndGame") {
                     this.endGame(fieldData)
                 }
+                else if ( fieldClass == "MsgPing") {
+                    let webSocketManager = new WebSocketManager();
+                    webSocketManager.pingSocket();
+                }
                 else {
                     alert("Ошибка");
                 }
@@ -58,6 +62,10 @@ export default class GameLogic
                 }
                 else if (fieldClass == "MsgError" && fieldData.error == "unacceptable move ") {
 
+                }
+                else if ( fieldClass == "MsgPing") {
+                    let webSocketManager = new WebSocketManager();
+                    webSocketManager.pingSocket();
                 }
                 else {
                     alert("Ошибка");
@@ -135,6 +143,10 @@ export default class GameLogic
                 }
                 else if (fieldClass == "MsgEndGame") {
                     this.endGame(fieldData)
+                }
+                else if ( fieldClass == "MsgPing") {
+                    let webSocketManager = new WebSocketManager();
+                    webSocketManager.pingSocket();
                 }
                 else {
                     alert("Ошибка");
