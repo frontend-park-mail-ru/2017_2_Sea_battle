@@ -6,5 +6,6 @@ import EventBus from "./Modules/EventBus.js";
 const eventBus = new EventBus();
 const menuManager = new MenuManager();
 eventBus.subscribe(menuManager);
+menuManager.go();
 
 window.onpopstate = menuManager.go.bind(menuManager);

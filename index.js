@@ -20,7 +20,7 @@ const users = {
 };
 
 const aboutText = {text: ["Sea battle game", "Made for TP sem-2"]};
-
+/*
 app.post("/login", function(req, res)
 {
     let password = req.body.password;
@@ -105,12 +105,25 @@ app.get("/about", function(req, res)
    res.status(201);
    res.json(aboutText);
 });
+ */
 
-app.get("/", function(req, res)
+function sendIndex(req, res)
 {
-    let indexFile = DATA + "index.html";
+    console.log(req.path)
+    let indexFile = DATA + "/" + "index.html";
     res.sendFile(indexFile);
-});
+}
+
+// Routing paths
+app.get("/", sendIndex);
+app.get("/leaderboardMenu", sendIndex);
+app.get("/aboutMenu", sendIndex);
+app.get("/startGame", sendIndex);
+app.get("/selectMode", sendIndex);
+app.get("/startGame/login", sendIndex);
+app.get("/startGame/register", sendIndex);
+
+
 
 app.listen(port);
 
