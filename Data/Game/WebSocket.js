@@ -48,6 +48,4 @@ export default class WebSocketManager {
     {
         this.sendSocket(this.massage);
     }
-
-    massage = {};
 }
