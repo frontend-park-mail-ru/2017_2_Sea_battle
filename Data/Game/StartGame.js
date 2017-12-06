@@ -31,6 +31,7 @@ function startFirstGameScene (e) {
     }
 }
 
+// massage = 1
 function startGame() {
 
     let webSocketManager = new WebSocketManager();

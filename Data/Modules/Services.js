@@ -21,7 +21,7 @@ class Services
 
     static isValidMail(text)
     {
-        let reg = /[0-9A-Za-z\-\_]+@[A-Za-z\-\_]+\.[A-Za-z\-\_]+/; // RegExp for mail
+        let reg = /[0-9A-Za-z.\-\_]+@[0-9A-Za-z.\-\_]+\.[A-Za-z\-\_]+/; // RegExp for mail
         let match = text.match(reg);
 
         return (match != null && match[0] == text);
