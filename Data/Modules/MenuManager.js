@@ -18,7 +18,7 @@ import UserProfileBlockController from "./Controllers/UserProfileBlockController
 import StartGameMenuSelector from "./Controllers/StartGameMenuSelector.js";
 import StandAloneController from "./Controllers/StandAloneController.js";
 import SingleplayerController from "./Controllers/SingleplayerController.js";
-import MultiplayerController from "./COntrollers/MultiplayerController.js";
+import MultiplayerController from "./Controllers/MultiplayerController.js";
 
 class MenuManager extends Subscriber
 {

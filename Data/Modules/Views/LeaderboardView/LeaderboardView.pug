@@ -3,12 +3,14 @@ include ../BaseMenuView/BaseMenuHeader.pug
 table.leaderTable
     thead
         tr
+            th.tableHeader Position
             th.tableHeader Name
             th.tableHeader Score
 
     tbody
         each player in players
             tr
+                th.contents #{player.position}
                 th.contents #{player.login}
                 th.contents #{player.score}
 
