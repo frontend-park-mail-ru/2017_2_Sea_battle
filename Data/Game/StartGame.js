@@ -3,13 +3,13 @@
 
 import FirstGameScene from "./GameSceneFirst.js";
 import WebSocketManager from "./WebSocket.js";
+import GameController from "./GameController.js"
 
 // TO DO - Работа с DOM через мэнэджер document.getID -> в мэнэджер и его дергать
 // Все комментарии для GameScene (1 и 2)
 // Кнопки [перезагрузки поля], чтобы поле и кнопки не бегали вверх/вниз, фон за полем
 // убрать _
 // Добавить кнопку назад в меню [прекратить игру]
-
 
 function startFirstGameScene (e) {
     let fieldClass = e.data;
@@ -31,13 +31,21 @@ function startFirstGameScene (e) {
     }
 }
 
-// massage = 1
-function startGame() {
+function startGame(message) {
 
-    let webSocketManager = new WebSocketManager();
-    webSocketManager.messageSocket(startFirstGameScene);
-    webSocketManager.openSocket();
-    webSocketManager.closeSocket();
+    let gameContoller = new GameController();
+    gameContoller.setGame(message);
+
+    if (gameContoller.getGame()) {
+        let webSocketManager = new WebSocketManager();
+        webSocketManager.messageSocket(startFirstGameScene);
+        webSocketManager.openSocket();
+        webSocketManager.closeSocket();
+    }
+    else {
+        let firstScene = new FirstGameScene();
+        firstScene.show();
+    }
 
     // let firstScene = new FirstGameScene();
     // firstScene.show();

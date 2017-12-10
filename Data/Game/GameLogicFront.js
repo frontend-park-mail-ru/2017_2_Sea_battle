@@ -33,7 +33,7 @@ export default class GameLogicFront
         this.countEnemyShip = 20;
     }
 
-    newGameLogic ()
+    newGameLogic (matrixShips)
     {
         this.enemyMatrix = [1, 0, 0, 0, 6, 6, 0, 0, 7, 0,
                             0, 0, 0, 0, 0, 0, 0, 0, 7, 0,
@@ -46,23 +46,17 @@ export default class GameLogicFront
                             0, 10, 0, 0, 8, 0, 0, 9, 9, 9,
                             0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
+        this.matrixShips = matrixShips;
+
         this.countMyShip = 20;
         this.countEnemyShip = 20;
     }
 
-    shot (field, matrixShips)
+    shot (field)
     {
-        // for (let i = 0; i < 10; i++) {
-        //     for (let j = 0; j < 10; j++) {
-        //         if (enemy_matrix[10*i + j]) {
-        //             let el = document.getElementById(i + "-" + j);
-        //             el.classList.add("shipDie");
-        //         }
-        //     }
-        // }
         if (this.myFire(field))
         {
-            this.botFire(matrixShips);
+            this.botFire();
         }
         if (!(this.countEnemyShip)) {
             let secondGameScene = new SecondGameScene();
@@ -87,13 +81,6 @@ export default class GameLogicFront
         if (this.enemyMatrix[10*i+j] < 0 || this.enemyMatrix[10*i+j] == 100) {
             return false;
         }
-        /*
-        if (field.classList.contains("shipDie") || field.classList.contains("shipFire") ||
-            field.classList.contains("Fire"))
-        {
-            return false;
-        }
-         */
         else if (this.enemyMatrix[10*i+j]) { // попал
             fieldFire.classList.add("shipFire");
             this.enemyMatrix[10*i+j] = -(this.enemyMatrix[10*i+j]);
@@ -123,28 +110,28 @@ export default class GameLogicFront
 
     }
 
-    botFire(matrixShips)
+    botFire()
     {
         let iRand = Math.floor(Math.random() * (9 + 1));
         let jRand = Math.floor(Math.random() * (9 + 1));
 
-        if (matrixShips[10*iRand+jRand] < 0 || matrixShips[10*iRand+jRand] == 100)
+        if (this.matrixShips[10*iRand+jRand] < 0 || this.matrixShips[10*iRand+jRand] == 100)
         {
-            this.botFire(matrixShips);
+            this.botFire();
         }
 
-        else if (matrixShips[10*iRand+jRand]) { // попал
+        else if (this.matrixShips[10*iRand+jRand]) { // попал
 
             let el = document.getElementById(iRand + "+" + jRand);
             el.classList.remove("shipOK");
             el.classList.add("shipFire");
-            matrixShips[10*iRand+jRand] = -(matrixShips[10*iRand+jRand])
+            this.matrixShips[10*iRand+jRand] = -(this.matrixShips[10*iRand+jRand])
 
             // Если убил
-            if (this.killShip(-matrixShips[10*iRand+jRand], matrixShips)) {
+            if (this.killShip(-this.matrixShips[10*iRand+jRand], this.matrixShips)) {
                 for (let k = 0; k < 10; k++) {
                     for (let z = 0; z < 10; z++) {
-                        if (matrixShips[10*k+z] == matrixShips[10*iRand+jRand]) {
+                        if (this.matrixShips[10*k+z] == this.matrixShips[10*iRand+jRand]) {
                             let fieldDie = document.getElementById(k + "+" + z);
                             fieldDie.classList.remove("shipFire");
                             fieldDie.classList.add("shipDie");
@@ -154,10 +141,10 @@ export default class GameLogicFront
             }
 
             this.countMyShip--;
-            this.botFire(matrixShips);
+            this.botFire();
         }
         else {
-            matrixShips[10*iRand+jRand] = 100;
+            this.matrixShips[10*iRand+jRand] = 100;
             let el = document.getElementById(iRand + "+" + jRand);
             el.classList.add("Fire");
         }

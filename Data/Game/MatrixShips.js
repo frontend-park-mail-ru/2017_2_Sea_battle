@@ -5,6 +5,7 @@ import FirstGameScene from "./GameSceneFirst.js";
 import SecondGameScene from "./GameSceneSecond.js";
 import ShipList from "./ShipList.js";
 import WebSocketManager from "./WebSocket.js";
+import GameController from "./GameController.js"
 
 
 function startSecondGameScene (matrixShips, move) {
@@ -29,33 +30,34 @@ function getMatrixShips () {
         let firstGameScene = new FirstGameScene();
         firstGameScene.hide();
 
-        // let secondGameScene = new SecondGameScene();
-        // secondGameScene.show(matrixShips);
+        let gameContoller = new GameController();
+        if (!gameContoller.getGame()) {
+            let secondGameScene = new SecondGameScene();
+            secondGameScene.show(matrixShips);
+        }
+        else {
+            let webSocketManager = new WebSocketManager();
+            let shipMessage = createShipArrayMessage (shipList.createShipArray());
+            webSocketManager.messageSocket( function(e) {
+                let fieldData = e.data;
+                fieldData = JSON.parse(fieldData);
+                let fieldClass = fieldData.class;
+                if ( fieldClass == "MsgGameStarted" ){
+                    startSecondGameScene(matrixShips, fieldData.first);
+                }
+                else if ( fieldClass == "MsgPing") {
+                    let webSocketManager = new WebSocketManager();
+                    webSocketManager.pingSocket();
+                }
+                else {
+                    alert("Ошибка");
+                }
+            } );
 
+            webSocketManager.sendSocket(shipMessage);
 
-        let webSocketManager = new WebSocketManager();
-        let shipMessage = createShipArrayMessage (shipList.createShipArray());
-        webSocketManager.messageSocket( function(e) {
-            let fieldData = e.data;
-            fieldData = JSON.parse(fieldData);
-            let fieldClass = fieldData.class;
-            if ( fieldClass == "MsgGameStarted" ){
-                startSecondGameScene(matrixShips, fieldData.first);
-            }
-            else if ( fieldClass == "MsgPing") {
-                let webSocketManager = new WebSocketManager();
-                webSocketManager.pingSocket();
-            }
-            else {
-                alert("Ошибка");
-            }
-        } );
-
-        webSocketManager.sendSocket(shipMessage);
-
-
-        alert("Ожидание противника");
-
+            alert("Ожидание противника");
+        }
 
     }
     else {

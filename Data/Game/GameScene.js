@@ -17,6 +17,7 @@ export default class GameScene
         if (AllGame[0]) {
             document.body.removeChild(AllGame[0]);
         }
+        AllGame = null;
         //document.body.removeChild(AllGame[0]);
     }
 }

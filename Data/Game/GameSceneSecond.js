@@ -1,6 +1,7 @@
 import GameScene from "./GameScene.js";
 import Widget from "../Modules/Blocks/Widget.js";
 import GameLogicFront from "./GameLogicFront.js";
+import GameController from "./GameController.js"
 import GameLogic from "./GameLogic.js";
 
 /*
@@ -9,7 +10,7 @@ import GameLogic from "./GameLogic.js";
 
 export default class FirstGameScene extends GameScene
 {
-    show(matrix_ships, move)
+    show(matrixShips, move = 0)
     {
         let all_game = new Widget(document.body,"div", "all_game");
 
@@ -20,17 +21,21 @@ export default class FirstGameScene extends GameScene
         text.text = "Противник";
         all_game.appendChildWidget(text);
 
-        this.createField(all_game, matrix_ships);
+        this.createField(all_game, matrixShips);
 
-        // let gameLogicFront = new GameLogicFront();
-        // gameLogicFront.newGameLogic();
+        let gameContoller = new GameController();
+        if (gameContoller.getGame()) {
+            let gameLogic = new GameLogic(move);
+        }
+        else {
+            let gameLogicFront = new GameLogicFront();
+            gameLogicFront.newGameLogic(matrixShips);
+        }
 
-        let gameLogic = new GameLogic(move);
-
-        this.createField(all_game, matrix_ships, 1);
+        this.createField(all_game, matrixShips, 1);
     }
 
-    createField(all_game, matrix_ships, flag = 0)
+    createField(all_game, matrixShips, flag = 0)
     {
         let table_class = "enemy_field";
         if (flag) {
@@ -56,7 +61,7 @@ export default class FirstGameScene extends GameScene
                     }
                     else {
                         let td_field = new Widget(document.body, "td", "field_ship");
-                        if (matrix_ships[10*(i-1)+(j-1)] && flag) {
+                        if (matrixShips[10*(i-1)+(j-1)] && flag) {
                             td_field.element.classList.add("shipOK");
                         }
                         tr_field.appendChildWidget(td_field);
@@ -65,10 +70,16 @@ export default class FirstGameScene extends GameScene
                         }
                         else {
                             td_field.addEventHandler("click", () => {
-                                // let gameLogicFront = new GameLogicFront();
-                                // gameLogicFront.shot(td_field.element, matrix_ships);
-                                let gameLogic = new GameLogic();
-                                gameLogic.shot(td_field.element);
+                                let gameContoller = new GameController();
+                                if (gameContoller.getGame()) {
+                                    let gameLogic = new GameLogic();
+                                    gameLogic.shot(td_field.element);
+                                }
+                                else
+                                {
+                                    let gameLogicFront = new GameLogicFront();
+                                    gameLogicFront.shot(td_field.element);
+                                }
                             });
                             td_field.element.id = (i-1) + "-" + (j-1);
                         }
