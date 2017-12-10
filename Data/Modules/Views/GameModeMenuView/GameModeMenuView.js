@@ -7,8 +7,9 @@ const gameModeMenuView = new BaseView(document.body, generateStartGameMenuView,
         title: "Game Mode",
         menus:
             [
-                {name: "Stand-alone", id: "/start/singleplayer"},
-                {name: "Multiplayer", id: "/start/multiplayer"},
+                {name: "Stand-alone", id: "/startGame/offline"},
+                {name: "Singleplayer", id: "/startGame/online"},
+                {name: "Multiplayer", id: "/startGame/multiplayer"},
             ]
     });
 

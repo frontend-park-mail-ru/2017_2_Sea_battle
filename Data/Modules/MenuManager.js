@@ -16,6 +16,9 @@ import LoginMenuController from "./Controllers/LoginMenuController.js";
 import RegisterMenuController from "./Controllers/RegisterMenuController.js";
 import UserProfileBlockController from "./Controllers/UserProfileBlockController.js";
 import StartGameMenuSelector from "./Controllers/StartGameMenuSelector.js";
+import StandAloneController from "./Controllers/StandAloneController.js";
+import SingleplayerController from "./Controllers/SingleplayerController.js";
+import MultiplayerController from "./COntrollers/MultiplayerController.js";
 
 class MenuManager extends Subscriber
 {
@@ -34,6 +37,9 @@ class MenuManager extends Subscriber
                 "/selectMode": new GameModeMenuController(gameModeMenuView),
                 "/startGame/login": new LoginMenuController(loginMenuView),
                 "/startGame/register": new RegisterMenuController(registerMenuView),
+                "/startGame/offline": new StandAloneController(),
+                "/startGame/online": new SingleplayerController(),
+                "/startGame/multiplayer": new MultiplayerController(),
             };
 
         this.currentMenu = this.menus["/"];
