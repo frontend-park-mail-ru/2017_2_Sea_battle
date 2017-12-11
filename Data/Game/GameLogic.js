@@ -105,7 +105,6 @@ export default class GameLogic
         }
         if (data.class == "MsgShipIsDestroyed")
         {
-            debugger;
             fieldFire = document.getElementById(data.destroyedShip.lastCell.rowPos  + "+" + data.destroyedShip.lastCell.colPos);
             fieldFire.classList.remove("shipOK");
             fieldFire.classList.add("shipFire");
@@ -162,7 +161,6 @@ export default class GameLogic
     {
         let fieldDie;
         for (let i = 0; i < data.destroyedShip.length; i++) {
-            debugger;
             if (data.destroyedShip.isVertical) {
                 fieldDie = document.getElementById((data.destroyedShip.rowPos + i) + flag + data.destroyedShip.colPos);
             }

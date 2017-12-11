@@ -114,7 +114,6 @@ export default class PutShipManager
             else{
                 // ставим корабль на метку
                 el.style.cssText = "background-color: greenyellow;";
-                el.classList.add("ship");
                 el.classList.remove("droppable");
 
                 // добавляем в ShipList

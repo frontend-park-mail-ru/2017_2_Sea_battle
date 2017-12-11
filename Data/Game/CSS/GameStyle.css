@@ -8,7 +8,7 @@
     cursor: pointer;
 }
 
-.table_field td
+.table_field_td
 {
     border: 1px solid #1d2d3b;
     padding: 5px;
@@ -62,16 +62,6 @@
 
 }
 
-.ship
-{
-    border: 3px solid #1d2d3b;
-    padding: 5px;
-    width: 20px;
-    height: 20px;
-    background-color: greenyellow;
-    color: transparent;
-}
-
 .shipX1
 {
     border: 3px solid #1d2d3b;
@@ -113,32 +103,11 @@
 }
 
 
-
-
-
-
 .field_ship
 {
     color: transparent;
 }
 
-.my_field td
-{
-    border: 1px solid #1d2d3b;
-    padding: 5px;
-    text-align: center;
-    width: 20px;
-    height: 20px;
-}
-
-.enemy_field td
-{
-    border: 1px solid #1d2d3b;
-    padding: 5px;
-    text-align: center;
-    width: 20px;
-    height: 20px;
-}
 
 .h1_my
 {

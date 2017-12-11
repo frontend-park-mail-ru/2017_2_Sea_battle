@@ -58,18 +58,18 @@ export default class FirstGameScene extends GameScene
             table_field.appendChildWidget(tr_field);
             for (let j = 0; j < 11; j++) {
                 if (i==0) {
-                    let td_field = new Widget(document.body, "td");
+                    let td_field = new Widget(document.body, "td", "table_field_td");
                     td_field.text = arr_letters[j];
                     tr_field.appendChildWidget(td_field);
                 }
                 else {
                     if (j==0){
-                        let td_field = new Widget(document.body, "td");
+                        let td_field = new Widget(document.body, "td", "table_field_td");
                         td_field.text = i;
                         tr_field.appendChildWidget(td_field);
                     }
                     else {
-                        let td_field = new Widget(document.body, "td", "droppable field");
+                        let td_field = new Widget(document.body, "td", "droppable field table_field_td");
                         td_field.idName = (i-1) + " " + (j-1);
                         tr_field.appendChildWidget(td_field);
                     }

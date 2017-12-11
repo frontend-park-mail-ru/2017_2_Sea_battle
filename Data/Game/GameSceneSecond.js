@@ -49,18 +49,18 @@ export default class FirstGameScene extends GameScene
             table_field.appendChildWidget(tr_field);
             for (let j = 0; j < 11; j++) {
                 if (i==0) {
-                    let td_field = new Widget(document.body, "td");
+                    let td_field = new Widget(document.body, "td", "table_field_td");
                     td_field.text = arr_letters[j];
                     tr_field.appendChildWidget(td_field);
                 }
                 else {
                     if (j==0){
-                        let td_field = new Widget(document.body, "td");
+                        let td_field = new Widget(document.body, "td", "table_field_td");
                         td_field.text = i;
                         tr_field.appendChildWidget(td_field);
                     }
                     else {
-                        let td_field = new Widget(document.body, "td", "field_ship");
+                        let td_field = new Widget(document.body, "td", "field_ship table_field_td");
                         if (matrixShips[10*(i-1)+(j-1)] && flag) {
                             td_field.element.classList.add("shipOK");
                         }
