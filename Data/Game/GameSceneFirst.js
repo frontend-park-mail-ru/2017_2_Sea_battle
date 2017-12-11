@@ -17,7 +17,7 @@ export default class FirstGameScene extends GameScene
         let all_game = new Widget(document.body,"div", "all_game");
 
         let text = new Widget(document.body, "h1", "lol");
-        text.text = "Place your ships";
+        text.text = "Place your ships......................."; // от размера текста зависит таблица??
         all_game.appendChildWidget(text);
 
         let turnButton = new Widget(document.body, "button", "turnButton");
