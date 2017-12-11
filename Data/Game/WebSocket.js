@@ -21,7 +21,7 @@ export default class WebSocketManager {
     {
         this.socket.onopen = function(event) {
             this.pingSocket();
-            alert("Сессия открыта");
+            console.log("Сессия открыта");
         }.bind(this);
     }
 
@@ -40,7 +40,7 @@ export default class WebSocketManager {
     closeSocket ()
     {
         this.socket.onclose = function(event) {
-            alert("Сессия закрыта");
+            console.log("Сессия закрыта");
         };
     }
 
