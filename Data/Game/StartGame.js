@@ -27,7 +27,7 @@ function startFirstGameScene (e) {
         webSocketManager.pingSocket();
     }
     else {
-        alert("Ошибка");
+        console.log("Ошибка");
     }
 }
 

@@ -68,7 +68,7 @@ export default class GameLogic
                     webSocketManager.pingSocket();
                 }
                 else {
-                    alert("Ошибка");
+                    console.log("Ошибка");
                 }
             }.bind(this));
         }
@@ -149,7 +149,7 @@ export default class GameLogic
                     webSocketManager.pingSocket();
                 }
                 else {
-                    alert("Ошибка");
+                    console.log("Ошибка");
                 }
             }.bind(this));
         }

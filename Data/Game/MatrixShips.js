@@ -50,7 +50,7 @@ function getMatrixShips () {
                     webSocketManager.pingSocket();
                 }
                 else {
-                    alert("Ошибка");
+                    console.log("Ошибка");
                 }
             } );
 
