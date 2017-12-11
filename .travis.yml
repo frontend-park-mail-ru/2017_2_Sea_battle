@@ -10,7 +10,7 @@ script:
     - chmod 600 $HOME/.ssh/tp-deploy
     - ssh-add $HOME/.ssh/tp-deploy
     - node pugBaker
-    - scp -r ./data team@$SERVER_IP:/var/www/dist
+    - scp -r ./Data team@$SERVER_IP:/var/www/dist
 before_install:
     - openssl aes-256-cbc -K $encrypted_7b9608254bd1_key -iv $encrypted_7b9608254bd1_iv -in tp-deploy.enc -out $HOME/.ssh/tp-deploy -d
 
