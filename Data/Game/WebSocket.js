@@ -8,7 +8,7 @@ export default class WebSocketManager {
             return WebSocketManager.__instance;
         }
 
-        this.socket = new WebSocket("ws://sea-battle-back.herokuapp.com/game"); // wss
+        this.socket = new WebSocket("wss://sea-battle-back.herokuapp.com/game");
 
         WebSocketManager.__instance = this;
 
