@@ -61,7 +61,8 @@ function getMatrixShips () {
 
     }
     else {
-        let mb = new MessageBox("Placement error", "You haven't placed all the ships!");
+        //let mb = new MessageBox("Placement error", "You haven't placed all the ships!");
+        alert("You haven't placed all the ships!");
     }
 
 };

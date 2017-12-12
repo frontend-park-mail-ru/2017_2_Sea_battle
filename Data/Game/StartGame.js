@@ -3,7 +3,7 @@
 
 import FirstGameScene from "./GameSceneFirst.js";
 import WebSocketManager from "./WebSocket.js";
-import GameController from "./GameController.js"
+import GameController from "./GameController.js";
 
 // TO DO - Работа с DOM через мэнэджер document.getID -> в мэнэджер и его дергать
 // Все комментарии для GameScene (1 и 2)

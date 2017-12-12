@@ -4,7 +4,7 @@
   "description": "Sea battle",
   "main": "index.js",
   "scripts": {
-    "start": "node pugBaker && node index.js",
+    "start": "node pugBaker && webpack && node index.js",
     "test": "node pugBaker && echo \"Seems like pug works!\""
   },
   "repository": {
@@ -18,16 +18,21 @@
   },
   "homepage": "https://github.com/frontend-park-mail-ru/2017_2_Sea_battle#readme",
   "dependencies": {
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
     "body-parser": "^1.18.2",
     "cookie": "^0.3.1",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
+    "css-loader": "^0.28.7",
     "express": "^4.16.2",
     "pug": "^2.0.0-rc.4",
+    "style-loader": "^0.19.0",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1"
+    "babel-preset-env": "^1.6.1",
+    "webpack": "^3.10.0"
   }
 }
