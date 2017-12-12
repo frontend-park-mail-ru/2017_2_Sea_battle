@@ -105,9 +105,6 @@ export default class GameLogic
         }
         if (data.class == "MsgShipIsDestroyed")
         {
-            fieldFire = document.getElementById(data.destroyedShip.lastCell.rowPos  + "+" + data.destroyedShip.lastCell.colPos);
-            fieldFire.classList.remove("shipOK");
-            fieldFire.classList.add("shipFire");
             this.shipDead(data, "+");
             this.move = false;
         }
@@ -167,7 +164,7 @@ export default class GameLogic
             else {
                 fieldDie = document.getElementById(data.destroyedShip.rowPos + flag + (data.destroyedShip.colPos + i));
             }
-            fieldDie.classList.remove("shipOK"); // присылаею в lastCell самую левую клутку
+            fieldDie.classList.remove("shipOK");
             fieldDie.classList.remove("shipFire");
             fieldDie.classList.add("shipDie");
         }
