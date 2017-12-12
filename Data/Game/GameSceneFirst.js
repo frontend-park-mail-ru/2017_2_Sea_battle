@@ -5,6 +5,7 @@ import getMatrixShips from "./MatrixShips.js";
 import ShipList from "./ShipList.js";
 import Ship from "./Ship.js";
 import TurnManager from "./TurnManager.js";
+import {BackMenu} from "./GameSceneWinLose.js"
 
 /*
    TO DO - в GameScene
@@ -14,11 +15,20 @@ export default class FirstGameScene extends GameScene
 {
     show()
     {
-        let all_game = new Widget(document.body,"div", "all_game");
+        let all_game = new Widget(document.body, "div", "all_game");
 
-        let text = new Widget(document.body, "h1", "lol");
-        text.text = "Place your ships......................."; // от размера текста зависит таблица??
+        let text = new Widget(document.body, "h1", "placeShips");
+        text.text = "Place your ships";
         all_game.appendChildWidget(text);
+
+        let backButton = new Widget(document.body, "button", "backButton backButtonScene");
+        backButton.element.classList.add("flatLightGray");
+        backButton.text = "Back to Menu";
+        backButton.element.addEventListener('click', () => {
+            BackMenu();
+        });
+        backButton.element.classList.add("flatLightGray");
+        all_game.appendChildWidget(backButton);
 
         let turnButton = new Widget(document.body, "button", "turnButton");
         turnButton.element.classList.add("flatLightGray");
@@ -50,12 +60,12 @@ export default class FirstGameScene extends GameScene
         //all_game.appendChildWidget(img_field);
 
         // Добавляем поле для расстановки
-        let table_field = new Widget(document.body, "table", "table_field");
-        all_game.appendChildWidget(table_field);
+        let tableField = new Widget(document.body, "table", "table_field");
+        all_game.appendChildWidget(tableField);
         let arr_letters = [' ', 'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'К'];
         for (let i = 0; i < 11; i++) {
             let tr_field = new Widget(document.body, "tr");
-            table_field.appendChildWidget(tr_field);
+            tableField.appendChildWidget(tr_field);
             for (let j = 0; j < 11; j++) {
                 if (i==0) {
                     let td_field = new Widget(document.body, "td", "table_field_td");
@@ -78,6 +88,11 @@ export default class FirstGameScene extends GameScene
         }
         let space = new Widget();
         all_game.appendChildWidget(space);
+
+        let randShips = new Widget(document.body, "button", "randomShips");
+        randShips.text = "Random ships";
+        randShips.element.classList.add("flatLightGray");
+        all_game.appendChildWidget(randShips);
 
         let nextButton = new Widget(document.body, "button", "next_button");
         nextButton.text = "Next";

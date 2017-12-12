@@ -13,11 +13,9 @@ export default class GameScene
     hide()
     {
         let AllGame = document.getElementsByClassName("all_game");
-        // TO DO - костыль, при выходе всегда пытается удалить all_game, даже если его нет
         if (AllGame[0]) {
             document.body.removeChild(AllGame[0]);
         }
         AllGame = null;
-        //document.body.removeChild(AllGame[0]);
     }
 }

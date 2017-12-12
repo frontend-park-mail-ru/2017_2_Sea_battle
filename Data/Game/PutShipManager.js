@@ -91,7 +91,7 @@ export default class PutShipManager
                             continue;
                         }
                         delEl.classList.remove("droppable");
-                        delEl.style.cssText = "background-color: yellow;";
+                        delEl.style.cssText = "background-color: #E8C40C;";
                     }
                 }
             }
@@ -109,11 +109,11 @@ export default class PutShipManager
 
             if (!ship) {
                 // метка - можем поставить сюда корабль
-                el.style.cssText = "background-color: red;";
+                el.style.cssText = "background-color: #FF2507;";
             }
             else{
                 // ставим корабль на метку
-                el.style.cssText = "background-color: greenyellow;";
+                el.style.cssText = "background-color: #51FF00;";
                 el.classList.remove("droppable");
 
                 // добавляем в ShipList
