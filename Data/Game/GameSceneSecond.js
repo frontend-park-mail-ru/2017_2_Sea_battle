@@ -60,7 +60,7 @@ export default class FirstGameScene extends GameScene
                         tr_field.appendChildWidget(td_field);
                     }
                     else {
-                        let td_field = new Widget(document.body, "td", "field_ship table_field_td");
+                        let td_field = new Widget(document.body, "td", "table_field_td");
                         if (matrixShips[10*(i-1)+(j-1)] && flag) {
                             td_field.element.classList.add("shipOK");
                         }

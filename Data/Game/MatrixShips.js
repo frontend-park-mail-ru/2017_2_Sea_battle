@@ -21,7 +21,7 @@ function createShipArrayMessage(shipArray) {
     return massage;
 }
 
-function getMatrixShips () {
+function getMatrixShips (rand) {
 
     let shipList = new ShipList();
     if (shipList.canDoMatrix()) {

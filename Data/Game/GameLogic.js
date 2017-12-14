@@ -166,18 +166,25 @@ export default class GameLogic
 
     shipDead (data, flag)
     {
-        let fieldDie;
+        let field;
         for (let i = 0; i < data.destroyedShip.length; i++) {
             if (data.destroyedShip.isVertical) {
-                fieldDie = document.getElementById((data.destroyedShip.rowPos + i) + flag + data.destroyedShip.colPos);
+                field = document.getElementById((data.destroyedShip.rowPos + i) + flag + data.destroyedShip.colPos);
             }
             else {
-                fieldDie = document.getElementById(data.destroyedShip.rowPos + flag + (data.destroyedShip.colPos + i));
+                field = document.getElementById(data.destroyedShip.rowPos + flag + (data.destroyedShip.colPos + i));
             }
-            fieldDie.classList.remove("shipOK");
-            fieldDie.classList.remove("shipFire");
-            fieldDie.classList.add("shipDie");
+            field.classList.remove("shipOK");
+            field.classList.remove("shipFire");
+            field.classList.add("shipDie");
         }
+
+        for (let i = 0; i < data.destroyedShip.cellsAroundShip.length; i++) {
+            field = document.getElementById(data.destroyedShip.cellsAroundShip[i].rowPos + flag + (data.destroyedShip.cellsAroundShip[i].colPos));
+            field.classList.remove("Fire");
+            field.textContent = "X";
+        }
+        
     }
 
     endGame (data)

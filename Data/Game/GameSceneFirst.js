@@ -92,13 +92,14 @@ export default class FirstGameScene extends GameScene
         let randShips = new Widget(document.body, "button", "randomShips");
         randShips.text = "Random ships";
         randShips.element.classList.add("flatLightGray");
+        randShips.element.addEventListener('click', () => {getMatrixShips(1)});
         all_game.appendChildWidget(randShips);
 
         let nextButton = new Widget(document.body, "button", "next_button");
         nextButton.text = "Next";
         nextButton.element.classList.add("flatLightGray");
         all_game.appendChildWidget(nextButton);
-        nextButton.element.addEventListener('click', getMatrixShips);
+        nextButton.element.addEventListener('click', () => {getMatrixShips(0)});
 
         AddDragAndDropEvent();
     }
