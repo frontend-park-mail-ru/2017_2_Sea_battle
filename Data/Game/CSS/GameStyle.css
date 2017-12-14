@@ -22,22 +22,23 @@
 {
     font-family: 'Indie Flower', cursive;
     position: absolute;
-    left: 36%;
+    left: 32.7%;
     font-size: 50px;
+    margin: 1%;
 }
 
 .table_field
 {
     border-collapse: collapse;
     position: absolute;
-    top: 25%;
-    left: 33%;
+    top: 21%;
+    left: 30%;
 
 }
 
 .shipField
 {
-    width: 25%;
+    width: 27%;
     position: absolute;
     top: 27%;
 }
@@ -61,7 +62,7 @@
     font-family: 'Indie Flower', cursive;
     position: absolute;
     top: 75%;
-    left: 80%;
+    left: 78%;
     font-size: xx-large;
     font-weight: bolder;
 }
@@ -72,8 +73,8 @@
     height: 50px;
     font-family: 'Indie Flower', cursive;
     position: absolute;
-    top: 17%;
-    left: 3%;
+    top: 30%;
+    left: 77%;
     font-size: xx-large;
     font-weight: bold;
 }
@@ -118,8 +119,8 @@
 {
     font-family: 'Indie Flower', cursive;
     position: absolute;
-    left: 20%;
-    top: 13%;
+    left: 10%;
+    top: 9%;
 }
 
 .my_field
@@ -127,15 +128,15 @@
     border-collapse: collapse;
     position: absolute;
     left: 5%;
-    top: 27%;
+    top: 20.5%;
 }
 
 .h1_enemy
 {
     font-family: 'Indie Flower', cursive;
     position: absolute;
-    left: 65%;
-    top: 13%;
+    left: 57%;
+    top: 9%;
 }
 
 .enemy_field
@@ -143,7 +144,15 @@
     border-collapse: collapse;
     position: absolute;
     left: 51.5%;
-    top: 27%;
+    top: 20.5%;
+}
+
+.h1_turn
+{
+    font-family: 'Indie Flower', cursive;
+    position: absolute;
+    top: 1%;
+    left: 40%;
 }
 
 .shipDie
@@ -212,8 +221,8 @@
     height: 55px;
     font-family: 'Indie Flower', cursive;
     position: absolute;
-    top: 30%;
-    left: 77.2%;
+    top: 50%;
+    left: 76%;
     font-size: xx-large;
     font-weight: bolder;
 }

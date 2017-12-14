@@ -3,7 +3,7 @@
 
 import FirstGameScene from "./GameSceneFirst.js";
 import WebSocketManager from "./WebSocket.js";
-import GameController from "./GameController.js";
+import GameController from "./GameManager.js";
 
 // TO DO - Работа с DOM через мэнэджер document.getID -> в мэнэджер и его дергать
 // Все комментарии для GameScene (1 и 2)
@@ -12,13 +12,17 @@ import GameController from "./GameController.js";
 // Добавить кнопку назад в меню [прекратить игру]
 
 function startFirstGameScene (e) {
-    let fieldClass = e.data;
-    fieldClass = JSON.parse(fieldClass);
-    fieldClass = fieldClass.class;
+    let fieldData = e.data;
+    fieldData = JSON.parse(fieldData);
+    let fieldClass = fieldData.class;
     if ( fieldClass == "MsgYouInQueue" ){
+        let gameContoller = new GameController();
+        gameContoller.setUserName(fieldData.nickname);
         alert("Ожидание игрока");
     }
     else if ( fieldClass == "MsgLobbyCreated" ) {
+        let gameContoller = new GameController();
+        gameContoller.setEmemyName(fieldData.usernameEnemy);
         let firstScene = new FirstGameScene();
         firstScene.show();
     }
@@ -43,6 +47,8 @@ function startGame(message) {
         webSocketManager.closeSocket();
     }
     else {
+        gameContoller.setUserName("User");
+        gameContoller.setEmemyName("Bot");
         let firstScene = new FirstGameScene();
         firstScene.show();
     }

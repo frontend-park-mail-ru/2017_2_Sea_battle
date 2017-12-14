@@ -18,7 +18,7 @@ export default class GameLogic
 
         // стреляют по мне
         if (!(this.move)) {
-            alert("Ход противника");
+            this.turn("Opponent's move");
             let webSocketManager = new WebSocketManager();
             webSocketManager.messageSocket( function(e) {
                 let fieldData = e.data;
@@ -40,7 +40,7 @@ export default class GameLogic
             }.bind(this));
         }
         else {
-            alert("Ваш ход");
+            this.turn("Your turn");
         }
     }
 
@@ -103,19 +103,21 @@ export default class GameLogic
             fieldFire.classList.remove("shipOK");
             fieldFire.classList.add("shipFire");
             this.move = false;
+            this.turn("Opponent's move");
         }
         if (data.cellStatus == "BLOCKED")
         {
             fieldFire = document.getElementById(data.cell.rowPos  + "+" + data.cell.colPos);
             fieldFire.classList.add("Fire");
             this.move = true;
-            alert("Ваш ход");
+            this.turn("Your turn");
 
         }
         if (data.class == "MsgShipIsDestroyed")
         {
             this.shipDead(data, "+");
             this.move = false;
+            this.turn("Opponent's move");
         }
     }
 
@@ -125,18 +127,20 @@ export default class GameLogic
         {
             fieldFire.classList.add("shipFire");
             this.move = true;
+            this.turn("Your turn");
         }
         if (data.cellStatus == "BLOCKED")
         {
             fieldFire.classList.add("Fire");
             this.move = false;
-            alert("Ход противника");
+            this.turn("Opponent's move");
         }
         if (data.class == "MsgShipIsDestroyed")
         {
             fieldFire.classList.add("shipFire");
             this.shipDead(data, "-");
             this.move = true;
+            this.turn("Your turn");
         }
 
         if (!(this.move)) {
@@ -182,9 +186,15 @@ export default class GameLogic
         for (let i = 0; i < data.destroyedShip.cellsAroundShip.length; i++) {
             field = document.getElementById(data.destroyedShip.cellsAroundShip[i].rowPos + flag + (data.destroyedShip.cellsAroundShip[i].colPos));
             field.classList.remove("Fire");
-            field.textContent = "X";
+            field.innerHTML = "X";
         }
-        
+
+    }
+
+    turn(turn)
+    {
+        let elem = document.getElementsByClassName("h1_turn");
+        elem.innerHTML += turn;
     }
 
     endGame (data)

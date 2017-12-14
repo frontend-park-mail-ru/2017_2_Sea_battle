@@ -1,7 +1,7 @@
 import GameScene from "./GameScene.js";
 import Widget from "../Modules/Blocks/Widget.js";
 import GameLogicFront from "./GameLogicFront.js";
-import GameController from "./GameController.js"
+import GameController from "./GameManager.js"
 import GameLogic from "./GameLogic.js";
 
 /*
@@ -12,18 +12,8 @@ export default class FirstGameScene extends GameScene
 {
     show(matrixShips, move = 0)
     {
-        let all_game = new Widget(document.body,"div", "all_game");
-
-        let text = new Widget(document.body, "h1", "inline_block h1_my");
-        text.text = "Username";
-        all_game.appendChildWidget(text);
-        text = new Widget(document.body, "h1", "inline_block h1_enemy");
-        text.text = "Противник";
-        all_game.appendChildWidget(text);
-
-        this.createField(all_game, matrixShips);
-
         let gameContoller = new GameController();
+
         if (gameContoller.getGame()) {
             let gameLogic = new GameLogic(move);
         }
@@ -31,6 +21,24 @@ export default class FirstGameScene extends GameScene
             let gameLogicFront = new GameLogicFront();
             gameLogicFront.newGameLogic(matrixShips);
         }
+
+        let all_game = new Widget(document.body,"div", "all_game");
+
+        let text = new Widget(document.body, "h1", "inline_block h1_my");
+        text.text = gameContoller.getUserName();
+        all_game.appendChildWidget(text);
+
+        text = new Widget(document.body, "h1", "inline_block h1_enemy");
+        text.text = gameContoller.getEmemyName();
+        all_game.appendChildWidget(text);
+
+        text = new Widget(document.body, "h1", "inline_block h1_turn");
+        text.element.innerHTML = "Your turn";
+        all_game.appendChildWidget(text);
+
+
+
+        this.createField(all_game, matrixShips);
 
         this.createField(all_game, matrixShips, 1);
     }

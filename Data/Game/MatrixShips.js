@@ -5,7 +5,7 @@ import FirstGameScene from "./GameSceneFirst.js";
 import SecondGameScene from "./GameSceneSecond.js";
 import ShipList from "./ShipList.js";
 import WebSocketManager from "./WebSocket.js";
-import GameController from "./GameController.js"
+import GameController from "./GameManager.js"
 
 
 function startSecondGameScene (matrixShips, move) {
