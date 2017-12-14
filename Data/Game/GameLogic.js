@@ -18,6 +18,7 @@ export default class GameLogic
 
         // стреляют по мне
         if (!(this.move)) {
+            alert("Ход противника");
             let webSocketManager = new WebSocketManager();
             webSocketManager.messageSocket( function(e) {
                 let fieldData = e.data;
@@ -37,6 +38,9 @@ export default class GameLogic
                     console.log("Ошибка");
                 }
             }.bind(this));
+        }
+        else {
+            alert("Ваш ход");
         }
     }
 
@@ -72,6 +76,9 @@ export default class GameLogic
                 }
             }.bind(this));
         }
+        else {
+            alert("Ожидание хода противника");
+        }
     }
 
     createShot(fieldFire)
@@ -102,6 +109,8 @@ export default class GameLogic
             fieldFire = document.getElementById(data.cell.rowPos  + "+" + data.cell.colPos);
             fieldFire.classList.add("Fire");
             this.move = true;
+            alert("Ваш ход");
+
         }
         if (data.class == "MsgShipIsDestroyed")
         {
@@ -121,6 +130,7 @@ export default class GameLogic
         {
             fieldFire.classList.add("Fire");
             this.move = false;
+            alert("Ход противника");
         }
         if (data.class == "MsgShipIsDestroyed")
         {
