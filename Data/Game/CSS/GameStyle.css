@@ -160,11 +160,6 @@
     background-color: #FD0006;
 }
 
-.blocked
-{
-    background-color: #7972D8;
-}
-
 .shipFire
 {
     background-color: #FFC500;
@@ -177,7 +172,7 @@
 
 .Fire
 {
-    background-color: #2419B2;
+    background-color: #7972D8;
 }
 
 .youWinLose
