@@ -3,6 +3,7 @@ import Widget from "../Modules/Blocks/Widget.js";
 import GameLogicFront from "./GameLogicFront.js";
 import GameController from "./GameManager.js"
 import GameLogic from "./GameLogic.js";
+import {BackMenu} from "./GameSceneWinLose.js"
 
 /*
    TO DO - в GameScene
@@ -23,6 +24,12 @@ export default class FirstGameScene extends GameScene
         }
 
         let all_game = new Widget(document.body,"div", "all_game");
+
+        let backButton = new Widget(document.body, "button", "backButton backButtonScene");
+        backButton.element.classList.add("flatLightGray");
+        backButton.text = "Back to Menu";
+        backButton.element.addEventListener('click', () => {BackMenu();});
+        all_game.appendChildWidget(backButton);
 
         let text = new Widget(document.body, "h1", "inline_block h1_my");
         text.text = gameContoller.getUserName();

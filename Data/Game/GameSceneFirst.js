@@ -24,10 +24,7 @@ export default class FirstGameScene extends GameScene
         let backButton = new Widget(document.body, "button", "backButton backButtonScene");
         backButton.element.classList.add("flatLightGray");
         backButton.text = "Back to Menu";
-        backButton.element.addEventListener('click', () => {
-            BackMenu();
-        });
-        backButton.element.classList.add("flatLightGray");
+        backButton.element.addEventListener('click', () => {BackMenu();});
         all_game.appendChildWidget(backButton);
 
         let turnButton = new Widget(document.body, "button", "turnButton");
