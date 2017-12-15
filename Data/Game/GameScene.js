@@ -12,10 +12,10 @@ export default class GameScene
 
     hide()
     {
-        let AllGame = document.getElementsByClassName("all_game");
-        if (AllGame[0]) {
-            document.body.removeChild(AllGame[0]);
+        let allGame = document.getElementsByClassName("all_game");
+        if (allGame[0]) {
+            document.body.removeChild(allGame[0]);
         }
-        AllGame = null;
+        allGame = null;
     }
 }

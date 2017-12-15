@@ -32,10 +32,11 @@ export default class FirstGameScene extends GameScene
         text.text = gameContoller.getEmemyName();
         all_game.appendChildWidget(text);
 
-        text = new Widget(document.body, "h1", "inline_block h1_turn");
-        text.element.innerHTML = "Your turn";
-        all_game.appendChildWidget(text);
-
+        if (!gameContoller.getGame()) {
+            text = new Widget(document.body, "h1", "inline_block h1_turn");
+            text.text = "Your turn";
+            all_game.appendChildWidget(text);
+        }
 
 
         this.createField(all_game, matrixShips);

@@ -1,6 +1,7 @@
 import {WinScene, LoseScene} from "./GameSceneWinLose.js"
 import SecondGameScene from "./GameSceneSecond.js";
 import WebSocketManager from "./WebSocket.js";
+import Widget from "../Modules/Blocks/Widget.js";
 
 // 0 - путое поле, (1-10) - корабль не поврежден, 100 - промах, -(1-10) - корабль поврежден
 
@@ -194,7 +195,11 @@ export default class GameLogic
     turn(turn)
     {
         let elem = document.getElementsByClassName("h1_turn");
-        elem.innerHTML += turn;
+        if (elem[0]) {
+            document.body.removeChild(elem[0]);
+        }
+        elem = new Widget(document.body, "h1", "inline_block h1_turn");
+        elem.text = turn;
     }
 
     endGame (data)
