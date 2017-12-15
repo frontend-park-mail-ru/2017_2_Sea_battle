@@ -1,6 +1,6 @@
 # Sea Battle
 
-Play: [Production](http://top-sea-battle.herokuapp.com/) / [Development](http://sea-battle-front.herokuapp.com/)
+Play: [Production](https://sbattle.ru/) / [Development1](http://top-sea-battle.herokuapp.com/) / [Development2](http://sea-battle-front.herokuapp.com/)
 
 ## Team
 - [@YAXo-O](https://github.com/YAXo-O)
