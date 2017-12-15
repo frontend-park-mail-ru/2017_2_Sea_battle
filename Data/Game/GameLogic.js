@@ -187,7 +187,7 @@ export default class GameLogic
         for (let i = 0; i < data.destroyedShip.cellsAroundShip.length; i++) {
             field = document.getElementById(data.destroyedShip.cellsAroundShip[i].rowPos + flag + (data.destroyedShip.cellsAroundShip[i].colPos));
             field.classList.remove("Fire");
-            field.innerHTML = "X";
+            field.classList.add("blocked");
         }
 
     }
