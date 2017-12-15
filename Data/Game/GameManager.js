@@ -39,4 +39,14 @@ export default class GameController {
     {
         this.ememyName = newName;
     }
+
+    getScore ()
+    {
+        return this.score;
+    }
+
+    setScore(newScore)
+    {
+        this.score = newScore;
+    }
 }

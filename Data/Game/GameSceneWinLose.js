@@ -1,6 +1,7 @@
 import Widget from "../Modules/Blocks/Widget.js";
 import EventBus from "../Modules/EventBus.js";
 import GameScene from "./GameScene.js";
+import GameController from "./GameManager.js";
 
 const eventBus = new EventBus();
 
@@ -14,22 +15,17 @@ class WinScene extends GameScene
         text.text = "You Win!";
         AllGame.appendChildWidget(text);
 
-        text = new Widget(document.body, "h1", "newScore");
-        text.text = "Score: " + "40" + " +0"; // 40 - счет игрока
-        AllGame.appendChildWidget(text);
-        // +0 так как игра с ботом
+        let gameController = new GameController();
+        if (gameController.getGame()){
+            text = new Widget(document.body, "h1", "newScore");
+            text.text = "Score: " + gameController.getScore();
+            AllGame.appendChildWidget(text);
+        }
 
         let backButton = new Widget(document.body, "button", "backButton");
         backButton.text = "Back to Menu";
         AllGame.appendChildWidget(backButton);
-        backButton.element.addEventListener('click', () => {
-            BackMenu();
-            /*
-            let winScene = new WinScene();
-            winScene.hide();
-            eventBus.emitEvent({type: "changeMenu", newMenuName: "/"}); // ?
-            */
-        });
+        backButton.element.addEventListener('click', () => {BackMenu();});
         backButton.element.classList.add("flatLightGray");
     }
 
@@ -45,21 +41,13 @@ class LoseScene extends GameScene
         AllGame.appendChildWidget(text);
 
         text = new Widget(document.body, "h1", "newScore");
-        text.text = "Score: " + "40" + " -0"; // 40 - счет игрока
+        text.text = "Score: " + "40";
         AllGame.appendChildWidget(text);
-        // -0 так как игра с ботом
 
         let backButton = new Widget(document.body, "button", "backButton backButtonWinLose");
         backButton.text = "Back to Menu";
         AllGame.appendChildWidget(backButton);
-        backButton.element.addEventListener('click', () => {
-            BackMenu();
-            /*
-            let loseScene = new LoseScene();
-            loseScene.hide();
-            eventBus.emitEvent({type: "changeMenu", newMenuName: "/"}); // ?
-            */
-        });
+        backButton.element.addEventListener('click', () => {BackMenu();});
         backButton.element.classList.add("flatLightGray");
     }
 

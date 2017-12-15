@@ -1,7 +1,7 @@
 import {WinScene, LoseScene} from "./GameSceneWinLose.js"
 import SecondGameScene from "./GameSceneSecond.js";
 import WebSocketManager from "./WebSocket.js";
-import Widget from "../Modules/Blocks/Widget.js";
+import GameController from "./GameManager.js"
 
 // 0 - путое поле, (1-10) - корабль не поврежден, 100 - промах, -(1-10) - корабль поврежден
 
@@ -17,9 +17,11 @@ export default class GameLogic
 
         this.move = move;
 
+        this.gameScene = new SecondGameScene();
+
         // стреляют по мне
         if (!(this.move)) {
-            this.turn("Opponent's move");
+            this.gameScene.turn("Opponent's move");
             let webSocketManager = new WebSocketManager();
             webSocketManager.messageSocket( function(e) {
                 let fieldData = e.data;
@@ -41,7 +43,7 @@ export default class GameLogic
             }.bind(this));
         }
         else {
-            this.turn("Your turn");
+            this.gameScene.turn("Your turn");
         }
     }
 
@@ -104,21 +106,21 @@ export default class GameLogic
             fieldFire.classList.remove("shipOK");
             fieldFire.classList.add("shipFire");
             this.move = false;
-            this.turn("Opponent's move");
+            this.gameScene.turn("Opponent's move");
         }
         if (data.cellStatus == "BLOCKED")
         {
             fieldFire = document.getElementById(data.cell.rowPos  + "+" + data.cell.colPos);
             fieldFire.classList.add("Fire");
             this.move = true;
-            this.turn("Your turn");
+            this.gameScene.turn("Your turn");
 
         }
         if (data.class == "MsgShipIsDestroyed")
         {
             this.shipDead(data, "+");
             this.move = false;
-            this.turn("Opponent's move");
+            this.gameScene.turn("Opponent's move");
         }
     }
 
@@ -128,20 +130,20 @@ export default class GameLogic
         {
             fieldFire.classList.add("shipFire");
             this.move = true;
-            this.turn("Your turn");
+            this.gameScene.turn("Your turn");
         }
         if (data.cellStatus == "BLOCKED")
         {
             fieldFire.classList.add("Fire");
             this.move = false;
-            this.turn("Opponent's move");
+            this.gameScene.turn("Opponent's move");
         }
         if (data.class == "MsgShipIsDestroyed")
         {
             fieldFire.classList.add("shipFire");
             this.shipDead(data, "-");
             this.move = true;
-            this.turn("Your turn");
+            this.gameScene.turn("Your turn");
         }
 
         if (!(this.move)) {
@@ -191,20 +193,12 @@ export default class GameLogic
 
     }
 
-    turn(turn)
-    {
-        let elem = document.getElementsByClassName("h1_turn");
-        if (elem[0]) {
-            document.body.removeChild(elem[0]);
-        }
-        elem = new Widget(document.body, "h1", "inline_block h1_turn");
-        elem.text = turn;
-    }
-
     endGame (data)
     {
         let secondGameScene = new SecondGameScene();
         secondGameScene.hide();
+        let gameManager = new GameController();
+        gameManager.setScore(data.score);
         if (data.won) {
             let winScene = new WinScene();
             winScene.show();
@@ -214,5 +208,4 @@ export default class GameLogic
             loseScene.show();
         }
     }
-
 }

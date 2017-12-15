@@ -177,18 +177,20 @@
 
 .youWinLose
 {
-    position: relative;
-    left: 600px;
-    top: 220px;
-    width: 200px;
+    font-family: 'Indie Flower', cursive;
+    position: absolute;
+    top: 30%;
+    left: 41%;
+    font-size: 400%;
 }
 
 .newScore
 {
-    position: relative;
-    left: 580px;
-    top: 220px;
-    width: 200px;
+    font-family: 'Indie Flower', cursive;
+    position: absolute;
+    top: 40%;
+    left: 41%;
+    font-size: 400%;
 }
 
 .backButton

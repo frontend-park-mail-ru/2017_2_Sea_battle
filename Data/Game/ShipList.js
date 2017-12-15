@@ -47,7 +47,7 @@ export default class ShipList
         for (let i = 0; i < this.listShip.length; i++) {
             let ship = this.getShip(i);
             if (!(ship.getLive().length)) {
-                return false;
+                return true; // false;
             }
         }
         return true;

@@ -12,10 +12,14 @@ export default class GameScene
 
     hide()
     {
-        let allGame = document.getElementsByClassName("all_game");
-        if (allGame[0]) {
-            document.body.removeChild(allGame[0]);
+        let elem = document.getElementsByClassName("all_game");
+        if (elem[0]) {
+            document.body.removeChild(elem[0]);
         }
-        allGame = null;
+        elem = document.getElementsByClassName("h1_turn");
+        if (elem[0]) {
+            document.body.removeChild(elem[0]);
+        }
+        elem = null;
     }
 }
