@@ -18,6 +18,7 @@ export default class GameLogic
 
         // стреляют по мне
         if (!(this.move)) {
+            this.turn("Opponent's move");
             let webSocketManager = new WebSocketManager();
             webSocketManager.messageSocket( function(e) {
                 let fieldData = e.data;
@@ -29,10 +30,17 @@ export default class GameLogic
                 else if (fieldClass == "MsgEndGame") {
                     this.endGame(fieldData)
                 }
+                else if ( fieldClass == "MsgPing") {
+                    let webSocketManager = new WebSocketManager();
+                    webSocketManager.pingSocket();
+                }
                 else {
-                    alert("Ошибка");
+                    console.log("Ошибка");
                 }
             }.bind(this));
+        }
+        else {
+            this.turn("Your turn");
         }
     }
 
@@ -59,10 +67,17 @@ export default class GameLogic
                 else if (fieldClass == "MsgError" && fieldData.error == "unacceptable move ") {
 
                 }
+                else if ( fieldClass == "MsgPing") {
+                    let webSocketManager = new WebSocketManager();
+                    webSocketManager.pingSocket();
+                }
                 else {
-                    alert("Ошибка");
+                    console.log("Ошибка");
                 }
             }.bind(this));
+        }
+        else {
+            alert("Ожидание хода противника");
         }
     }
 
@@ -88,20 +103,21 @@ export default class GameLogic
             fieldFire.classList.remove("shipOK");
             fieldFire.classList.add("shipFire");
             this.move = false;
+            this.turn("Opponent's move");
         }
         if (data.cellStatus == "BLOCKED")
         {
             fieldFire = document.getElementById(data.cell.rowPos  + "+" + data.cell.colPos);
             fieldFire.classList.add("Fire");
             this.move = true;
+            this.turn("Your turn");
+
         }
         if (data.class == "MsgShipIsDestroyed")
         {
-            fieldFire = document.getElementById(data.destroyedShip.lastCell.rowPos  + "+" + data.destroyedShip.lastCell.colPos);
-            fieldFire.classList.remove("shipOK");
-            fieldFire.classList.add("shipFire");
             this.shipDead(data, "+");
             this.move = false;
+            this.turn("Opponent's move");
         }
     }
 
@@ -111,17 +127,20 @@ export default class GameLogic
         {
             fieldFire.classList.add("shipFire");
             this.move = true;
+            this.turn("Your turn");
         }
         if (data.cellStatus == "BLOCKED")
         {
             fieldFire.classList.add("Fire");
             this.move = false;
+            this.turn("Opponent's move");
         }
         if (data.class == "MsgShipIsDestroyed")
         {
             fieldFire.classList.add("shipFire");
             this.shipDead(data, "-");
             this.move = true;
+            this.turn("Your turn");
         }
 
         if (!(this.move)) {
@@ -136,8 +155,12 @@ export default class GameLogic
                 else if (fieldClass == "MsgEndGame") {
                     this.endGame(fieldData)
                 }
+                else if ( fieldClass == "MsgPing") {
+                    let webSocketManager = new WebSocketManager();
+                    webSocketManager.pingSocket();
+                }
                 else {
-                    alert("Ошибка");
+                    console.log("Ошибка");
                 }
             }.bind(this));
         }
@@ -147,17 +170,31 @@ export default class GameLogic
 
     shipDead (data, flag)
     {
-        let fieldDie;
+        let field;
         for (let i = 0; i < data.destroyedShip.length; i++) {
             if (data.destroyedShip.isVertical) {
-                fieldDie = document.getElementById((data.destroyedShip.rowPos + i) + flag + data.destroyedShip.colPos);
+                field = document.getElementById((data.destroyedShip.rowPos + i) + flag + data.destroyedShip.colPos);
             }
             else {
-                fieldDie = document.getElementById(data.destroyedShip.rowPos + flag + (data.destroyedShip.colPos + i));
+                field = document.getElementById(data.destroyedShip.rowPos + flag + (data.destroyedShip.colPos + i));
             }
-            fieldDie.classList.remove("shipFire");
-            fieldDie.classList.add("shipDie");
+            field.classList.remove("shipOK");
+            field.classList.remove("shipFire");
+            field.classList.add("shipDie");
         }
+
+        for (let i = 0; i < data.destroyedShip.cellsAroundShip.length; i++) {
+            field = document.getElementById(data.destroyedShip.cellsAroundShip[i].rowPos + flag + (data.destroyedShip.cellsAroundShip[i].colPos));
+            field.classList.remove("Fire");
+            field.innerHTML = "X";
+        }
+
+    }
+
+    turn(turn)
+    {
+        let elem = document.getElementsByClassName("h1_turn");
+        elem.innerHTML += turn;
     }
 
     endGame (data)

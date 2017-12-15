@@ -8,16 +8,21 @@ export default class WebSocketManager {
             return WebSocketManager.__instance;
         }
 
-        this.socket = new WebSocket("ws://sea-battle-back.herokuapp.com/game"); // wss
+        this.socket = new WebSocket("wss://sea-battle-back.herokuapp.com/game");
 
         WebSocketManager.__instance = this;
+
+        this.messagePing = {};
+        this.messagePing.class = "MsgPing";
+        this.messagePing = JSON.stringify(this.messagePing, "");
     }
 
     openSocket ()
     {
         this.socket.onopen = function(event) {
-            alert("Сессия открыта");
-        };
+            this.pingSocket();
+            console.log("Сессия открыта");
+        }.bind(this);
     }
 
     sendSocket (message)
@@ -35,7 +40,12 @@ export default class WebSocketManager {
     closeSocket ()
     {
         this.socket.onclose = function(event) {
-            alert("Сессия закрыта");
+            console.log("Сессия закрыта");
         };
+    }
+
+    pingSocket()
+    {
+        this.sendSocket(this.messagePing);
     }
 }

@@ -3,7 +3,8 @@
 import StartGameMenuController from "./StartGameMenuController.js";
 import startGameMenuView from "../Views/StartGameMenuView/StartGameMenuView.js";
 import Services from "../Services.js";
-import startGame from "../../Game/StartGame.js";
+
+import EventBus from "../EventBus.js";
 
 class StartGameMenuSelector
 {
@@ -22,7 +23,12 @@ class StartGameMenuSelector
             if(response.status === 0)
                 this.startGameMenuController.show();
             else
-                startGame();
+            {
+                let eventBus = new EventBus();
+                eventBus.emitEvent({type: "changeMenu", newMenuName: "/selectMode"});
+            }
+
+
         })
             .catch(exit =>
         {

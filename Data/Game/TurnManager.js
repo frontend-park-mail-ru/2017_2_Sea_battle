@@ -24,51 +24,51 @@ export default class TurnManager
 
     turnShipX2 ()
     {
-        let shipX4 = document.getElementsByClassName("shipX2");
+        let shipX = document.getElementsByClassName("shipX2");
         if (!this.getFlag()){
-            for (let i = 0; i< shipX4.length; i++){
-                shipX4[i].style.height = "56px";
-                shipX4[i].style.width = "20px";
+            for (let i = 0; i< shipX.length; i++){
+                shipX[i].style.height = "74px";
+                shipX[i].style.width = "38px";
             }
         }
         else {
-            for (let i = 0; i< shipX4.length; i++){
-                shipX4[i].style.width = "56px";
-                shipX4[i].style.height = "20px";
+            for (let i = 0; i< shipX.length; i++){
+                shipX[i].style.width = "74px";
+                shipX[i].style.height = "38px";
             }
         }
     }
 
     turnShipX3 ()
     {
-        let shipX4 = document.getElementsByClassName("shipX3");
+        let shipX = document.getElementsByClassName("shipX3");
         if (!this.getFlag()){
-            for (let i = 0; i< shipX4.length; i++){
-                shipX4[i].style.height = "88px";
-                shipX4[i].style.width = "20px";
+            for (let i = 0; i< shipX.length; i++){
+                shipX[i].style.height = "112px";
+                shipX[i].style.width = "38px";
             }
         }
         else {
-            for (let i = 0; i< shipX4.length; i++){
-                shipX4[i].style.width = "88px";
-                shipX4[i].style.height = "20px";
+            for (let i = 0; i< shipX.length; i++){
+                shipX[i].style.width = "112px";
+                shipX[i].style.height = "38px";
             }
         }
     }
 
     turnShipX4 ()
     {
-        let shipX4 = document.getElementsByClassName("shipX4");
+        let shipX = document.getElementsByClassName("shipX4");
         if (!this.getFlag()){
-            for (let i = 0; i< shipX4.length; i++){
-                shipX4[i].style.height = "121px";
-                shipX4[i].style.width = "20px";
+            for (let i = 0; i< shipX.length; i++){
+                shipX[i].style.height = "154px";
+                shipX[i].style.width = "38px";
             }
         }
         else {
-            for (let i = 0; i< shipX4.length; i++){
-                shipX4[i].style.width = "121px";
-                shipX4[i].style.height = "20px";
+            for (let i = 0; i< shipX.length; i++){
+                shipX[i].style.width = "154px";
+                shipX[i].style.height = "38px";
             }
         }
     }

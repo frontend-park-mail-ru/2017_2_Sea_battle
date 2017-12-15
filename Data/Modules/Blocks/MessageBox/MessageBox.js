@@ -27,14 +27,14 @@ class MessageBox
                 okAction();
                 this.view.hide();
                 window.removeEventListener("resize", this.resize);
-                delete this;
+                //delete this;
             };
         else
             okButton.onclick = () =>
             {
                 this.view.hide();
                 window.removeEventListener("resize", this.resize);
-                delete this;
+                //delete this;
             };
 
         this.view.show();

@@ -49,7 +49,7 @@ class LoseScene extends GameScene
         AllGame.appendChildWidget(text);
         // -0 так как игра с ботом
 
-        let backButton = new Widget(document.body, "button", "backButton");
+        let backButton = new Widget(document.body, "button", "backButton backButtonWinLose");
         backButton.text = "Back to Menu";
         AllGame.appendChildWidget(backButton);
         backButton.element.addEventListener('click', () => {
