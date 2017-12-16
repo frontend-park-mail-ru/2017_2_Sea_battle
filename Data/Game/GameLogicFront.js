@@ -30,7 +30,7 @@ export default class GameLogicFront
                             0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
         this.countMyShip = 20;
-        this.countEnemyShip = 1; // 20
+        this.countEnemyShip = 20;
     }
 
     newGameLogic (matrixShips)
@@ -49,7 +49,7 @@ export default class GameLogicFront
         this.matrixShips = matrixShips;
 
         this.countMyShip = 20;
-        this.countEnemyShip = 1;
+        this.countEnemyShip = 20;
     }
 
     shot (field)
