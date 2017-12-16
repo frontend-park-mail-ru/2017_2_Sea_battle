@@ -83,7 +83,7 @@
 {
     border: 3px solid #008000;
     width: 35px;
-    height: 38px;
+    height: 35px;
     background-color: #3CFF1F;
     color: transparent;
 }
@@ -92,7 +92,7 @@
 {
     border: 3px solid #008000;
     width: 74px;
-    height: 38px;
+    height: 35px;
     background-color: #3CFF1F;
     color: transparent;
 }
@@ -101,7 +101,7 @@
 {
     border: 3px solid #008000;
     width: 112px;
-    height: 38px;
+    height: 35px;
     background-color: #3CFF1F;
     color: transparent;
 }
@@ -109,8 +109,8 @@
 .shipX4
 {
     border: 3px solid #008000;
-    width: 154px;
-    height: 38px;
+    width: 152px;
+    height: 35px;
     background-color: #3CFF1F;
     color: transparent;
 }
