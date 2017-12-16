@@ -6,9 +6,12 @@ import SecondGameScene from "./GameSceneSecond.js";
 import ShipList from "./ShipList.js";
 import WebSocketManager from "./WebSocket.js";
 import GameController from "./GameManager.js"
+import GameLoader from "./GameLoader.js"
 
 
 function startSecondGameScene (matrixShips, move) {
+    let gameLoader = new GameLoader();
+    gameLoader.hide();
     let secondGameScene = new SecondGameScene();
     secondGameScene.show(matrixShips, move);
 }
@@ -56,7 +59,8 @@ function getMatrixShips (rand) {
 
             webSocketManager.sendSocket(shipMessage);
 
-            alert("Ожидание противника");
+            let gameLoader = new GameLoader();
+            gameLoader.show();
         }
 
     }

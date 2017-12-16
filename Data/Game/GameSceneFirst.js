@@ -21,7 +21,7 @@ export default class FirstGameScene extends GameScene
         text.text = "Place your ships";
         all_game.appendChildWidget(text);
 
-        let backButton = new Widget(document.body, "button", "backButton backButtonScene");
+        let backButton = new Widget(document.body, "button", "backButton");
         backButton.element.classList.add("flatLightGray");
         backButton.text = "Back to Menu";
         backButton.element.addEventListener('click', () => {BackMenu();});

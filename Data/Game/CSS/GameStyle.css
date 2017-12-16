@@ -195,27 +195,16 @@
 
 .backButton
 {
+    position: absolute;
+    top: 3%;
+    left: 2%;
+
     width: 230px;
     height: 50px;
     font-family: 'Indie Flower', cursive;
     font-size: xx-large;
     font-weight: bolder;
 }
-
-.backButtonScene
-{
-    position: absolute;
-    top: 3%;
-    left: 2%;
-}
-
-.backButtonWinLose
-{
-    position: relative;
-    left: 615px;
-    top: 227px;
-}
-
 
 .randomShips
 {

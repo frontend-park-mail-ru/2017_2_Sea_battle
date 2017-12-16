@@ -44,7 +44,7 @@ class LoseScene extends GameScene
         text.text = "Score: " + "40";
         AllGame.appendChildWidget(text);
 
-        let backButton = new Widget(document.body, "button", "backButton backButtonWinLose");
+        let backButton = new Widget(document.body, "button", "backButton");
         backButton.text = "Back to Menu";
         AllGame.appendChildWidget(backButton);
         backButton.element.addEventListener('click', () => {BackMenu();});
@@ -54,7 +54,6 @@ class LoseScene extends GameScene
 }
 
 
-// Или перенести в отдельный файл или просто прописывать все вручную, если разные параметры EventBus
 function BackMenu() {
     let gameScene = new GameScene();
     gameScene.hide();

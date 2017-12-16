@@ -3,6 +3,7 @@ import MenuManager from "./Modules/MenuManager.js";
 import EventBus from "./Modules/EventBus.js";
 import "./CSS/Styles.css"
 import "./Game/CSS/GameStyle.css"
+import "./Game/CSS/LoaderStyle.css"
 import "./Modules/Blocks/Input/Input.css"
 import "./Modules/Views/UserProfileBlockView/UserProfileBlock.css"
 import "./Modules/Views/LoginMenuView/LoginMenuView.css"
