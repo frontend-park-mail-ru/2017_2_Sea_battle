@@ -1,5 +1,6 @@
 .viewTitle
 {
+    font-family: 'Indie Flower', cursive;
     font-size: 55px;
     text-align: center;
     margin: 0px;
@@ -8,6 +9,8 @@
 
 .button
 {
+    font-weight: 600;
+    font-family: 'Indie Flower', cursive;
     font-size: 30px;
     text-align: center;
     cursor: hand;
@@ -15,12 +18,16 @@
 
 .button:hover
 {
+    font-weight: 600;
+    font-family: 'Indie Flower', cursive;
     font-size: 35px;
     text-align: center;
 }
 
 .smallButton
 {
+    font-weight: 600;
+    font-family: 'Indie Flower', cursive;
     font-size: 15px;
     text-align: center;
     cursor: hand;
@@ -28,6 +35,8 @@
 
 .smallButton:hover
 {
+    font-weight: 600;
+    font-family: 'Indie Flower', cursive;
     font-size: 20px;
     text-align: center;
 }

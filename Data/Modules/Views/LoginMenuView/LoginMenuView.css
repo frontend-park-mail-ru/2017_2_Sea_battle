@@ -4,17 +4,23 @@
 
 .info
 {
-    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Indie Flower', cursive;
+    font-size: 21px;
 }
 
 .error
 {
-    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Indie Flower', cursive;
+    font-size: 21px;
     color: darkred;
 }
 
 .submitButton
 {
+    font-weight: 600;
+    font-family: 'Indie Flower', cursive;
     background: lightgray;
     border: 1px solid #212121;
 }

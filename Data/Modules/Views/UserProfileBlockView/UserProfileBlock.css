@@ -1,13 +1,25 @@
 .profileBlock
 {
     width: 200px;
-    height: 80px;
+    height: 106px; /*80px*/
     border: 1px solid black;
     position: fixed;
     right: 10px;
     top: 10px;
     align-content: center;
     text-align: center;
+}
+
+.userScore
+{
+    font-weight: 600;
+    font-family: 'Indie Flower', cursive;
+}
+
+.userName
+{
+    font-weight: 600;
+    font-family: 'Indie Flower', cursive;
 }
 
 h3
