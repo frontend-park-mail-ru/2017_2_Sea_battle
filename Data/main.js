@@ -12,8 +12,6 @@ import "./Modules/Views/BaseMenuView/BaseMenuView.css"
 import "./Modules/Views/BaseView/BaseView.css"
 import "./Modules/Views/LeaderboardView/LeaderboardView.css"
 
-
-
 const eventBus = new EventBus();
 const menuManager = new MenuManager();
 eventBus.subscribe(menuManager);

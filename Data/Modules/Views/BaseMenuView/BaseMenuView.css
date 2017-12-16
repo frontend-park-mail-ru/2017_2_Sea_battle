@@ -13,7 +13,7 @@
     font-family: 'Indie Flower', cursive;
     font-size: 30px;
     text-align: center;
-    cursor: hand;
+    cursor: pointer;
 }
 
 .button:hover
@@ -30,7 +30,7 @@
     font-family: 'Indie Flower', cursive;
     font-size: 15px;
     text-align: center;
-    cursor: hand;
+    cursor: pointer;
 }
 
 .smallButton:hover
