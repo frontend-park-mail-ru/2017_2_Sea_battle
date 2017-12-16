@@ -20,7 +20,7 @@ class AboutMenuController extends BaseController
             .then((res) =>
             {
                 this.deleteBackButton();
-                this.view.changeData({title: "About", text: res.text});
+                this.view.changeData({title: "About", text: res.about});
                 this.createBackButton();
             })
             .catch((error) =>
