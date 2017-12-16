@@ -61,7 +61,7 @@ class RegisterMenuController extends BaseController
                 }.bind(password))
                 .catch(error =>
                 {
-                   let mb = new MessageBox("Register error", error.response);
+                   new MessageBox("Register error", error.response);
                 });
 
         return false;

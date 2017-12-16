@@ -35,14 +35,14 @@ class LoginMenuController extends BaseController
     {
         if(this.validate())
             Services.checkUser(this.inputMail.value, this.inputPassword.value)
-                .then(response =>
+                .then(() =>
                 {
                     eventBus.emitEvent({type: "updateUser"});
                     eventBus.emitEvent({type: "changeMenu", newMenuName: "/"});
                 })
                 .catch(error =>
                 {
-                    let mb = new MessageBox("Login Error", error.response);
+                    new MessageBox("Login Error", error.response);
                 });
 
         return false;

@@ -17,4 +17,5 @@ const menuManager = new MenuManager();
 eventBus.subscribe(menuManager);
 menuManager.go();
 
+
 window.onpopstate = menuManager.go.bind(menuManager);
