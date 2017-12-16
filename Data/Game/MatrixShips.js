@@ -24,11 +24,40 @@ function createShipArrayMessage(shipArray) {
     return massage;
 }
 
-function getMatrixShips (rand) {
+function getRandomMatrixShips() {
+
+    let gameContoller = new GameController();
+    if (!gameContoller.getGame()) {
+        getMatrixShips (1);
+    }
+
+    // let webSocketManager = new WebSocketManager();
+    // webSocketManager.messageSocket( function(e) {
+    //     let fieldData = e.data;
+    //     fieldData = JSON.parse(fieldData);
+    //     let fieldClass = fieldData.class;
+    //     if ( fieldClass == "MsgShips" ){
+    //         // запонить матрицу кораблями
+    //         getMatrixShips (1);
+    //     }
+    //     else if ( fieldClass == "MsgPing") {
+    //         let webSocketManager = new WebSocketManager();
+    //         webSocketManager.pingSocket();
+    //     }
+    //     else {
+    //         console.log("Ошибка");
+    //     }
+    // } );
+    //
+    // let message = "Гони корабли";
+    // webSocketManager.sendSocket(message);
+}
+
+function getMatrixShips (rand = 0) {
 
     let shipList = new ShipList();
-    if (shipList.canDoMatrix()) {
-        let matrixShips = shipList.CreateMatrix();
+    if (shipList.canDoMatrix() || rand) {
+        let matrixShips = shipList.CreateMatrix(rand);
 
         let firstGameScene = new FirstGameScene();
         firstGameScene.hide();
@@ -40,7 +69,6 @@ function getMatrixShips (rand) {
         }
         else {
             let webSocketManager = new WebSocketManager();
-            let shipMessage = createShipArrayMessage (shipList.createShipArray());
             webSocketManager.messageSocket( function(e) {
                 let fieldData = e.data;
                 fieldData = JSON.parse(fieldData);
@@ -57,6 +85,7 @@ function getMatrixShips (rand) {
                 }
             } );
 
+            let shipMessage = createShipArrayMessage (shipList.createShipArray());
             webSocketManager.sendSocket(shipMessage);
 
             let gameLoader = new GameLoader();
@@ -71,4 +100,4 @@ function getMatrixShips (rand) {
 
 };
 
-export default getMatrixShips;
+export {getMatrixShips, getRandomMatrixShips};

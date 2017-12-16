@@ -49,4 +49,14 @@ export default class GameController {
     {
         this.score = newScore;
     }
+
+    setRandomMatrix(newMatrix)
+    {
+        this.randMatrix = newMatrix;
+    }
+
+    getRandomMatrix()
+    {
+        return this.randMatrix;
+    }
 }

@@ -1,5 +1,7 @@
 .leaderTable
 {
+    /*-webkit-filter: sepia(0.7);*/
+    /*filter: sepia(0.7);*/
     font-family: 'Indie Flower', cursive;
     border: 1px solid black;
     width: 50%;

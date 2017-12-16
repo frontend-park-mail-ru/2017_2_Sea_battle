@@ -1,5 +1,7 @@
 "use strict";
 
+import GameManager from "./GameManager.js"
+
 /*
     Необходим для связи всех кораблей при создании и расстановке.
     Создает матрицу на основе всех кораблей.
@@ -53,8 +55,27 @@ export default class ShipList
         return true;
     }
 
-    CreateMatrix()
+    CreateMatrix(rand)
     {
+        if (rand) {
+            let gameManager = new GameManager();
+            if(!gameManager.getGame()) {
+                return [1, 0, 0, 0, 6, 6, 0, 0, 7, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 7, 0,
+                        0, 0, 0, 5, 5, 0, 0, 0, 0, 0,
+                        3, 0, 0, 0, 0, 0, 4, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 10, 0, 0, 0, 0, 0, 2, 0, 0,
+                        0, 10, 0, 0, 8, 0, 0, 0, 0, 0,
+                        0, 10, 0, 0, 8, 0, 0, 0, 0, 0,
+                        0, 10, 0, 0, 8, 0, 0, 9, 9, 9,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            }
+            else {
+                return this.createRandomMatrix();
+            }
+        }
+
         let matrixShips = [];
         for (let i = 0; i < 100; i++) {
             matrixShips[i] = 0;
@@ -87,6 +108,23 @@ export default class ShipList
     clearList()
     {
         this.listShip = [];
+    }
+
+    createRandomMatrix()
+    {
+        let gameManager = new GameManager();
+        gameManager.getRandomMatrix();
+
+        return [1, 0, 0, 0, 6, 6, 0, 0, 7, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 7, 0,
+                0, 0, 0, 5, 5, 0, 0, 0, 0, 0,
+                3, 0, 0, 0, 0, 0, 4, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 10, 0, 0, 0, 0, 0, 2, 0, 0,
+                0, 10, 0, 0, 8, 0, 0, 0, 0, 0,
+                0, 10, 0, 0, 8, 0, 0, 0, 0, 0,
+                0, 10, 0, 0, 8, 0, 0, 9, 9, 9,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     }
 
 }

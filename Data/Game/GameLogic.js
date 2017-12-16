@@ -190,7 +190,6 @@ export default class GameLogic
             field = document.getElementById(data.destroyedShip.cellsAroundShip[i].rowPos + flag + (data.destroyedShip.cellsAroundShip[i].colPos));
             field.classList.add("Fire");
         }
-
     }
 
     endGame (data)

@@ -1,7 +1,7 @@
 import GameScene from "./GameScene.js";
 import Widget from "../Modules/Blocks/Widget.js";
 import AddDragAndDropEvent from "./DragAndDrop.js";
-import getMatrixShips from "./MatrixShips.js";
+import {getMatrixShips, getRandomMatrixShips} from "./MatrixShips.js";
 import ShipList from "./ShipList.js";
 import Ship from "./Ship.js";
 import TurnManager from "./TurnManager.js";
@@ -89,14 +89,14 @@ export default class FirstGameScene extends GameScene
         let randShips = new Widget(document.body, "button", "randomShips");
         randShips.text = "Random ships";
         randShips.element.classList.add("flatLightGray");
-        randShips.element.addEventListener('click', () => {getMatrixShips(1)});
+        randShips.element.addEventListener('click', () => {getRandomMatrixShips()});
         all_game.appendChildWidget(randShips);
 
         let nextButton = new Widget(document.body, "button", "next_button");
         nextButton.text = "Next";
         nextButton.element.classList.add("flatLightGray");
         all_game.appendChildWidget(nextButton);
-        nextButton.element.addEventListener('click', () => {getMatrixShips(0)});
+        nextButton.element.addEventListener('click', () => {getMatrixShips()});
 
         AddDragAndDropEvent();
     }
