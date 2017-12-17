@@ -44,10 +44,9 @@ function startGame(message)
     let gameContoller = new GameController();
     gameContoller.setGame(message);
 
-
     if (gameContoller.getGame()) {
         let webSocketManager = new WebSocketManager();
-        gameContoller.start();
+        webSocketManager.openSocket();
         webSocketManager.messageSocket(startFirstGameScene);
     }
     else {

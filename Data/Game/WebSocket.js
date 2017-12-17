@@ -5,33 +5,44 @@ export default class WebSocketManager {
 
     constructor()
     {
-        let gameContoller = new GameController();
-        if (WebSocketManager.__instance && gameContoller.getState()) {
+        if (WebSocketManager.__instance) {
             return WebSocketManager.__instance;
         }
 
-        this.socket = new WebSocket("wss://sea-battle-back.herokuapp.com/game");
-
         WebSocketManager.__instance = this;
+    }
+
+    openSocket ()
+    {
+        this.socket = new WebSocket("wss://sea-battle-back.herokuapp.com/game");
 
         this.onopenSocket();
         this.oncloseSocket();
-
         this.pingSocketStart();
+    }
+
+    closeSocket ()
+    {
+        this.socket.close();
+    }
+
+    getStateSocket()
+    {
+        return this.state;
     }
 
     onopenSocket ()
     {
         this.socket.onopen = function(event) {
             this.pingSocket();
-            console.log("Сессия открыта");
+            this.state = true;
         }.bind(this);
     }
 
     oncloseSocket ()
     {
         this.socket.onclose = function(event) {
-            console.log("Сессия закрыта");
+            this.state = false;
         };
     }
 
@@ -45,11 +56,6 @@ export default class WebSocketManager {
     sendSocket (message)
     {
         this.socket.send(message);
-    }
-
-    closeSocket ()
-    {
-        this.socket.close();
     }
 
     pingSocketStart()
