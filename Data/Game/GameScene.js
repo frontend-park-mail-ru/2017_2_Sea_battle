@@ -3,9 +3,6 @@
 // убрать _
 // Добавить кнопку назад в меню [прекратить игру]
 
-import WebSocketManager from "./WebSocket.js";
-
-
 export default class GameScene
 {
     constructor() {}
@@ -23,10 +20,5 @@ export default class GameScene
             document.body.removeChild(elem[0]);
         }
         elem = null;
-
-        let webSocket = new WebSocketManager();
-        if (webSocket.getStateSocket()) {
-            webSocket.closeSocket();
-        }
     }
 }
