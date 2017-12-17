@@ -3,7 +3,7 @@ import BaseView from "../BaseView/BaseView.js";
 
 const mainMenu = new BaseView(document.body, generateMainMenuView,
     {
-        title: "Main Menu",
+        title: "Sea Battle",
         menus:
             [
                 {name: "Start Game", id: "/startGame"},
