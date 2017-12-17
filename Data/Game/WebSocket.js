@@ -43,7 +43,7 @@ export default class WebSocketManager {
     {
         this.socket.onclose = function(event) {
             this.state = false;
-        };
+        }.bind(this);
     }
 
     messageSocket (func)
