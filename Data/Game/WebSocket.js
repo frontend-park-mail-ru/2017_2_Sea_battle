@@ -1,10 +1,12 @@
 "use strict";
+import GameController from "./GameManager.js";
 
 export default class WebSocketManager {
 
     constructor()
     {
-        if (WebSocketManager.__instance) {
+        let gameContoller = new GameController();
+        if (WebSocketManager.__instance && gameContoller.getState()) {
             return WebSocketManager.__instance;
         }
 
@@ -15,7 +17,7 @@ export default class WebSocketManager {
         this.onopenSocket();
         this.oncloseSocket();
 
-        this.startPing();
+        this.pingSocketStart();
     }
 
     onopenSocket ()
@@ -50,7 +52,7 @@ export default class WebSocketManager {
         this.socket.close();
     }
 
-    startPing()
+    pingSocketStart()
     {
         this.messagePing = {};
         this.messagePing.class = "MsgPing";

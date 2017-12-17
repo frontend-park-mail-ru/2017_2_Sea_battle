@@ -60,6 +60,8 @@ function BackMenu() {
     gameScene.hide();
     let webSocket = new WebSocketManager();
     webSocket.closeSocket();
+    let gameContoller = new GameController();
+    gameContoller.end();
     eventBus.emitEvent({type: "changeMenu", newMenuName: "/"});
 }
 

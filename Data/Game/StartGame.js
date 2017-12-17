@@ -39,13 +39,15 @@ function startFirstGameScene (e) {
     }
 }
 
-function startGame(message) {
-
+function startGame(message)
+{
     let gameContoller = new GameController();
     gameContoller.setGame(message);
 
+
     if (gameContoller.getGame()) {
         let webSocketManager = new WebSocketManager();
+        gameContoller.start();
         webSocketManager.messageSocket(startFirstGameScene);
     }
     else {

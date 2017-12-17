@@ -10,6 +10,21 @@ export default class GameController {
         GameController.__instance = this;
     }
 
+    start()
+    {
+        this.state = true;
+    }
+
+    end()
+    {
+        this.state = false;
+    }
+
+    getState()
+    {
+        return this.state;
+    }
+
     getGame ()
     {
         return this.game;
