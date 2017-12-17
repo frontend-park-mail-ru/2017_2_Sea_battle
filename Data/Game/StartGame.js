@@ -47,8 +47,6 @@ function startGame(message) {
     if (gameContoller.getGame()) {
         let webSocketManager = new WebSocketManager();
         webSocketManager.messageSocket(startFirstGameScene);
-        webSocketManager.openSocket();
-        webSocketManager.closeSocket();
     }
     else {
         gameContoller.setUserName("User");

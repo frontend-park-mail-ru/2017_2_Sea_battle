@@ -2,6 +2,7 @@ import Widget from "../Modules/Blocks/Widget.js";
 import EventBus from "../Modules/EventBus.js";
 import GameScene from "./GameScene.js";
 import GameController from "./GameManager.js";
+import WebSocketManager from "./WebSocket.js";
 
 const eventBus = new EventBus();
 
@@ -57,6 +58,8 @@ class LoseScene extends GameScene
 function BackMenu() {
     let gameScene = new GameScene();
     gameScene.hide();
+    let webSocket = new WebSocketManager();
+    webSocket.closeSocket();
     eventBus.emitEvent({type: "changeMenu", newMenuName: "/"});
 }
 

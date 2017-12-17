@@ -12,12 +12,13 @@ export default class WebSocketManager {
 
         WebSocketManager.__instance = this;
 
-        this.messagePing = {};
-        this.messagePing.class = "MsgPing";
-        this.messagePing = JSON.stringify(this.messagePing, "");
+        this.onopenSocket();
+        this.oncloseSocket();
+
+        this.startPing();
     }
 
-    openSocket ()
+    onopenSocket ()
     {
         this.socket.onopen = function(event) {
             this.pingSocket();
@@ -25,9 +26,11 @@ export default class WebSocketManager {
         }.bind(this);
     }
 
-    sendSocket (message)
+    oncloseSocket ()
     {
-        this.socket.send(message);
+        this.socket.onclose = function(event) {
+            console.log("Сессия закрыта");
+        };
     }
 
     messageSocket (func)
@@ -37,11 +40,21 @@ export default class WebSocketManager {
         };
     }
 
+    sendSocket (message)
+    {
+        this.socket.send(message);
+    }
+
     closeSocket ()
     {
-        this.socket.onclose = function(event) {
-            console.log("Сессия закрыта");
-        };
+        this.socket.close();
+    }
+
+    startPing()
+    {
+        this.messagePing = {};
+        this.messagePing.class = "MsgPing";
+        this.messagePing = JSON.stringify(this.messagePing, "");
     }
 
     pingSocket()
