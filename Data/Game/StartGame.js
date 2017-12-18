@@ -12,15 +12,31 @@ import GameLoader from "./GameLoader.js";
 // убрать _
 // Добавить кнопку назад в меню [прекратить игру]
 
+function playWithBotMessage (bot) {
+    let message = {};
+    message.class = "MsgJoinGame";
+    if (bot == 1) {
+        message.playWithBot = true;
+    }
+    else {
+        message.playWithBot = false;
+    }
+    message = JSON.stringify(message, "");
+    return message;
+}
+
 function startFirstGameScene (e) {
     let fieldData = e.data;
     fieldData = JSON.parse(fieldData);
     let fieldClass = fieldData.class;
     if ( fieldClass == "MsgYouInQueue" ){
-        let gameContoller = new GameController();
-        gameContoller.setUserName(fieldData.nickname);
         let gameLoader = new GameLoader();
         gameLoader.show();
+        let gameContoller = new GameController();
+        gameContoller.setUserName(fieldData.nickname);
+        // Хочу ли я играть с ботом?
+        let webSocketManager = new WebSocketManager();
+        webSocketManager.sendSocket(playWithBotMessage(gameContoller.getGame()))
     }
     else if ( fieldClass == "MsgLobbyCreated" ) {
         let gameContoller = new GameController();
@@ -50,8 +66,10 @@ function startGame(message)
         webSocketManager.messageSocket(startFirstGameScene);
     }
     else {
-        gameContoller.setUserName("User");
-        gameContoller.setEmemyName("Bot");
+        let userName = document.getElementsByClassName("userName");
+        debugger;
+        gameContoller.setUserName(userName[0].innerHTML);
+        gameContoller.setEmemyName("Mysterious stranger");
         let firstScene = new FirstGameScene();
         firstScene.show();
     }

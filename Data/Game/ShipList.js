@@ -91,16 +91,30 @@ export default class ShipList
         return matrixShips;
     }
 
-    createShipArray ()
+    createShipArray (rand = 0)
     {
         let shipArray = [];
-        for (let i = 0; i < 10; i++) {
-            let ship = {};
-            ship.length = this.getShip(i).getSize();
-            ship.isVertical = (this.getTurnShip(i)) ? true : false;
-            ship.rowPos = +((this.getShip(i).getLive())[0][0]);
-            ship.colPos = +((this.getShip(i).getLive())[0][2]);
-            shipArray[i] = ship;
+        if (rand) {
+            let gameManager = new GameManager();
+            let ships = gameManager.getRandomResponse();
+            for (let i = 0; i < ships.length; i++) {
+                let ship = {};
+                ship.length = ships[i].length;
+                ship.isVertical = ships[i].isVertical;
+                ship.rowPos = ships[i].rowPos;
+                ship.colPos = ships[i].colPos;
+                shipArray[i] = ship;
+            }
+        }
+        else {
+            for (let i = 0; i < 10; i++) {
+                let ship = {};
+                ship.length = this.getShip(i).getSize();
+                ship.isVertical = (this.getTurnShip(i)) ? true : false;
+                ship.rowPos = +((this.getShip(i).getLive())[0][0]);
+                ship.colPos = +((this.getShip(i).getLive())[0][2]);
+                shipArray[i] = ship;
+            }
         }
         return shipArray;
     }
@@ -113,18 +127,21 @@ export default class ShipList
     createRandomMatrix()
     {
         let gameManager = new GameManager();
-        gameManager.getRandomMatrix();
+        let ships = gameManager.getRandomResponse();
+        let matrixShips = [];
+        for (let i = 0; i < 100; i++) {
+            matrixShips[i] = 0;
+        }
+        for (let i = 0; i < ships.length; i++) {
+            let ship = ships[i];
+            for (let j = 0; j < ship.length; j++) {
+                matrixShips[(+ship[j][0]) * 10 + (+ship[j][2])] = i+1; // поле в матрице = id корабля
+            }
+        }
 
-        return [1, 0, 0, 0, 6, 6, 0, 0, 7, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 7, 0,
-                0, 0, 0, 5, 5, 0, 0, 0, 0, 0,
-                3, 0, 0, 0, 0, 0, 4, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 10, 0, 0, 0, 0, 0, 2, 0, 0,
-                0, 10, 0, 0, 8, 0, 0, 0, 0, 0,
-                0, 10, 0, 0, 8, 0, 0, 0, 0, 0,
-                0, 10, 0, 0, 8, 0, 0, 9, 9, 9,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        debugger;
+
+        return matrixShips;
     }
 
 }

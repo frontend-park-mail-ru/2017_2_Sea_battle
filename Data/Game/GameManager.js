@@ -59,4 +59,14 @@ export default class GameController {
     {
         return this.randMatrix;
     }
+
+    setRandomResponse(response)
+    {
+        this.randResponse = response;
+    }
+
+    getRandomResponse()
+    {
+        return this.randResponse;
+    }
 }

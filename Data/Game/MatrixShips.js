@@ -24,6 +24,13 @@ function createShipArrayMessage(shipArray) {
     return message;
 }
 
+function getRandomMatrixShipsMessage() {
+    let message = {};
+    message.class = "MsgGeneratedShips";
+    message = JSON.stringify(message, "");
+    return message;
+}
+
 function getRandomMatrixShips() {
 
     let gameContoller = new GameController();
@@ -31,29 +38,27 @@ function getRandomMatrixShips() {
         getMatrixShips (1);
     }
     else {
-        // let webSocketManager = new WebSocketManager();
-        // webSocketManager.messageSocket( function(e) {
-        //     let fieldData = e.data;
-        //     fieldData = JSON.parse(fieldData);
-        //     let fieldClass = fieldData.class;
-        //     debugger;
-        //     if ( fieldClass == "MsgGeneratedShips" ){
-        //         // запонить матрицу кораблями
-        //         //getMatrixShips (1);
-        //     }
-        //     else if ( fieldClass == "MsgPing") {
-        //         let webSocketManager = new WebSocketManager();
-        //         webSocketManager.pingSocket();
-        //     }
-        //     else {
-        //         console.log("Ошибка");
-        //     }
-        // } );
-        //
-        // let message = {};
-        // message.class = "MsgGeneratedShips";
-        // message = JSON.stringify(message, "");
-        // webSocketManager.sendSocket(message);
+        let webSocketManager = new WebSocketManager();
+        webSocketManager.messageSocket( function(e) {
+            let fieldData = e.data;
+            fieldData = JSON.parse(fieldData);
+            let fieldClass = fieldData.class;
+            if ( fieldClass == "MsgShipPosition" ){
+                debugger;
+                let gameContoller = new GameController();
+                gameContoller.setRandomResponse((fieldData.ships).reverse());
+                getMatrixShips (1);
+            }
+            else if ( fieldClass == "MsgPing") {
+                let webSocketManager = new WebSocketManager();
+                webSocketManager.pingSocket();
+            }
+            else {
+                console.log("Ошибка");
+            }
+        } );
+
+        webSocketManager.sendSocket(getRandomMatrixShipsMessage());
     }
 
 }
@@ -73,6 +78,9 @@ function getMatrixShips (rand = 0) {
             secondGameScene.show(matrixShips);
         }
         else {
+            let gameLoader = new GameLoader();
+            gameLoader.show();
+
             let webSocketManager = new WebSocketManager();
             webSocketManager.messageSocket( function(e) {
                 let fieldData = e.data;
@@ -88,13 +96,10 @@ function getMatrixShips (rand = 0) {
                 else {
                     console.log("Ошибка");
                 }
-            } );
+            });
 
-            let shipMessage = createShipArrayMessage (shipList.createShipArray());
+            let shipMessage = createShipArrayMessage (shipList.createShipArray(rand));
             webSocketManager.sendSocket(shipMessage);
-
-            let gameLoader = new GameLoader();
-            gameLoader.show();
         }
 
     }
