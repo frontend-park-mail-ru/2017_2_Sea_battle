@@ -17,6 +17,7 @@ export default class SecondGameScene extends GameScene
 
         if (gameController.getGame()) {
             let gameLogic = new GameLogic(move);
+            gameLogic.changeMove(move);
         }
         else {
             let gameLogicFront = new GameLogicFront();
@@ -110,5 +111,11 @@ export default class SecondGameScene extends GameScene
         }
         elem = new Widget(document.body, "h1", "inline_block h1_turn");
         elem.text = turn;
+        if(turn[0] == "Y") {
+            elem.element.classList.add("h1_turn_my");
+        }
+        else {
+            elem.element.classList.add("h1_turn_enemy");
+        }
     }
 }

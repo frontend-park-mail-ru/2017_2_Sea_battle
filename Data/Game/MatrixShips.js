@@ -17,11 +17,11 @@ function startSecondGameScene (matrixShips, move) {
 }
 
 function createShipArrayMessage(shipArray) {
-    let massage = {};
-    massage.class = "MsgShipPosition";
-    massage.ships = shipArray;
-    massage = JSON.stringify(massage, "");
-    return massage;
+    let message = {};
+    message.class = "MsgShipPosition";
+    message.ships = shipArray;
+    message = JSON.stringify(message, "");
+    return message;
 }
 
 function getRandomMatrixShips() {
@@ -30,27 +30,32 @@ function getRandomMatrixShips() {
     if (!gameContoller.getGame()) {
         getMatrixShips (1);
     }
+    else {
+        // let webSocketManager = new WebSocketManager();
+        // webSocketManager.messageSocket( function(e) {
+        //     let fieldData = e.data;
+        //     fieldData = JSON.parse(fieldData);
+        //     let fieldClass = fieldData.class;
+        //     debugger;
+        //     if ( fieldClass == "MsgGeneratedShips" ){
+        //         // запонить матрицу кораблями
+        //         //getMatrixShips (1);
+        //     }
+        //     else if ( fieldClass == "MsgPing") {
+        //         let webSocketManager = new WebSocketManager();
+        //         webSocketManager.pingSocket();
+        //     }
+        //     else {
+        //         console.log("Ошибка");
+        //     }
+        // } );
+        //
+        // let message = {};
+        // message.class = "MsgGeneratedShips";
+        // message = JSON.stringify(message, "");
+        // webSocketManager.sendSocket(message);
+    }
 
-    // let webSocketManager = new WebSocketManager();
-    // webSocketManager.messageSocket( function(e) {
-    //     let fieldData = e.data;
-    //     fieldData = JSON.parse(fieldData);
-    //     let fieldClass = fieldData.class;
-    //     if ( fieldClass == "MsgShips" ){
-    //         // запонить матрицу кораблями
-    //         getMatrixShips (1);
-    //     }
-    //     else if ( fieldClass == "MsgPing") {
-    //         let webSocketManager = new WebSocketManager();
-    //         webSocketManager.pingSocket();
-    //     }
-    //     else {
-    //         console.log("Ошибка");
-    //     }
-    // } );
-    //
-    // let message = "Гони корабли";
-    // webSocketManager.sendSocket(message);
 }
 
 function getMatrixShips (rand = 0) {

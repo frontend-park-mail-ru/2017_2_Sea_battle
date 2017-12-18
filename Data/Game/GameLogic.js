@@ -9,19 +9,17 @@ export default class GameLogic
 {
     constructor(move = true)
     {
+
         if (GameLogic.__instance) {
             return GameLogic.__instance;
         }
 
         GameLogic.__instance = this;
 
-        this.move = move;
-
-        this.gameScene = new SecondGameScene();
+        this.changeMove(move);
 
         // стреляют по мне
         if (!(this.move)) {
-            this.gameScene.turn("Opponent's move");
             let webSocketManager = new WebSocketManager();
             webSocketManager.messageSocket( function(e) {
                 let fieldData = e.data;
@@ -41,6 +39,16 @@ export default class GameLogic
                     console.log("Ошибка");
                 }
             }.bind(this));
+        }
+    }
+
+    changeMove(move)
+    {
+        this.move = move;
+
+        this.gameScene = new SecondGameScene();
+        if (!(this.move)) {
+            this.gameScene.turn("Opponent's turn");
         }
         else {
             this.gameScene.turn("Your turn");
@@ -78,9 +86,6 @@ export default class GameLogic
                     console.log("Ошибка");
                 }
             }.bind(this));
-        }
-        else {
-            alert("Ожидание хода противника");
         }
     }
 
@@ -120,7 +125,7 @@ export default class GameLogic
         {
             this.shipDead(data, "+");
             this.move = false;
-            this.gameScene.turn("Opponent's move");
+            this.gameScene.turn("Opponent's turn");
         }
     }
 
@@ -136,7 +141,7 @@ export default class GameLogic
         {
             fieldFire.classList.add("Fire");
             this.move = false;
-            this.gameScene.turn("Opponent's move");
+            this.gameScene.turn("Opponent's turn");
         }
         if (data.class == "MsgShipIsDestroyed")
         {
