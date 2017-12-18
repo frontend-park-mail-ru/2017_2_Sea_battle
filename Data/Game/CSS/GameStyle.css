@@ -153,6 +153,7 @@
     position: absolute;
     top: 1%;
     left: 50%;
+    height: ;
     transform: translate(-50%);
     -webkit-animation: mytext 2s infinite; /* Safari 4.0 - 8.0 */
     animation: mytext 2s infinite;
@@ -187,9 +188,45 @@
     background-color: #FD0006;
 }
 
+.shipDie_animation
+{
+    -webkit-animation: shipdie 1s infinite; /* Safari 4.0 - 8.0 */
+    animation: shipdie 1s infinite;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes shipdie {
+    0%   {background-color: #FFC500;}
+    100% {background-color: #FD0006;}
+}
+
+/* Standard syntax */
+@keyframes shipdie {
+    0%   {background-color: #FFC500;}
+    100% {background-color: #FD0006;}
+}
+
 .shipFire
 {
     background-color: #FFC500;
+}
+
+.shipFire_animation
+{
+    -webkit-animation: shipfire 1s infinite; /* Safari 4.0 - 8.0 */
+    animation: shipfire 1s infinite;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes shipfire {
+    0%     {background-color: #0ACF00;}
+    100%   {background-color: #FFC500;}
+}
+
+/* Standard syntax */
+@keyframes shipfire {
+    0%     {background-color: #0ACF00;}
+    100%   {background-color: #FFC500;}
 }
 
 .shipOK
@@ -201,6 +238,24 @@
 {
     background-color: #7972D8;
 }
+
+.fieldFire_animation
+{
+    -webkit-animation: fieldfire 1s infinite; /* Safari 4.0 - 8.0 */
+    animation: fieldfire 1s infinite;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes fieldfire {
+    100%   {background-color: #7972D8;}
+}
+
+/* Standard syntax */
+@keyframes fieldfire {
+    100%   {background-color: #7972D8;}
+}
+
+
 
 .youWinLose
 {

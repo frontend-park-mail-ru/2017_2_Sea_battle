@@ -82,7 +82,11 @@ export default class GameLogicFront
             return false;
         }
         else if (this.enemyMatrix[10*i+j]) { // попал
-            fieldFire.classList.add("shipFire");
+            fieldFire.classList.add("shipFire_animation");
+            setTimeout(function () {
+                fieldFire.classList.remove("shipFire_animation");
+                fieldFire.classList.add("shipFire");
+            }.bind(fieldFire), 1000);
             this.enemyMatrix[10*i+j] = -(this.enemyMatrix[10*i+j]);
 
             // Если убил
@@ -91,8 +95,13 @@ export default class GameLogicFront
                     for (let z = 0; z < 10; z++) {
                         if (this.enemyMatrix[10*k+z] == this.enemyMatrix[10*i+j]) {
                             let fieldDie = document.getElementById(k + "-" + z);
-                            fieldDie.classList.remove("shipFire");
-                            fieldDie.classList.add("shipDie");
+                            fieldDie.classList.remove("shipFire_animation");
+                            fieldDie.classList.add("shipDie_animation");
+                            setTimeout(function () {
+                                fieldDie.classList.remove("shipDie_animation");
+                                fieldDie.classList.remove("shipFire");
+                                fieldDie.classList.add("shipDie");
+                            }.bind(fieldDie), 1000);
                         }
                     }
                 }
@@ -104,7 +113,11 @@ export default class GameLogicFront
         }
         else { // промах
             this.enemyMatrix[10*i+j] = 100;
-            fieldFire.classList.add("Fire");
+            fieldFire.classList.add("fieldFire_animation");
+            setTimeout(function () {
+                fieldFire.classList.remove("fieldFire_animation");
+                fieldFire.classList.add("Fire");
+            }.bind(fieldFire), 1000);
             return true;
         }
 
@@ -124,7 +137,11 @@ export default class GameLogicFront
 
             let el = document.getElementById(iRand + "+" + jRand);
             el.classList.remove("shipOK");
-            el.classList.add("shipFire");
+            el.classList.add("shipFire_animation");
+            setTimeout(function () {
+                el.classList.remove("shipFire_animation");
+                el.classList.add("shipFire");
+            }.bind(el), 1000);
             this.matrixShips[10*iRand+jRand] = -(this.matrixShips[10*iRand+jRand])
 
             // Если убил
@@ -133,8 +150,13 @@ export default class GameLogicFront
                     for (let z = 0; z < 10; z++) {
                         if (this.matrixShips[10*k+z] == this.matrixShips[10*iRand+jRand]) {
                             let fieldDie = document.getElementById(k + "+" + z);
-                            fieldDie.classList.remove("shipFire");
-                            fieldDie.classList.add("shipDie");
+                            fieldDie.classList.remove("shipFire_animation");
+                            fieldDie.classList.add("shipDie_animation");
+                            setTimeout(function () {
+                                fieldDie.classList.remove("shipDie_animation");
+                                fieldDie.classList.remove("shipFire");
+                                fieldDie.classList.add("shipDie");
+                            }.bind(fieldDie), 1000);
                         }
                     }
                 }
@@ -146,7 +168,11 @@ export default class GameLogicFront
         else {
             this.matrixShips[10*iRand+jRand] = 100;
             let el = document.getElementById(iRand + "+" + jRand);
-            el.classList.add("Fire");
+            el.classList.add("fieldFire_animation");
+            setTimeout(function () {
+                el.classList.remove("fieldFire_animation");
+                el.classList.add("Fire");
+            }.bind(el), 1000);
         }
     }
 

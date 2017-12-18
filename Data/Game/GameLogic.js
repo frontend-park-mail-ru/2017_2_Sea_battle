@@ -109,14 +109,22 @@ export default class GameLogic
         {
             fieldFire = document.getElementById(data.cell.rowPos  + "+" + data.cell.colPos);
             fieldFire.classList.remove("shipOK");
-            fieldFire.classList.add("shipFire");
+            fieldFire.classList.add("shipFire_animation");
+            setTimeout(function () {
+                fieldFire.classList.remove("shipFire_animation");
+                fieldFire.classList.add("shipFire");
+            }.bind(fieldFire), 1000);
             this.move = false;
             this.gameScene.turn("Opponent's move");
         }
         if (data.cellStatus == "BLOCKED")
         {
             fieldFire = document.getElementById(data.cell.rowPos  + "+" + data.cell.colPos);
-            fieldFire.classList.add("Fire");
+            fieldFire.classList.add("fieldFire_animation");
+            setTimeout(function () {
+                fieldFire.classList.remove("fieldFire_animation");
+                fieldFire.classList.add("Fire");
+            }.bind(fieldFire), 1000);
             this.move = true;
             this.gameScene.turn("Your turn");
 
@@ -133,13 +141,21 @@ export default class GameLogic
     {
         if (data.cellStatus == "ON_FIRE")
         {
-            fieldFire.classList.add("shipFire");
+            fieldFire.classList.add("shipFire_animation");
+            setTimeout(function () {
+                            fieldFire.classList.remove("shipFire_animation");
+                            fieldFire.classList.add("shipFire");
+                        }.bind(fieldFire), 1000);
             this.move = true;
             this.gameScene.turn("Your turn");
         }
         if (data.cellStatus == "BLOCKED")
         {
-            fieldFire.classList.add("Fire");
+            fieldFire.classList.add("fieldFire_animation");
+            setTimeout(function () {
+                fieldFire.classList.remove("fieldFire_animation");
+                fieldFire.classList.add("Fire");
+            }.bind(fieldFire), 1000);
             this.move = false;
             this.gameScene.turn("Opponent's turn");
         }
@@ -178,22 +194,31 @@ export default class GameLogic
 
     shipDead (data, flag)
     {
-        let field;
         for (let i = 0; i < data.destroyedShip.length; i++) {
+            let fieldDie;
             if (data.destroyedShip.isVertical) {
-                field = document.getElementById((data.destroyedShip.rowPos + i) + flag + data.destroyedShip.colPos);
+                fieldDie = document.getElementById((data.destroyedShip.rowPos + i) + flag + data.destroyedShip.colPos);
             }
             else {
-                field = document.getElementById(data.destroyedShip.rowPos + flag + (data.destroyedShip.colPos + i));
+                fieldDie = document.getElementById(data.destroyedShip.rowPos + flag + (data.destroyedShip.colPos + i));
             }
-            field.classList.remove("shipOK");
-            field.classList.remove("shipFire");
-            field.classList.add("shipDie");
+            fieldDie.classList.remove("shipOK");
+            fieldDie.classList.remove("shipFire");
+            fieldDie.classList.add("shipDie_animation");
+            setTimeout(function () {
+                fieldDie.classList.remove("shipDie_animation");
+                fieldDie.classList.add("shipDie");
+            }.bind(fieldDie), 1000);
         }
 
         for (let i = 0; i < data.destroyedShip.cellsAroundShip.length; i++) {
+            let field;
             field = document.getElementById(data.destroyedShip.cellsAroundShip[i].rowPos + flag + (data.destroyedShip.cellsAroundShip[i].colPos));
-            field.classList.add("Fire");
+            field.classList.add("fieldFire_animation");
+            setTimeout(function () {
+                field.classList.remove("fieldFire_animation");
+                field.classList.add("Fire");
+            }.bind(field), 1000);
         }
     }
 
