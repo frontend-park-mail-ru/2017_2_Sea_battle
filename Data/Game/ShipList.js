@@ -134,13 +134,10 @@ export default class ShipList
         }
         for (let i = 0; i < ships.length; i++) {
             let ship = ships[i];
-            for (let j = 0; j < ship.length; j++) {
-                matrixShips[(+ship[j][0]) * 10 + (+ship[j][2])] = i+1; // поле в матрице = id корабля
+            for (let j = 0; j < ship.cells.length; j++) {
+                matrixShips[(+ship.cells[j].rowPos) * 10 + (+ship.cells[j].colPos)] = i+1; // поле в матрице = id корабля
             }
         }
-
-        debugger;
-
         return matrixShips;
     }
 

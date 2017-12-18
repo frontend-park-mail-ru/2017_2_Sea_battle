@@ -44,7 +44,6 @@ function getRandomMatrixShips() {
             fieldData = JSON.parse(fieldData);
             let fieldClass = fieldData.class;
             if ( fieldClass == "MsgShipPosition" ){
-                debugger;
                 let gameContoller = new GameController();
                 gameContoller.setRandomResponse((fieldData.ships).reverse());
                 getMatrixShips (1);
