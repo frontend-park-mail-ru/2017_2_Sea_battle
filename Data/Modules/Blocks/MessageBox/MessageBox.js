@@ -31,7 +31,6 @@ class MessageBox
         else
             okButton.onclick = () =>
             {
-                debugger;
                 this.view.hide();
                 window.removeEventListener("resize", this.resize);
             };
@@ -45,7 +44,7 @@ class MessageBox
     resize()
     {
         this.view.element.style.left = (document.body.offsetWidth - this.view.element.offsetWidth)/2 + "px";
-        this.view.element.style.top = (document.body.offsetHeight - this.view.element.offsetHeight)/2 + "px";
+        this.view.element.style.top = (document.documentElement.clientHeight - this.view.element.clientHeight)/2 + "px";
     }
 }
 
