@@ -26,7 +26,9 @@ export default class GameLogic
                 fieldData = JSON.parse(fieldData);
                 let fieldClass = fieldData.class;
                 if ( fieldClass == "MsgResultMove" || fieldClass == "MsgShipIsDestroyed") {
-                    this.fireEnemy (fieldData);
+                    setTimeout(function () {
+                        this.fireEnemy (fieldData)
+                    }.bind(this), 1200);
                 }
                 else if (fieldClass == "MsgEndGame") {
                     this.endGame(fieldData)
@@ -174,7 +176,9 @@ export default class GameLogic
                 fieldData = JSON.parse(fieldData);
                 let fieldClass = fieldData.class;
                 if ( fieldClass == "MsgResultMove" || fieldClass == "MsgShipIsDestroyed") {
-                    this.fireEnemy (fieldData);
+                    setTimeout(function () {
+                        this.fireEnemy (fieldData)
+                    }.bind(this), 1200);
                 }
                 else if (fieldClass == "MsgEndGame") {
                     this.endGame(fieldData)
@@ -203,9 +207,12 @@ export default class GameLogic
                 fieldDie = document.getElementById(data.destroyedShip.rowPos + flag + (data.destroyedShip.colPos + i));
             }
             fieldDie.classList.remove("shipOK");
+            fieldDie.classList.remove("shipFire_animation");
             fieldDie.classList.remove("shipFire");
             fieldDie.classList.add("shipDie_animation");
             setTimeout(function () {
+                fieldDie.classList.remove("shipFire_animation");
+                fieldDie.classList.remove("shipFire");
                 fieldDie.classList.remove("shipDie_animation");
                 fieldDie.classList.add("shipDie");
             }.bind(fieldDie), 1000);

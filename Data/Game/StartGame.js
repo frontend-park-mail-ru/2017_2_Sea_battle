@@ -67,7 +67,6 @@ function startGame(message)
     }
     else {
         let userName = document.getElementsByClassName("userName");
-        debugger;
         gameContoller.setUserName(userName[0].innerHTML);
         gameContoller.setEmemyName("Mysterious stranger");
         let firstScene = new FirstGameScene();

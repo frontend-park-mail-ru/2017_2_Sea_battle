@@ -50,14 +50,23 @@ export default class GameLogicFront
 
         this.countMyShip = 20;
         this.countEnemyShip = 20;
+
+        let gameScene = new SecondGameScene();
+        gameScene.turn("Your turn");
     }
 
     shot (field)
     {
+        let gameScene = new SecondGameScene();
         if (this.myFire(field))
         {
-            this.botFire();
+            gameScene.turn("Opponent's turn");
+            setTimeout(function () {
+                this.botFire();
+                gameScene.turn("Your turn");
+            }.bind(this), 1200);
         }
+
         if (!(this.countEnemyShip)) {
             let secondGameScene = new SecondGameScene();
             secondGameScene.hide();
@@ -163,6 +172,7 @@ export default class GameLogicFront
             }
 
             this.countMyShip--;
+
             this.botFire();
         }
         else {

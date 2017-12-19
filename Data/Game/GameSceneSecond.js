@@ -40,10 +40,6 @@ export default class SecondGameScene extends GameScene
         text.text = gameController.getEmemyName();
         all_game.appendChildWidget(text);
 
-        if (!gameController.getGame()){
-            this.turn("Your turn");
-        }
-
         this.createField(all_game, matrixShips);
 
         this.createField(all_game, matrixShips, 1);
