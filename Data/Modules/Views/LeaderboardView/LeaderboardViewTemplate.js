@@ -49,7 +49,7 @@ pug_html = pug_html + (pug_escape(null == (pug_interp = player.login) ? "" : pug
 ;pug_debug_line = 17;pug_debug_filename = "\u002Fhome\u002Fjohn\u002FGit\u002F2017_2_Sea_battle\u002FData\u002FModules\u002FViews\u002FLeaderboardView\u002FLeaderboardView.pug";
 pug_html = pug_html + "\u003Cth class=\"contents\"\u003E";
 ;pug_debug_line = 17;pug_debug_filename = "\u002Fhome\u002Fjohn\u002FGit\u002F2017_2_Sea_battle\u002FData\u002FModules\u002FViews\u002FLeaderboardView\u002FLeaderboardView.pug";
-pug_html = pug_html + (pug_escape(null == (pug_interp = highlightIndex) ? "" : pug_interp)) + "\u003C\u002Fth\u003E\u003C\u002Ftr\u003E";
+pug_html = pug_html + (pug_escape(null == (pug_interp = player.score) ? "" : pug_interp)) + "\u003C\u002Fth\u003E\u003C\u002Ftr\u003E";
 }
 else
 {
@@ -66,7 +66,7 @@ pug_html = pug_html + (pug_escape(null == (pug_interp = player.login) ? "" : pug
 ;pug_debug_line = 22;pug_debug_filename = "\u002Fhome\u002Fjohn\u002FGit\u002F2017_2_Sea_battle\u002FData\u002FModules\u002FViews\u002FLeaderboardView\u002FLeaderboardView.pug";
 pug_html = pug_html + "\u003Cth class=\"contents\"\u003E";
 ;pug_debug_line = 22;pug_debug_filename = "\u002Fhome\u002Fjohn\u002FGit\u002F2017_2_Sea_battle\u002FData\u002FModules\u002FViews\u002FLeaderboardView\u002FLeaderboardView.pug";
-pug_html = pug_html + (pug_escape(null == (pug_interp = highlightIndex) ? "" : pug_interp)) + "\u003C\u002Fth\u003E\u003C\u002Ftr\u003E";
+pug_html = pug_html + (pug_escape(null == (pug_interp = player.score) ? "" : pug_interp)) + "\u003C\u002Fth\u003E\u003C\u002Ftr\u003E";
 }
 ;pug_debug_line = 24;pug_debug_filename = "\u002Fhome\u002Fjohn\u002FGit\u002F2017_2_Sea_battle\u002FData\u002FModules\u002FViews\u002FLeaderboardView\u002FLeaderboardView.pug";
 count++;
@@ -92,7 +92,7 @@ pug_html = pug_html + (pug_escape(null == (pug_interp = player.login) ? "" : pug
 ;pug_debug_line = 17;pug_debug_filename = "\u002Fhome\u002Fjohn\u002FGit\u002F2017_2_Sea_battle\u002FData\u002FModules\u002FViews\u002FLeaderboardView\u002FLeaderboardView.pug";
 pug_html = pug_html + "\u003Cth class=\"contents\"\u003E";
 ;pug_debug_line = 17;pug_debug_filename = "\u002Fhome\u002Fjohn\u002FGit\u002F2017_2_Sea_battle\u002FData\u002FModules\u002FViews\u002FLeaderboardView\u002FLeaderboardView.pug";
-pug_html = pug_html + (pug_escape(null == (pug_interp = highlightIndex) ? "" : pug_interp)) + "\u003C\u002Fth\u003E\u003C\u002Ftr\u003E";
+pug_html = pug_html + (pug_escape(null == (pug_interp = player.score) ? "" : pug_interp)) + "\u003C\u002Fth\u003E\u003C\u002Ftr\u003E";
 }
 else
 {
@@ -109,7 +109,7 @@ pug_html = pug_html + (pug_escape(null == (pug_interp = player.login) ? "" : pug
 ;pug_debug_line = 22;pug_debug_filename = "\u002Fhome\u002Fjohn\u002FGit\u002F2017_2_Sea_battle\u002FData\u002FModules\u002FViews\u002FLeaderboardView\u002FLeaderboardView.pug";
 pug_html = pug_html + "\u003Cth class=\"contents\"\u003E";
 ;pug_debug_line = 22;pug_debug_filename = "\u002Fhome\u002Fjohn\u002FGit\u002F2017_2_Sea_battle\u002FData\u002FModules\u002FViews\u002FLeaderboardView\u002FLeaderboardView.pug";
-pug_html = pug_html + (pug_escape(null == (pug_interp = highlightIndex) ? "" : pug_interp)) + "\u003C\u002Fth\u003E\u003C\u002Ftr\u003E";
+pug_html = pug_html + (pug_escape(null == (pug_interp = player.score) ? "" : pug_interp)) + "\u003C\u002Fth\u003E\u003C\u002Ftr\u003E";
 }
 ;pug_debug_line = 24;pug_debug_filename = "\u002Fhome\u002Fjohn\u002FGit\u002F2017_2_Sea_battle\u002FData\u002FModules\u002FViews\u002FLeaderboardView\u002FLeaderboardView.pug";
 count++;

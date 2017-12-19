@@ -41,9 +41,12 @@ class LoseScene extends GameScene
         text.text = "You Lose!";
         AllGame.appendChildWidget(text);
 
-        text = new Widget(document.body, "h1", "newScore");
-        text.text = "Score: " + "40";
-        AllGame.appendChildWidget(text);
+        let gameController = new GameController();
+        if (gameController.getGame()){
+            text = new Widget(document.body, "h1", "newScore");
+            text.text = "Score: " + gameController.getScore();
+            AllGame.appendChildWidget(text);
+        }
 
         let backButton = new Widget(document.body, "button", "backButton");
         backButton.text = "Back to Menu";
