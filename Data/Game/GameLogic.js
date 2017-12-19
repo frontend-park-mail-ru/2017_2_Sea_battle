@@ -221,6 +221,7 @@ export default class GameLogic
         for (let i = 0; i < data.destroyedShip.cellsAroundShip.length; i++) {
             let field;
             field = document.getElementById(data.destroyedShip.cellsAroundShip[i].rowPos + flag + (data.destroyedShip.cellsAroundShip[i].colPos));
+            field.classList.remove("Fire");
             field.classList.add("fieldFire_animation");
             setTimeout(function () {
                 field.classList.remove("fieldFire_animation");

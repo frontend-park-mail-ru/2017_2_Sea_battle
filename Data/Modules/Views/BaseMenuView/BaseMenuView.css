@@ -9,10 +9,10 @@
 
 .button
 {
-    margin-top: 10px;
     font-weight: 600;
     font-family: 'Indie Flower', cursive;
     font-size: 30px;
+    line-height: 60px;
     text-align: center;
     cursor: pointer;
 }
@@ -22,6 +22,7 @@
     font-weight: 600;
     font-family: 'Indie Flower', cursive;
     font-size: 35px;
+    line-height: 60px;;
     text-align: center;
 }
 
