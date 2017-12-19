@@ -1,17 +1,19 @@
 .viewTitle
 {
     font-family: 'Indie Flower', cursive;
-    font-size: 55px;
+    font-size: 500%;
     text-align: center;
     margin: 0px;
+    margin-bottom: 1%;
     color: #12212a;
 }
 
 .button
 {
+    margin-top: 3%;
+    font-size: 350%;
     font-weight: 600;
     font-family: 'Indie Flower', cursive;
-    font-size: 30px;
     line-height: 60px;
     text-align: center;
     cursor: pointer;
@@ -19,9 +21,9 @@
 
 .button:hover
 {
+    font-size: 380%;
     font-weight: 600;
     font-family: 'Indie Flower', cursive;
-    font-size: 35px;
     line-height: 60px;;
     text-align: center;
 }
