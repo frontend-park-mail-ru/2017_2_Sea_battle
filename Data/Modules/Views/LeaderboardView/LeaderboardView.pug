@@ -14,12 +14,12 @@ table.leaderTable
                 tr.highlight
                     th.contents #{player.position}
                     th.contents #{player.login}
-                    th.contents #{highlightIndex}
+                    th.contents #{player.score}
             - else
                 tr
                     th.contents #{player.position}
                     th.contents #{player.login}
-                    th.contents #{highlightIndex}
+                    th.contents #{player.score}
 
             - count++;
 
