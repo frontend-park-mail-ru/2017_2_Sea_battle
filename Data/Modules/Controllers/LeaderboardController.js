@@ -2,6 +2,7 @@
 
 import BaseController from "./BaseController.js";
 import Services from "../Services.js";
+import MessageBox from "../Blocks/MessageBox/MessageBox.js";
 
 class LeaderboardController extends BaseController
 {
@@ -19,15 +20,22 @@ class LeaderboardController extends BaseController
         Services.getLeaders()
             .then(result =>
             {
+                let highlight = 10;
+
+                if(result.length == 11)
+                {
+                    highlight = result[10].position - 1;
+                    if(result[10].position < 10)
+                        result.pop();
+                }
                 this.deleteBackButton();
-                this.view.changeData({title: "Leaderboard", players: result});
+                this.view.changeData({title: "Leaderboard", players: result, highlightIndex: highlight});
                 this.createBackButton();
             })
             .catch(error =>
             {
+                new MessageBox("Leaderboard error", "Can't get leaderboard: " + error);
                 this.deleteBackButton();
-                this.view.changeData({title: "Leaderboard", players: [error]});
-                this.createBackButton();
             });
     }
 }

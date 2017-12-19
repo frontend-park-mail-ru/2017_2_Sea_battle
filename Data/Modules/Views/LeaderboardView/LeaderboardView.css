@@ -1,12 +1,10 @@
 .leaderTable
 {
-    /*-webkit-filter: sepia(0.7);*/
-    /*filter: sepia(0.7);*/
     font-family: 'Indie Flower', cursive;
     border: 1px solid black;
     width: 50%;
     margin: auto;
-    background-color: #212121;
+    background-color: rgba(127, 127, 127, 0);
 }
 
 .tableHeader
@@ -19,5 +17,11 @@
 .contents
 {
     border: 1px solid #212121;
-    background-color: lightgray;
+    background-color: rgba(127, 127, 127, 0);
+}
+
+.highlight
+{
+    border: 2px solid orangered;
+    background-color: rgba(255, 147, 113, 0.6);
 }
