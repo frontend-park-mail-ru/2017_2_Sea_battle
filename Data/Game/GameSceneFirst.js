@@ -27,14 +27,6 @@ export default class FirstGameScene extends GameScene
         backButton.element.addEventListener('click', () => {BackMenu();});
         all_game.appendChildWidget(backButton);
 
-        let turnButton = new Widget(document.body, "button", "turnButton");
-        turnButton.element.classList.add("flatLightGray");
-        turnButton.text = "Turn ships";
-        all_game.appendChildWidget(turnButton);
-        let turnManager = new TurnManager();
-        turnManager.clearFlag();
-        turnButton.element.addEventListener('click', () => {turnManager.turnShips();});
-
         // Добавляем корабли
         let shipField = new Widget(document.body,"div", "shipField");
         all_game.appendChildWidget(shipField);
@@ -86,17 +78,29 @@ export default class FirstGameScene extends GameScene
         let space = new Widget();
         all_game.appendChildWidget(space);
 
-        let randShips = new Widget(document.body, "button", "randomShips");
+        let buttonAll = new Widget(document.body, "div", "buttonAll");
+
+        let turnButton = new Widget(document.body, "button", "turnButton");
+        turnButton.element.classList.add("flatLightGray");
+        turnButton.text = "Turn ships";
+        buttonAll.appendChildWidget(turnButton);
+        let turnManager = new TurnManager();
+        turnManager.clearFlag();
+        turnButton.element.addEventListener('click', () => {turnManager.turnShips();});
+
+        let randShips = new Widget(document.body, "button", "randomButton");
         randShips.text = "Random ships";
         randShips.element.classList.add("flatLightGray");
         randShips.element.addEventListener('click', () => {getRandomMatrixShips()});
-        all_game.appendChildWidget(randShips);
+        buttonAll.appendChildWidget(randShips);
 
         let nextButton = new Widget(document.body, "button", "next_button");
         nextButton.text = "Next";
         nextButton.element.classList.add("flatLightGray");
-        all_game.appendChildWidget(nextButton);
+        buttonAll.appendChildWidget(nextButton);
         nextButton.element.addEventListener('click', () => {getMatrixShips()});
+
+        all_game.appendChildWidget(buttonAll);
 
         AddDragAndDropEvent();
     }

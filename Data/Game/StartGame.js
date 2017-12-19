@@ -60,6 +60,8 @@ function startGame(message)
     let gameContoller = new GameController();
     gameContoller.setGame(message);
 
+    hideUserBlock(true);
+
     if (gameContoller.getGame()) {
         let webSocketManager = new WebSocketManager();
         webSocketManager.openSocket();
@@ -68,6 +70,8 @@ function startGame(message)
     else {
         let userName = document.getElementsByClassName("userName");
         gameContoller.setUserName(userName[0].innerHTML);
+        let userScore = document.getElementsByClassName("userScore");
+        gameContoller.setScore(userScore[0].innerHTML);
         gameContoller.setEmemyName("Mysterious stranger");
         let firstScene = new FirstGameScene();
         firstScene.show();
@@ -90,4 +94,16 @@ function startGame(message)
     // }
 }
 
-export default startGame
+function hideUserBlock(hide = true) {
+    let el = document.getElementsByClassName("profileBlock");
+    if (el[0]) {
+        if (hide) {
+            el[0].classList.add("display_none");
+        }
+        else {
+            el[0].classList.remove("display_none");
+        }
+    }
+}
+
+export {startGame,hideUserBlock}

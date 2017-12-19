@@ -40,7 +40,7 @@
 {
     width: 27%;
     position: absolute;
-    top: 19%;
+    top: 21%;
 }
 /*
 .img_field
@@ -48,23 +48,21 @@
     background-image: url("/Resources/Texturex/background-table-holder-texture.png");
 }
 */
-
+.display_none
+{
+    display: none;
+}
 
 .inline_block
 {
     display: inline-block;
 }
 
-.next_button
+.buttonAll
 {
-    width: 180px;
-    height: 50px;
-    font-family: 'Indie Flower', cursive;
     position: absolute;
-    top: 75%;
-    left: 78%;
-    font-size: xx-large;
-    font-weight: bolder;
+    left: 76%;
+    top: 21%;
 }
 
 .turnButton
@@ -72,11 +70,33 @@
     width: 200px;
     height: 50px;
     font-family: 'Indie Flower', cursive;
-    position: absolute;
-    top: 30%;
-    left: 77%;
     font-size: xx-large;
     font-weight: bold;
+    position: absolute;
+
+
+}
+
+.randomButton
+{
+    width: 220px;
+    height: 55px;
+    font-family: 'Indie Flower', cursive;
+    font-size: xx-large;
+    font-weight: bolder;
+    position: absolute;
+    top: 190px;
+}
+
+.next_button
+{
+    width: 180px;
+    height: 50px;
+    font-family: 'Indie Flower', cursive;
+    font-size: xx-large;
+    font-weight: bolder;
+    position: absolute;
+    top: 380px;
 }
 
 .shipX1
@@ -119,8 +139,8 @@
 {
     font-family: 'Indie Flower', cursive;
     position: absolute;
-    left: 10%;
-    top: 9%;
+    left: 27%;
+    top: 8%;
 }
 
 .my_field
@@ -135,8 +155,8 @@
 {
     font-family: 'Indie Flower', cursive;
     position: absolute;
-    left: 57%;
-    top: 9%;
+    left: 62%;
+    top: 8%;
 }
 
 .enemy_field
@@ -287,14 +307,11 @@
     font-weight: bolder;
 }
 
-.randomShips
+.randomButton
 {
     width: 220px;
     height: 55px;
     font-family: 'Indie Flower', cursive;
-    position: absolute;
-    top: 50%;
-    left: 76%;
     font-size: xx-large;
     font-weight: bolder;
 }

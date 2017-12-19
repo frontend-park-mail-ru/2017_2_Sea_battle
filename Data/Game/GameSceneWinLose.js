@@ -3,6 +3,7 @@ import EventBus from "../Modules/EventBus.js";
 import GameScene from "./GameScene.js";
 import GameController from "./GameManager.js";
 import WebSocketManager from "./WebSocket.js";
+import {hideUserBlock} from "./StartGame.js"
 
 const eventBus = new EventBus();
 
@@ -17,11 +18,9 @@ class WinScene extends GameScene
         AllGame.appendChildWidget(text);
 
         let gameController = new GameController();
-        if (gameController.getGame()){
-            text = new Widget(document.body, "h1", "newScore");
-            text.text = "Score: " + gameController.getScore();
-            AllGame.appendChildWidget(text);
-        }
+        text = new Widget(document.body, "h1", "Score");
+        text.text = "Score: " + gameController.getScore();
+        AllGame.appendChildWidget(text);
 
         let backButton = new Widget(document.body, "button", "backButton");
         backButton.text = "Back to Menu";
@@ -29,7 +28,6 @@ class WinScene extends GameScene
         backButton.element.addEventListener('click', () => {BackMenu();});
         backButton.element.classList.add("flatLightGray");
     }
-
 }
 
 class LoseScene extends GameScene
@@ -42,11 +40,10 @@ class LoseScene extends GameScene
         AllGame.appendChildWidget(text);
 
         let gameController = new GameController();
-        if (gameController.getGame()){
-            text = new Widget(document.body, "h1", "newScore");
-            text.text = "Score: " + gameController.getScore();
-            AllGame.appendChildWidget(text);
-        }
+        text = new Widget(document.body, "h1", "Score");
+        text.text = "Score: " + gameController.getScore();
+        AllGame.appendChildWidget(text);
+
 
         let backButton = new Widget(document.body, "button", "backButton");
         backButton.text = "Back to Menu";
@@ -63,6 +60,7 @@ function BackMenu() {
     if (webSocket.getStateSocket()) {
         webSocket.closeSocket();
     }
+    hideUserBlock(false);
     let gameScene = new GameScene();
     gameScene.hide();
     eventBus.emitEvent({type: "changeMenu", newMenuName: "/"});
