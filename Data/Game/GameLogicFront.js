@@ -126,7 +126,7 @@ export default class GameLogicFront
                             // закраска вокруг убитого
                             for (let q = -10; q < 20; q+=10) {
                                 for (let t = -1; t < 2; t++) {
-                                    if (k + (q/10) < 0 || k + (q/10) > 9 || (z+t) > 10 || (z+t) < 0) {
+                                    if (k + (q/10) < 0 || k + (q/10) > 9 || (z+t) > 9 || (z+t) < 0) {
                                         continue;
                                     }
                                     if (this.enemyMatrix[(10*k+q)+z+t] < 0) {
@@ -134,6 +134,7 @@ export default class GameLogicFront
                                     }
                                     this.enemyMatrix[(10*k+q)+z+t] = 100;
                                     let field = document.getElementById((k + (q/10)) + "-" + (z+t));
+                                    debugger;
                                     field.classList.remove("Fire");
                                     field.classList.add("fieldFire_animation");
                                     setTimeout(function () {
