@@ -1,5 +1,6 @@
 .leaderTable
 {
+    border-collapse: collapse;
     font-family: 'Indie Flower', cursive;
     border: 1px solid black;
     width: 50%;
