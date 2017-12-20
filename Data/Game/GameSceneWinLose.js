@@ -18,8 +18,8 @@ class WinScene extends GameScene
         AllGame.appendChildWidget(text);
 
         let gameController = new GameController();
-        text = new Widget(document.body, "h1", "Score");
-        text.text = "Score: " + gameController.getScore();
+        text = new Widget(document.body, "h1", "score");
+        text.text = gameController.getScore();
         AllGame.appendChildWidget(text);
 
         let backButton = new Widget(document.body, "button", "backButton");
@@ -40,8 +40,8 @@ class LoseScene extends GameScene
         AllGame.appendChildWidget(text);
 
         let gameController = new GameController();
-        text = new Widget(document.body, "h1", "Score");
-        text.text = "Score: " + gameController.getScore();
+        text = new Widget(document.body, "h1", "score");
+        text.text = gameController.getScore();
         AllGame.appendChildWidget(text);
 
 

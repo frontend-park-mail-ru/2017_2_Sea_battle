@@ -280,17 +280,19 @@
 {
     font-family: 'Indie Flower', cursive;
     position: absolute;
-    top: 30%;
-    left: 41%;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-size: 400%;
 }
 
-.newScore
+.score
 {
     font-family: 'Indie Flower', cursive;
     position: absolute;
-    top: 40%;
-    left: 41%;
+    top: 53%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-size: 400%;
 }
 
