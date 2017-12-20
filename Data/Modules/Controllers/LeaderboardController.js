@@ -22,7 +22,7 @@ class LeaderboardController extends BaseController
             {
                 let highlight = 10;
 
-                if(result[10].position <= 10)
+                if(result[10] && result[10].position <= 10)
                 {
                     highlight = result[10].position - 1;
                     result.pop();
