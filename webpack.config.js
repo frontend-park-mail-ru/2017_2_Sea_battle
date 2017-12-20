@@ -33,13 +33,17 @@ module.exports = {
                             }
                     }
                 ]
+            },
+            {
+                test: /\.pug$/,
+                loader: "pug-loader"
             }
         ]
     },
     plugins: [
         new webpack.optimize.UglifyJsPlugin
         ({
-            compress: {drop_debugger: false}
+            //compress: {drop_debugger: false}
         })
     ]
 };

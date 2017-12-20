@@ -1,6 +1,7 @@
 "use strict";
 
 import BaseView from "../../Views/BaseView/BaseView.js";
+let generateMessageBox = require("./MessageBox.pug");
 
 class MessageBox
 {

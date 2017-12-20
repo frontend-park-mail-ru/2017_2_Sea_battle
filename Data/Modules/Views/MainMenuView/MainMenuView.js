@@ -1,5 +1,6 @@
 "use strict";
 import BaseView from "../BaseView/BaseView.js";
+let generateMainMenuView = require("./MainMenuView.pug");
 
 const mainMenu = new BaseView(document.body, generateMainMenuView,
     {

@@ -4,8 +4,8 @@
   "description": "Sea battle",
   "main": "index.js",
   "scripts": {
-    "start": "node pugBaker && webpack && node index.js",
-    "test": "node pugBaker && echo \"Seems like pug works!\""
+    "start": "webpack && node index.js",
+    "test": ""
   },
   "repository": {
     "type": "git",
@@ -33,6 +33,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "pug-loader": "^2.3.0",
     "webpack": "^3.10.0"
   }
 }
