@@ -62,8 +62,13 @@ function startGame(message)
 
     let gameContoller = new GameController();
 
-    if (!(navigator.connection.rtt)) {
-        gameContoller.setGame(0);
+    if (navigator.connection) {
+        if (!(navigator.connection.rtt)) {
+            gameContoller.setGame(0);
+        }
+        else {
+            gameContoller.setGame(message);
+        }
     }
     else {
         gameContoller.setGame(message);
