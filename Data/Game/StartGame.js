@@ -57,10 +57,17 @@ function startFirstGameScene (e) {
 
 function startGame(message)
 {
-    let gameContoller = new GameController();
-    gameContoller.setGame(message);
 
     hideUserBlock(true);
+
+    let gameContoller = new GameController();
+
+    if (!(navigator.connection.rtt)) {
+        gameContoller.setGame(0);
+    }
+    else {
+        gameContoller.setGame(message);
+    }
 
     if (gameContoller.getGame()) {
         let webSocketManager = new WebSocketManager();
@@ -69,9 +76,15 @@ function startGame(message)
     }
     else {
         let userName = document.getElementsByClassName("userName");
-        gameContoller.setUserName(userName[0].innerHTML);
         let userScore = document.getElementsByClassName("userScore");
-        gameContoller.setScore(userScore[0].innerHTML);
+        if (userScore[0] && userName[0]) {
+            gameContoller.setUserName(userName[0].innerHTML);
+            gameContoller.setScore(userScore[0].innerHTML);
+        }
+        else {
+            gameContoller.setUserName("Mysterious stranger");
+            gameContoller.setScore("0");
+        }
         gameContoller.setEmemyName("Mysterious stranger");
         let firstScene = new FirstGameScene();
         firstScene.show();
