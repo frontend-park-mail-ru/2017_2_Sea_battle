@@ -89,13 +89,13 @@ export default class FirstGameScene extends GameScene
         turnButton.element.addEventListener('click', () => {turnManager.turnShips();});
 
         let randShips = new Widget(document.body, "button", "randomButton");
-        randShips.text = "Random ships";
+        randShips.text = "Start with random";
         randShips.element.classList.add("flatLightGray");
         randShips.element.addEventListener('click', () => {getRandomMatrixShips()});
         buttonAll.appendChildWidget(randShips);
 
         let nextButton = new Widget(document.body, "button", "next_button");
-        nextButton.text = "Next";
+        nextButton.text = "Start";
         nextButton.element.classList.add("flatLightGray");
         buttonAll.appendChildWidget(nextButton);
         nextButton.element.addEventListener('click', () => {getMatrixShips()});
