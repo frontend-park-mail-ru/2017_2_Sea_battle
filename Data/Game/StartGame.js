@@ -5,12 +5,8 @@ import FirstGameScene from "./GameSceneFirst.js";
 import WebSocketManager from "./WebSocket.js";
 import GameController from "./GameManager.js";
 import GameLoader from "./GameLoader.js";
-
-// TO DO - Работа с DOM через мэнэджер document.getID -> в мэнэджер и его дергать
-// Все комментарии для GameScene (1 и 2)
-// Кнопки [перезагрузки поля], чтобы поле и кнопки не бегали вверх/вниз, фон за полем
-// убрать _
-// Добавить кнопку назад в меню [прекратить игру]
+import MessageBox from "../Modules/Blocks/MessageBox/MessageBox.js";
+import {BackMenu} from "./GameSceneWinLose.js";
 
 function playWithBotMessage (bot) {
     let message = {};
@@ -61,20 +57,28 @@ function startGame(message)
     hideUserBlock(true);
 
     let gameContoller = new GameController();
-    gameContoller.setGame(message);
 
-    // проверка на интернет
-    // if (navigator.connection) {
-    //     if (!(navigator.connection.rtt)) {
-    //         gameContoller.setGame(0);
-    //     }
-    //     else {
-    //         gameContoller.setGame(message);
-    //     }
-    // }
-    // else {
-    //     gameContoller.setGame(message);
-    // }
+    // navigator.connection.rtt = 0 - нет интернета; все остальное - есть
+    // navigator.connection.rtt - есть; !(navigator.connection.rtt) - нет
+
+    //проверка на интернет
+    if (navigator.connection) { //
+        let userScore = document.getElementsByClassName("userScore");
+        if (navigator.connection.rtt && message) {
+            gameContoller.setGame(message);
+        }
+        else if (!(navigator.connection.rtt) && message == 2 && userScore[0]) {
+            new MessageBox("There is no connection to the Internet. Only single player mode is available.");
+            BackMenu();
+            return;
+        }
+        else {
+            gameContoller.setGame(0);
+        }
+    }
+    else { //
+        gameContoller.setGame(message); //
+    } //
 
     if (gameContoller.getGame()) {
         let webSocketManager = new WebSocketManager();
@@ -84,15 +88,15 @@ function startGame(message)
     else {
         let userName = document.getElementsByClassName("userName");
         let userScore = document.getElementsByClassName("userScore");
-        if (userScore[0] && userName[0]) {
+        if (userScore[0]) {
             gameContoller.setUserName(userName[0].innerHTML);
             gameContoller.setScore(userScore[0].innerHTML);
         }
-        // нет интернета
-        // else {
-        //     gameContoller.setUserName("Mysterious stranger");
-        //     gameContoller.setScore("0");
-        // }
+        // быстрая игра
+        else {
+            gameContoller.setUserName("Mysterious stranger");
+            gameContoller.setScore("0");
+        }
         gameContoller.setEmemyName("Mysterious stranger");
         let firstScene = new FirstGameScene();
         firstScene.show();
