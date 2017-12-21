@@ -61,18 +61,20 @@ function startGame(message)
     hideUserBlock(true);
 
     let gameContoller = new GameController();
+    gameContoller.setGame(message);
 
-    if (navigator.connection) {
-        if (!(navigator.connection.rtt)) {
-            gameContoller.setGame(0);
-        }
-        else {
-            gameContoller.setGame(message);
-        }
-    }
-    else {
-        gameContoller.setGame(message);
-    }
+    // проверка на интернет
+    // if (navigator.connection) {
+    //     if (!(navigator.connection.rtt)) {
+    //         gameContoller.setGame(0);
+    //     }
+    //     else {
+    //         gameContoller.setGame(message);
+    //     }
+    // }
+    // else {
+    //     gameContoller.setGame(message);
+    // }
 
     if (gameContoller.getGame()) {
         let webSocketManager = new WebSocketManager();
@@ -86,10 +88,11 @@ function startGame(message)
             gameContoller.setUserName(userName[0].innerHTML);
             gameContoller.setScore(userScore[0].innerHTML);
         }
-        else {
-            gameContoller.setUserName("Mysterious stranger");
-            gameContoller.setScore("0");
-        }
+        // нет интернета
+        // else {
+        //     gameContoller.setUserName("Mysterious stranger");
+        //     gameContoller.setScore("0");
+        // }
         gameContoller.setEmemyName("Mysterious stranger");
         let firstScene = new FirstGameScene();
         firstScene.show();
