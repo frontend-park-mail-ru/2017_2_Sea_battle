@@ -9,7 +9,6 @@ script:
     - ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
     - chmod 600 $HOME/.ssh/tp-deploy
     - ssh-add $HOME/.ssh/tp-deploy
-    - node pugBaker
     - webpack
     - scp -r ./Data/ team@$SERVER_IP:/var/www/dist
 before_install:
