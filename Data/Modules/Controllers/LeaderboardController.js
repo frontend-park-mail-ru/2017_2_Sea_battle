@@ -22,12 +22,12 @@ class LeaderboardController extends BaseController
             {
                 let highlight = 10;
 
-                if(result.length == 11)
+                if(result[10] && result[10].position <= 10)
                 {
                     highlight = result[10].position - 1;
-                    if(result[10].position < 10)
-                        result.pop();
+                    result.pop();
                 }
+
                 this.deleteBackButton();
                 this.view.changeData({title: "Leaderboard", players: result, highlightIndex: highlight});
                 this.createBackButton();
