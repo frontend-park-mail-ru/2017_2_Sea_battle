@@ -2,7 +2,7 @@
 // JS
 import MenuManager from "./Modules/MenuManager.js";
 import EventBus from "./Modules/EventBus.js";
-import AddOrientationEvent from "./Modules/OrientationChange.js"
+import {AddOrientationEvent, OrientationChange} from "./Modules/OrientationChange.js";
 import LoadingScreen from "./Modules/Blocks/LoadingScreen/LoadingScreen.js";
 // CSS
 import "./CSS/Styles.css"
@@ -24,6 +24,7 @@ eventBus.subscribe(menuManager);
 menuManager.go();
 
 AddOrientationEvent();
+OrientationChange();
 
 //let screen = new LoadingScreen("Some loading text");
 //screen.show();
