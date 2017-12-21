@@ -1,7 +1,8 @@
 "use strict";
 
 import BaseView from "../BaseView/BaseView.js";
-import generateStartGameMenuView from "./StartGameMenuView.pug";
+
+let generateStartGameMenuView = require("../StartGameMenuView/StartGameMenuView.pug");
 
 const startGameMenuView = new BaseView(document.body, generateStartGameMenuView,
     {
