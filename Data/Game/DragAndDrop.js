@@ -172,17 +172,17 @@ function getCoords(elem) // кроме IE8-
 
 function AddDragAndDropEvent ()
 {
-    document.onmousedown = onMouseDown;
-    document.onmousemove = onMouseMove;
-    document.onmouseup = onMouseUp;
+    document.addEventListener("mousedown", onMouseDown);
+    document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("mouseup", onMouseUp);
 
-    document.ontouchstart = onMouseDown;
-    document.ontouchmove = onMouseMove;
-    document.ontouchend = onMouseUp;
+    document.addEventListener("touchstart", onMouseDown);
+    document.addEventListener("touchmove", onMouseMove);
+    document.addEventListener("touchend", onMouseUp);
 
-    document.onpointerdown = onMouseDown;
-    document.onpointermove = onMouseMove;
-    document.onpointerup = onMouseUp;
+    document.addEventListener("pointerdown", onMouseDown);
+    document.addEventListener("pointermove", onMouseMove);
+    document.addEventListener("pointerup", onMouseUp);
 }
 
 
