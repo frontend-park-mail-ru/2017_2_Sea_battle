@@ -41,9 +41,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin
-        ({
-            compress: {drop_debugger: false}
-        })
+        new webpack.optimize.UglifyJsPlugin()
     ]
 };
