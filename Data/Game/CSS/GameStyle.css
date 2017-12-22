@@ -211,20 +211,18 @@
     color: #007B25;
 }
 
-@media screen {
-    /* Safari 4.0 - 8.0 */
-    @-webkit-keyframes mytext {
-        0%   {font-size: 1.95em;}
-        50%  {font-size: 2.1em;}
-        100% {font-size: 1.95em;}
-    }
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes mytext {
+    0%   {font-size: 1.95em;}
+    50%  {font-size: 2.1em;}
+    100% {font-size: 1.95em;}
+}
 
-    /* Standard syntax */
-    @keyframes mytext {
-        0%   {font-size: 1.95em;}
-        50%  {font-size: 2.1em;}
-        100% {font-size: 1.95em;}
-    }
+/* Standard syntax */
+@keyframes mytext {
+    0%   {font-size: 1.95em;}
+    50%  {font-size: 2.1em;}
+    100% {font-size: 1.95em;}
 }
 
 .shipDie
