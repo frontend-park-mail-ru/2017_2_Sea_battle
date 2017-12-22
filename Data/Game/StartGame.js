@@ -51,6 +51,7 @@ function startFirstGameScene (e) {
     }
 }
 
+// false -  нет интернета, true - есть
 function connection() {
     return true;
 }

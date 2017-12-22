@@ -20,7 +20,6 @@ this.addEventListener("install", (event) =>
 
 this.addEventListener("fetch", (event) =>
 {
-    debugger;
     if(event.request.method != "GET")
         return;
 

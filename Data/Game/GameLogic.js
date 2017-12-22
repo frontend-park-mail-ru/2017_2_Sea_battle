@@ -254,7 +254,7 @@ export default class GameLogic
         let secondGameScene = new SecondGameScene();
         secondGameScene.hide();
         let gameManager = new GameController();
-        gameManager.setScore(data.score);
+        gameManager.setScore("Score" + data.score);
         if (data.won) {
             let winScene = new WinScene();
             winScene.show();
