@@ -91,7 +91,7 @@ export default class PutShipManager
                             continue;
                         }
                         delEl.classList.remove("droppable");
-                        delEl.style.cssText = "background-color: #E8C40C;";
+                        delEl.style.cssText = "background-color: #8B6ED7;";
                     }
                 }
             }
