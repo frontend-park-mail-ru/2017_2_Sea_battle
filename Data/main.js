@@ -18,6 +18,9 @@ import "./Modules/Views/LeaderboardView/LeaderboardView.css"
 import "./Modules/Blocks/MessageBox/MessageBox.css";
 import "./Modules/Blocks/LoadingScreen/LoadingScreen.css";
 
+navigator.serviceWorker.register("./ServiceWorker.js", {scope: "/"})
+    .catch((err) => {console.log("Service worker error: " + err)});
+
 const eventBus = new EventBus();
 const menuManager = new MenuManager();
 eventBus.subscribe(menuManager);
@@ -25,10 +28,5 @@ menuManager.go();
 
 AddOrientationEvent();
 OrientationChange();
-
-//let screen = new LoadingScreen("Some loading text");
-//screen.show();
-
-
 
 window.onpopstate = menuManager.go.bind(menuManager);
