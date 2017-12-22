@@ -28,8 +28,6 @@ class StartGameMenuSelector
                 let eventBus = new EventBus();
                 eventBus.emitEvent({type: "changeMenu", newMenuName: "/selectMode"});
             }
-
-
         })
             .catch(() =>
         {

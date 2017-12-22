@@ -5,8 +5,8 @@ import FirstGameScene from "./GameSceneFirst.js";
 import WebSocketManager from "./WebSocket.js";
 import GameController from "./GameManager.js";
 import GameLoader from "./GameLoader.js";
+import Services from "../Modules/Services.js";
 import MessageBox from "../Modules/Blocks/MessageBox/MessageBox.js";
-import {BackMenu} from "./GameSceneWinLose.js";
 
 function playWithBotMessage (bot) {
     let message = {};
@@ -49,22 +49,8 @@ function startFirstGameScene (e) {
     }
 }
 
-
-function startGame(message)
-{
-
-    hideUserBlock(true);
-
-    let gameLoader = new GameLoader();
-    gameLoader.show();
-
+function startGameMode() {
     let gameContoller = new GameController();
-    gameContoller.setGame(message);
-
-    // navigator.connection.rtt = 0 - нет интернета; все остальное - есть
-    // navigator.connection.rtt - есть; !(navigator.connection.rtt) - нет
-
-
     if (gameContoller.getGame()) {
         let webSocketManager = new WebSocketManager();
         webSocketManager.openSocket();
@@ -87,22 +73,43 @@ function startGame(message)
         let firstScene = new FirstGameScene();
         firstScene.show();
     }
+}
 
-    // let firstScene = new FirstGameScene();
-    // firstScene.show();
+function startGame(message)
+{
+    hideUserBlock(true);
 
+    let gameLoader = new GameLoader();
+    gameLoader.show();
 
-    // let firstScene;
-    // if (!(navigator.connection.rtt)) {
-    //     // нет интернета
-    //     firstScene = new FirstGameScene();
-    //     firstScene.show();
-    // }
-    // else {
-    //     // есть интернет
-    //     firstScene = new FirstGameScene();
-    //     firstScene.show();
-    // }
+    if (message) {
+        Services.getUser()
+            .then(response =>
+            {
+                let gameContoller = new GameController();
+                gameContoller.setGame(message);
+                startGameMode();
+            })
+            .catch(() =>
+            {
+                if (message == 2) {
+                    let gameContoller = new GameController();
+                    gameContoller.setGame(0);
+                    startGameMode();
+                    new MessageBox("Offline", "You have gone offline; Standalone game against bot");
+                }
+                else {
+                    let gameContoller = new GameController();
+                    gameContoller.setGame(0);
+                    startGameMode();
+                }
+            });
+    }
+    else {
+        let gameContoller = new GameController();
+        gameContoller.setGame(message);
+        startGameMode();
+    }
 }
 
 function hideUserBlock(hide = true) {
@@ -118,3 +125,5 @@ function hideUserBlock(hide = true) {
 }
 
 export {startGame,hideUserBlock}
+
+
