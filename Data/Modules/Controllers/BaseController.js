@@ -38,7 +38,7 @@ class BaseController
 
     goBackHandler()
     {
-        eventBus.emitEvent({type: "goBack"});
+        eventBus.emitEvent({type: "changeMenu", newMenuName: "/"});
     }
 
     deleteBackButton()
