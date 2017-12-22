@@ -1,6 +1,7 @@
 "use strict";
 
 import BaseView from "../../Views/BaseView/BaseView.js";
+let generateMessageBox = require("./MessageBox.pug");
 
 class MessageBox
 {
@@ -27,26 +28,24 @@ class MessageBox
                 okAction();
                 this.view.hide();
                 window.removeEventListener("resize", this.resize);
-                //delete this;
             };
         else
             okButton.onclick = () =>
             {
                 this.view.hide();
                 window.removeEventListener("resize", this.resize);
-                //delete this;
             };
 
         this.view.show();
         this.resize();
         window.addEventListener("resize", this.resize.bind(this));
+        this.resize();
     }
 
     resize()
     {
-        debugger;
         this.view.element.style.left = (document.body.offsetWidth - this.view.element.offsetWidth)/2 + "px";
-        this.view.element.style.top = (document.body.offsetHeight - this.view.element.offsetHeight)/2 + "px";
+        this.view.element.style.top = (document.documentElement.clientHeight - this.view.element.clientHeight)/2 + "px";
     }
 }
 

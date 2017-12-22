@@ -3,7 +3,6 @@
 // убрать _
 // Добавить кнопку назад в меню [прекратить игру]
 
-
 export default class GameScene
 {
     constructor() {}
@@ -12,10 +11,14 @@ export default class GameScene
 
     hide()
     {
-        let AllGame = document.getElementsByClassName("all_game");
-        if (AllGame[0]) {
-            document.body.removeChild(AllGame[0]);
+        let elem = document.getElementsByClassName("all_game");
+        if (elem[0]) {
+            document.body.removeChild(elem[0]);
         }
-        AllGame = null;
+        elem = document.getElementsByClassName("h1_turn");
+        if (elem[0]) {
+            document.body.removeChild(elem[0]);
+        }
+        elem = null;
     }
 }

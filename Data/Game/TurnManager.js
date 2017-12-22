@@ -28,13 +28,13 @@ export default class TurnManager
         if (!this.getFlag()){
             for (let i = 0; i< shipX.length; i++){
                 shipX[i].style.height = "74px";
-                shipX[i].style.width = "38px";
+                shipX[i].style.width = "35px";
             }
         }
         else {
             for (let i = 0; i< shipX.length; i++){
                 shipX[i].style.width = "74px";
-                shipX[i].style.height = "38px";
+                shipX[i].style.height = "35px";
             }
         }
     }
@@ -45,13 +45,13 @@ export default class TurnManager
         if (!this.getFlag()){
             for (let i = 0; i< shipX.length; i++){
                 shipX[i].style.height = "112px";
-                shipX[i].style.width = "38px";
+                shipX[i].style.width = "35px";
             }
         }
         else {
             for (let i = 0; i< shipX.length; i++){
                 shipX[i].style.width = "112px";
-                shipX[i].style.height = "38px";
+                shipX[i].style.height = "35px";
             }
         }
     }
@@ -61,14 +61,14 @@ export default class TurnManager
         let shipX = document.getElementsByClassName("shipX4");
         if (!this.getFlag()){
             for (let i = 0; i< shipX.length; i++){
-                shipX[i].style.height = "154px";
-                shipX[i].style.width = "38px";
+                shipX[i].style.height = "152px";
+                shipX[i].style.width = "35px";
             }
         }
         else {
             for (let i = 0; i< shipX.length; i++){
-                shipX[i].style.width = "154px";
-                shipX[i].style.height = "38px";
+                shipX[i].style.width = "152px";
+                shipX[i].style.height = "35px";
             }
         }
     }

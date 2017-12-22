@@ -1,20 +1,27 @@
 .leaderTable
 {
+    border-collapse: collapse;
+    font-family: 'Indie Flower', cursive;
     border: 1px solid black;
-    width: 50%;
+    width: 70%;
     margin: auto;
-    background-color: #212121;
+    background-color: rgba(127, 127, 127, 0);
 }
 
 .tableHeader
 {
     border: 1px solid #212121;
-    color: #1d2d3b;
-    background-color: cornsilk;
+    background-color: #fffef6;
 }
 
 .contents
 {
     border: 1px solid #212121;
-    background-color: lightgray;
+    background-color: rgba(127, 127, 127, 0);
+}
+
+.highlight
+{
+    border: 2px solid orangered;
+    background-color: rgba(255, 147, 113, 0.6);
 }

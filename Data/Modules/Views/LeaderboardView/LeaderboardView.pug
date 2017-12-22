@@ -1,5 +1,6 @@
 include ../BaseMenuView/BaseMenuHeader.pug
 
+- var count = 0;
 table.leaderTable
     thead
         tr
@@ -9,9 +10,17 @@ table.leaderTable
 
     tbody
         each player in players
-            tr
-                th.contents #{player.position}
-                th.contents #{player.login}
-                th.contents #{player.score}
+            - if(count == highlightIndex)
+                tr.highlight
+                    th.contents #{player.position}
+                    th.contents #{player.login}
+                    th.contents #{player.score}
+            - else
+                tr
+                    th.contents #{player.position}
+                    th.contents #{player.login}
+                    th.contents #{player.score}
+
+            - count++;
 
 include ../BaseMenuView/BaseMenuFoot.pug

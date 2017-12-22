@@ -1,6 +1,6 @@
 "use strict";
 
-import startGame from "../../Game/StartGame.js";
+import {startGame,hideUserBlock} from "../../Game/StartGame.js";
 import GameScene from "../../Game/GameScene.js";
 
 const STAND_ALONE = 0;
@@ -19,6 +19,7 @@ class StandAloneController
 
     hide()
     {
+        hideUserBlock(false);
         let gameScene = new GameScene();
         gameScene.hide();
     }

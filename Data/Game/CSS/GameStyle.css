@@ -11,6 +11,7 @@
 
 .table_field_td
 {
+    user-select: none;
     border: 2px solid #1d2d3b;
     text-align: center;
     border-collapse: collapse;
@@ -40,7 +41,7 @@
 {
     width: 27%;
     position: absolute;
-    top: 27%;
+    top: 21%;
 }
 /*
 .img_field
@@ -48,69 +49,111 @@
     background-image: url("/Resources/Texturex/background-table-holder-texture.png");
 }
 */
-
+.display_none
+{
+    display: none;
+}
 
 .inline_block
 {
     display: inline-block;
 }
 
-.next_button
+.backButton
 {
-    width: 180px;
+    cursor: pointer;
+    position: absolute;
+    top: 3%;
+    left: 2%;
+    width: 230px;
     height: 50px;
     font-family: 'Indie Flower', cursive;
-    position: absolute;
-    top: 75%;
-    left: 78%;
     font-size: xx-large;
     font-weight: bolder;
+    outline:0;
+}
+
+.buttonAll
+{
+    position: absolute;
+    left: 76%;
+    top: 21%;
 }
 
 .turnButton
 {
+    cursor: pointer;
     width: 200px;
     height: 50px;
     font-family: 'Indie Flower', cursive;
-    position: absolute;
-    top: 30%;
-    left: 77%;
     font-size: xx-large;
     font-weight: bold;
+    position: absolute;
+    outline:0;
+}
+
+.randomButton
+{
+    cursor: pointer;
+    width: 220px;
+    height: 93px;
+    font-family: 'Indie Flower', cursive;
+    font-size: xx-large;
+    font-weight: bolder;
+    position: absolute;
+    top: 190px;
+    outline:0;
+}
+
+.next_button
+{
+    cursor: pointer;
+    width: 180px;
+    height: 50px;
+    font-family: 'Indie Flower', cursive;
+    font-size: xx-large;
+    font-weight: bolder;
+    position: absolute;
+    top: 380px;
+    outline:0;
 }
 
 .shipX1
 {
+    user-select: none;
     border: 3px solid #008000;
     width: 35px;
-    height: 38px;
+    height: 35px;
     background-color: #3CFF1F;
     color: transparent;
 }
 
 .shipX2
 {
+    user-select: none;
     border: 3px solid #008000;
     width: 74px;
-    height: 38px;
+    height: 35px;
     background-color: #3CFF1F;
     color: transparent;
 }
 
 .shipX3
 {
+    user-select: none;
     border: 3px solid #008000;
     width: 112px;
-    height: 38px;
+    height: 35px;
     background-color: #3CFF1F;
     color: transparent;
 }
 
 .shipX4
 {
+    user-select: none;
     border: 3px solid #008000;
-    width: 154px;
-    height: 38px;
+    width: 152px;
+    height: 35px;
     background-color: #3CFF1F;
     color: transparent;
 }
@@ -119,8 +162,8 @@
 {
     font-family: 'Indie Flower', cursive;
     position: absolute;
-    left: 10%;
-    top: 9%;
+    left: 16%;
+    top: 8%;
 }
 
 .my_field
@@ -135,8 +178,8 @@
 {
     font-family: 'Indie Flower', cursive;
     position: absolute;
-    left: 57%;
-    top: 9%;
+    left: 62%;
+    top: 8%;
 }
 
 .enemy_field
@@ -152,79 +195,129 @@
     font-family: 'Indie Flower', cursive;
     position: absolute;
     top: 1%;
-    left: 40%;
+    left: 50%;
+    transform: translate(-50%);
+    -webkit-animation: mytext 2s infinite; /* Safari 4.0 - 8.0 */
+    animation: mytext 2s infinite;
+}
+
+.h1_turn_enemy
+{
+    color: #A61300;
+}
+
+.h1_turn_my
+{
+    color: #007B25;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes mytext {
+    0%   {font-size: 1.95em;}
+    50%  {font-size: 2.1em;}
+    100% {font-size: 1.95em;}
+}
+
+/* Standard syntax */
+@keyframes mytext {
+    0%   {font-size: 1.95em;}
+    50%  {font-size: 2.1em;}
+    100% {font-size: 1.95em;}
 }
 
 .shipDie
 {
-    background-color: red;
+    background-color: #FD0006;
+}
+
+.shipDie_animation
+{
+    -webkit-animation: shipdie 1s infinite; /* Safari 4.0 - 8.0 */
+    animation: shipdie 1s infinite;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes shipdie {
+    0%   {background-color: #FFC500;}
+    100% {background-color: #FD0006;}
+}
+
+/* Standard syntax */
+@keyframes shipdie {
+    0%   {background-color: #FFC500;}
+    100% {background-color: #FD0006;}
 }
 
 .shipFire
 {
-    background-color: yellow;
+    background-color: #FFC500;
+}
+
+.shipFire_animation
+{
+    -webkit-animation: shipfire 1s infinite; /* Safari 4.0 - 8.0 */
+    animation: shipfire 1s infinite;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes shipfire {
+    0%     {background-color: #0ACF00;}
+    100%   {background-color: #FFC500;}
+}
+
+/* Standard syntax */
+@keyframes shipfire {
+    0%     {background-color: #0ACF00;}
+    100%   {background-color: #FFC500;}
 }
 
 .shipOK
 {
-    background-color: greenyellow;
+    background-color: #0ACF00;
 }
 
 .Fire
 {
-    background-color: indigo;
+    background-color: #7972D8;
 }
+
+.fieldFire_animation
+{
+    -webkit-animation: fieldfire 1s infinite; /* Safari 4.0 - 8.0 */
+    animation: fieldfire 1s infinite;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes fieldfire {
+    100%   {background-color: #7972D8;}
+}
+
+/* Standard syntax */
+@keyframes fieldfire {
+    100%   {background-color: #7972D8;}
+}
+
+
 
 .youWinLose
 {
-    position: relative;
-    left: 600px;
-    top: 220px;
-    width: 200px;
-}
-
-.newScore
-{
-    position: relative;
-    left: 580px;
-    top: 220px;
-    width: 200px;
-}
-
-.backButton
-{
-    width: 230px;
-    height: 50px;
-    font-family: 'Indie Flower', cursive;
-    font-size: xx-large;
-    font-weight: bolder;
-}
-
-.backButtonScene
-{
-    position: absolute;
-    top: 3%;
-    left: 2%;
-}
-
-.backButtonWinLose
-{
-    position: relative;
-    left: 615px;
-    top: 227px;
-}
-
-
-.randomShips
-{
-    width: 220px;
-    height: 55px;
     font-family: 'Indie Flower', cursive;
     position: absolute;
-    top: 50%;
-    left: 76%;
-    font-size: xx-large;
-    font-weight: bolder;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 400%;
 }
+
+.score
+{
+    font-family: 'Indie Flower', cursive;
+    position: absolute;
+    top: 53%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 400%;
+}
+
 
 

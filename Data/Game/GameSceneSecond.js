@@ -3,19 +3,22 @@ import Widget from "../Modules/Blocks/Widget.js";
 import GameLogicFront from "./GameLogicFront.js";
 import GameController from "./GameManager.js"
 import GameLogic from "./GameLogic.js";
+import {BackMenu} from "./GameSceneWinLose.js"
 
 /*
    TO DO - в GameScene
 */
 
-export default class FirstGameScene extends GameScene
+export default class SecondGameScene extends GameScene
 {
     show(matrixShips, move = 0)
     {
-        let gameContoller = new GameController();
+        let gameController = new GameController();
 
-        if (gameContoller.getGame()) {
+        if (gameController.getGame()) {
             let gameLogic = new GameLogic(move);
+            gameLogic.changeMove(move);
+            gameLogic.messageOnGameLogic();
         }
         else {
             let gameLogicFront = new GameLogicFront();
@@ -24,19 +27,19 @@ export default class FirstGameScene extends GameScene
 
         let all_game = new Widget(document.body,"div", "all_game");
 
+        let backButton = new Widget(document.body, "button", "backButton");
+        backButton.element.classList.add("flatLightGray");
+        backButton.text = "Back to Menu";
+        backButton.element.addEventListener('click', () => {BackMenu();});
+        all_game.appendChildWidget(backButton);
+
         let text = new Widget(document.body, "h1", "inline_block h1_my");
-        text.text = gameContoller.getUserName();
+        text.text = gameController.getUserName();
         all_game.appendChildWidget(text);
 
         text = new Widget(document.body, "h1", "inline_block h1_enemy");
-        text.text = gameContoller.getEmemyName();
+        text.text = gameController.getEmemyName();
         all_game.appendChildWidget(text);
-
-        text = new Widget(document.body, "h1", "inline_block h1_turn");
-        text.element.innerHTML = "Your turn";
-        all_game.appendChildWidget(text);
-
-
 
         this.createField(all_game, matrixShips);
 
@@ -94,6 +97,22 @@ export default class FirstGameScene extends GameScene
                     }
                 }
             }
+        }
+    }
+
+    turn(turn)
+    {
+        let elem = document.getElementsByClassName("h1_turn");
+        if (elem[0]) {
+            document.body.removeChild(elem[0]);
+        }
+        elem = new Widget(document.body, "h1", "inline_block h1_turn");
+        elem.text = turn;
+        if(turn[0] == "Y") {
+            elem.element.classList.add("h1_turn_my");
+        }
+        else {
+            elem.element.classList.add("h1_turn_enemy");
         }
     }
 }

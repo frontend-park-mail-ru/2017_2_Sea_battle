@@ -1,13 +1,14 @@
 .aboutText
 {
+    font-weight: 600;
+    font-family: 'Indie Flower', cursive;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
-    left: 25%;
+    width: 100%;
     text-align: center;
 }
 
 .aboutLine
 {
-    font-size: 25px;
+    font-size: 230%;
 }

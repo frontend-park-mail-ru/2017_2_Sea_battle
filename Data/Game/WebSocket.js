@@ -1,4 +1,5 @@
 "use strict";
+import GameController from "./GameManager.js";
 
 export default class WebSocketManager {
 
@@ -8,26 +9,41 @@ export default class WebSocketManager {
             return WebSocketManager.__instance;
         }
 
-        this.socket = new WebSocket("wss://sea-battle-back.herokuapp.com/game");
-
         WebSocketManager.__instance = this;
-
-        this.messagePing = {};
-        this.messagePing.class = "MsgPing";
-        this.messagePing = JSON.stringify(this.messagePing, "");
     }
 
     openSocket ()
     {
+        this.socket = new WebSocket("wss://sea-battle-back.herokuapp.com/game");
+
+        this.onopenSocket();
+        this.oncloseSocket();
+        this.pingSocketStart();
+    }
+
+    closeSocket ()
+    {
+        this.socket.close();
+    }
+
+    getStateSocket()
+    {
+        return this.state;
+    }
+
+    onopenSocket ()
+    {
         this.socket.onopen = function(event) {
             this.pingSocket();
-            console.log("Сессия открыта");
+            this.state = true;
         }.bind(this);
     }
 
-    sendSocket (message)
+    oncloseSocket ()
     {
-        this.socket.send(message);
+        this.socket.onclose = function(event) {
+            this.state = false;
+        }.bind(this);
     }
 
     messageSocket (func)
@@ -37,11 +53,16 @@ export default class WebSocketManager {
         };
     }
 
-    closeSocket ()
+    sendSocket (message)
     {
-        this.socket.onclose = function(event) {
-            console.log("Сессия закрыта");
-        };
+        this.socket.send(message);
+    }
+
+    pingSocketStart()
+    {
+        this.messagePing = {};
+        this.messagePing.class = "MsgPing";
+        this.messagePing = JSON.stringify(this.messagePing, "");
     }
 
     pingSocket()

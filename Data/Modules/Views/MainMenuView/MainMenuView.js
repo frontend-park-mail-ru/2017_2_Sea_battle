@@ -1,9 +1,10 @@
 "use strict";
 import BaseView from "../BaseView/BaseView.js";
+let generateMainMenuView = require("./MainMenuView.pug");
 
 const mainMenu = new BaseView(document.body, generateMainMenuView,
     {
-        title: "Main Menu",
+        title: "Sea Battle",
         menus:
             [
                 {name: "Start Game", id: "/startGame"},

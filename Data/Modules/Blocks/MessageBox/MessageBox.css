@@ -1,8 +1,8 @@
 .messageBox
 {
+    font-family: 'Indie Flower', cursive;
     border: 1px solid black;
-    background-color: cornsilk;
-
+    background-color: #fffef6;
     position: absolute;
     align-content: center;
     text-align: center;
@@ -12,6 +12,19 @@
 
 .messageBoxTitle
 {
-    color: #212121;
     font-size: 35px;
+}
+
+.messageArea
+{
+    font-size: x-large;
+}
+
+.buttonMessageOK
+{
+    position: relative;
+    top: 4px;
+    width: 100px;
+    font-family: 'Indie Flower', cursive;
+    font-size: x-large;
 }

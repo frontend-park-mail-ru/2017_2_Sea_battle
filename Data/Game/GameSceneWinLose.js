@@ -1,6 +1,9 @@
 import Widget from "../Modules/Blocks/Widget.js";
 import EventBus from "../Modules/EventBus.js";
 import GameScene from "./GameScene.js";
+import GameController from "./GameManager.js";
+import WebSocketManager from "./WebSocket.js";
+import {hideUserBlock} from "./StartGame.js"
 
 const eventBus = new EventBus();
 
@@ -14,25 +17,17 @@ class WinScene extends GameScene
         text.text = "You Win!";
         AllGame.appendChildWidget(text);
 
-        text = new Widget(document.body, "h1", "newScore");
-        text.text = "Score: " + "40" + " +0"; // 40 - счет игрока
+        let gameController = new GameController();
+        text = new Widget(document.body, "h1", "score");
+        text.text = gameController.getScore();
         AllGame.appendChildWidget(text);
-        // +0 так как игра с ботом
 
         let backButton = new Widget(document.body, "button", "backButton");
         backButton.text = "Back to Menu";
         AllGame.appendChildWidget(backButton);
-        backButton.element.addEventListener('click', () => {
-            BackMenu();
-            /*
-            let winScene = new WinScene();
-            winScene.hide();
-            eventBus.emitEvent({type: "changeMenu", newMenuName: "/"}); // ?
-            */
-        });
+        backButton.element.addEventListener('click', () => {BackMenu();});
         backButton.element.classList.add("flatLightGray");
     }
-
 }
 
 class LoseScene extends GameScene
@@ -44,30 +39,28 @@ class LoseScene extends GameScene
         text.text = "You Lose!";
         AllGame.appendChildWidget(text);
 
-        text = new Widget(document.body, "h1", "newScore");
-        text.text = "Score: " + "40" + " -0"; // 40 - счет игрока
+        let gameController = new GameController();
+        text = new Widget(document.body, "h1", "score");
+        text.text = gameController.getScore();
         AllGame.appendChildWidget(text);
-        // -0 так как игра с ботом
 
-        let backButton = new Widget(document.body, "button", "backButton backButtonWinLose");
+
+        let backButton = new Widget(document.body, "button", "backButton");
         backButton.text = "Back to Menu";
         AllGame.appendChildWidget(backButton);
-        backButton.element.addEventListener('click', () => {
-            BackMenu();
-            /*
-            let loseScene = new LoseScene();
-            loseScene.hide();
-            eventBus.emitEvent({type: "changeMenu", newMenuName: "/"}); // ?
-            */
-        });
+        backButton.element.addEventListener('click', () => {BackMenu();});
         backButton.element.classList.add("flatLightGray");
     }
 
 }
 
 
-// Или перенести в отдельный файл или просто прописывать все вручную, если разные параметры EventBus
 function BackMenu() {
+    let webSocket = new WebSocketManager();
+    if (webSocket.getStateSocket()) {
+        webSocket.closeSocket();
+    }
+    hideUserBlock(false);
     let gameScene = new GameScene();
     gameScene.hide();
     eventBus.emitEvent({type: "changeMenu", newMenuName: "/"});
