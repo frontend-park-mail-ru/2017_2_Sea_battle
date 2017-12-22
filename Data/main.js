@@ -18,8 +18,10 @@ import "./Modules/Views/LeaderboardView/LeaderboardView.css"
 import "./Modules/Blocks/MessageBox/MessageBox.css";
 import "./Modules/Blocks/LoadingScreen/LoadingScreen.css";
 
-navigator.serviceWorker.register("./ServiceWorker.js", {scope: "/"})
-    .catch((err) => {console.log("Service worker error: " + err)});
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register("./ServiceWorker.js", {scope: "/"})
+        .catch((err) => {console.log("Service worker error: " + err)});
+}
 
 const eventBus = new EventBus();
 const menuManager = new MenuManager();
