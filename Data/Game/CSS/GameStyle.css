@@ -196,7 +196,6 @@
     position: absolute;
     top: 1%;
     left: 50%;
-    width: auto;
     transform: translate(-50%);
     -webkit-animation: mytext 2s infinite; /* Safari 4.0 - 8.0 */
     animation: mytext 2s infinite;
@@ -212,18 +211,20 @@
     color: #007B25;
 }
 
-/* Safari 4.0 - 8.0 */
-@-webkit-keyframes mytext {
-    0%   {font-size: 2em;}
-    50%  {font-size: 2.2em;}
-    100% {font-size: 2em;}
-}
+@media screen {
+    /* Safari 4.0 - 8.0 */
+    @-webkit-keyframes mytext {
+        0%   {font-size: 2em;}
+        50%  {font-size: 2.2em;}
+        100% {font-size: 2em;}
+    }
 
-/* Standard syntax */
-@keyframes mytext {
-    0%   {font-size: 2em;}
-    50%  {font-size: 2.2em;}
-    100% {font-size: 2em;}
+    /* Standard syntax */
+    @keyframes mytext {
+        0%   {font-size: 2em;}
+        50%  {font-size: 2.2em;}
+        100% {font-size: 2em;}
+    }
 }
 
 .shipDie
