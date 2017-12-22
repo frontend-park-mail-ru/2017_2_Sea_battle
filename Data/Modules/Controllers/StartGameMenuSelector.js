@@ -37,6 +37,8 @@ class StartGameMenuSelector
 
     hide()
     {
+        this.startGameMenuController.hide();
+        /*
         Services.getUser()
             .then(response =>
             {
@@ -46,6 +48,7 @@ class StartGameMenuSelector
             .catch(exit =>
             {
             });
+        */
     }
 
 }
