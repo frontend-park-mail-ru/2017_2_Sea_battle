@@ -26,8 +26,6 @@ function startFirstGameScene (e) {
     fieldData = JSON.parse(fieldData);
     let fieldClass = fieldData.class;
     if ( fieldClass == "MsgYouInQueue" ){
-        let gameLoader = new GameLoader();
-        gameLoader.show();
         let gameContoller = new GameController();
         gameContoller.setUserName(fieldData.nickname);
         // Хочу ли я играть с ботом?
@@ -57,6 +55,9 @@ function startGame(message)
 
     hideUserBlock(true);
 
+    let gameLoader = new GameLoader();
+    gameLoader.show();
+
     let gameContoller = new GameController();
     gameContoller.setGame(message);
 
@@ -81,6 +82,8 @@ function startGame(message)
             gameContoller.setScore("Score: 0");
         }
         gameContoller.setEmemyName("Mysterious stranger");
+        let gameLoader = new GameLoader();
+        gameLoader.hide();
         let firstScene = new FirstGameScene();
         firstScene.show();
     }
