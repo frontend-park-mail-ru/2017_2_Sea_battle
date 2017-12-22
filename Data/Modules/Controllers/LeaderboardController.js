@@ -34,8 +34,9 @@ class LeaderboardController extends BaseController
             })
             .catch(error =>
             {
-                new MessageBox("Leaderboard error", "Can't get leaderboard: " + error);
                 this.deleteBackButton();
+                new MessageBox("Leaderboard error", "Can't get leaderboard: " + error);
+                this.createBackButton();
             });
     }
 }
