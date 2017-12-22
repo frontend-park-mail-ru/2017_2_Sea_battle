@@ -3,11 +3,13 @@ const cacheList = ["/main2.js", "/Resources/Textures/paper.jpg",
     "https://fonts.googleapis.com/css?family=Indie+Flower",
 ];
 
+const cacheName = "SeaBattle";
+
 this.addEventListener("install", (event) =>
 {
     console.log("Installed");
     event.waitUntil(
-        caches.open("SeaBattle")
+        caches.open(cacheName)
             .then((cache) =>
             {
                 console.log("Cached");
@@ -18,22 +20,30 @@ this.addEventListener("install", (event) =>
 
 this.addEventListener("fetch", (event) =>
 {
+    debugger;
     if(event.request.method != "GET")
         return;
 
-    event.respondWith(async function()
-       {
-           if(!navigator.onLine)
-               return fetch(event.request);
+    let result;
 
-           const cache = await caches.open("SeaBattle");
-           const cached = await cache.match(event.request);
+    if(!navigator.onLine)
+        result = fetch(event.request);
 
-           if(cached)
-               return cached;
+    else
+    {
+        result = caches.open(cacheName).then((cache) =>
+        {
+            return cache.match(event.request);
+        });
+        result = result.then((cached) =>
+        {
+            if(cached)
+                return cached;
+            else
+                return fetch(event.request);
+        });
+    }
 
-           return fetch(event.request);
-       }()
-   );
+    event.respondWith(result);
 });
 
