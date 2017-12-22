@@ -51,6 +51,10 @@ function startFirstGameScene (e) {
     }
 }
 
+function connection() {
+    return true;
+}
+
 function startGame(message)
 {
 
@@ -62,23 +66,20 @@ function startGame(message)
     // navigator.connection.rtt - есть; !(navigator.connection.rtt) - нет
 
     //проверка на интернет
-    if (navigator.connection) { //
-        let userScore = document.getElementsByClassName("userScore");
-        if (navigator.connection.rtt && message) {
-            gameContoller.setGame(message);
-        }
-        else if (!(navigator.connection.rtt) && message == 2 && userScore[0]) {
-            new MessageBox("There is no connection to the Internet. Only single player mode is available.");
-            BackMenu();
-            return;
-        }
-        else {
-            gameContoller.setGame(0);
-        }
+    let userScore = document.getElementsByClassName("userScore");
+    if (connection() && message) {
+        gameContoller.setGame(message);
     }
-    else { //
-        gameContoller.setGame(message); //
-    } //
+    else if (!connection() && message == 2 && userScore[0]) {
+        new MessageBox("There is no connection to the Internet. Only single player mode is available.");
+        BackMenu();
+        return;
+    }
+    else {
+        gameContoller.setGame(0);
+    }
+
+
 
     if (gameContoller.getGame()) {
         let webSocketManager = new WebSocketManager();
@@ -92,10 +93,9 @@ function startGame(message)
             gameContoller.setUserName(userName[0].innerHTML);
             gameContoller.setScore(userScore[0].innerHTML);
         }
-        // быстрая игра
         else {
             gameContoller.setUserName("Mysterious stranger");
-            gameContoller.setScore("0");
+            gameContoller.setScore("Score: 0");
         }
         gameContoller.setEmemyName("Mysterious stranger");
         let firstScene = new FirstGameScene();

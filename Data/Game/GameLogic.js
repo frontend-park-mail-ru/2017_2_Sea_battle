@@ -18,7 +18,10 @@ export default class GameLogic
 
         this.changeMove(move);
 
-        // стреляют по мне
+        this.messageOnGameLogic();
+    }
+
+    messageOnGameLogic() {
         if (!(this.move)) {
             let webSocketManager = new WebSocketManager();
             webSocketManager.messageSocket( function(e) {
@@ -26,9 +29,15 @@ export default class GameLogic
                 fieldData = JSON.parse(fieldData);
                 let fieldClass = fieldData.class;
                 if ( fieldClass == "MsgResultMove" || fieldClass == "MsgShipIsDestroyed") {
-                    setTimeout(function () {
+                    let gameController = new GameController();
+                    if (gameController.getGame() == 1) {
+                        setTimeout(function () {
+                            this.fireEnemy (fieldData)
+                        }.bind(this), 1200);
+                    }
+                    else {
                         this.fireEnemy (fieldData)
-                    }.bind(this), 1200);
+                    }
                 }
                 else if (fieldClass == "MsgEndGame") {
                     this.endGame(fieldData)
@@ -38,6 +47,7 @@ export default class GameLogic
                     webSocketManager.pingSocket();
                 }
                 else {
+                    debugger;
                     console.log("Ошибка");
                 }
             }.bind(this));
@@ -72,6 +82,7 @@ export default class GameLogic
                 fieldData = JSON.parse(fieldData);
                 let fieldClass = fieldData.class;
                 if ( fieldClass == "MsgResultMove" || fieldClass == "MsgShipIsDestroyed"){
+                    debugger;
                     this.fireMe(fieldData, fieldFire);
                 }
                 else if (fieldClass == "MsgEndGame") {
@@ -85,6 +96,7 @@ export default class GameLogic
                     webSocketManager.pingSocket();
                 }
                 else {
+                    debugger;
                     console.log("Ошибка");
                 }
             }.bind(this));
@@ -117,7 +129,7 @@ export default class GameLogic
                 fieldFire.classList.add("shipFire");
             }.bind(fieldFire), 1000);
             this.move = false;
-            this.gameScene.turn("Opponent's move");
+            this.gameScene.turn("Opponent's turn");
         }
         if (data.cellStatus == "BLOCKED")
         {
@@ -176,9 +188,15 @@ export default class GameLogic
                 fieldData = JSON.parse(fieldData);
                 let fieldClass = fieldData.class;
                 if ( fieldClass == "MsgResultMove" || fieldClass == "MsgShipIsDestroyed") {
-                    setTimeout(function () {
+                    let gameController = new GameController();
+                    if (gameController.getGame() == 1) {
+                        setTimeout(function () {
+                            this.fireEnemy (fieldData)
+                        }.bind(this), 1200);
+                    }
+                    else {
                         this.fireEnemy (fieldData)
-                    }.bind(this), 1200);
+                    }
                 }
                 else if (fieldClass == "MsgEndGame") {
                     this.endGame(fieldData)
@@ -188,6 +206,7 @@ export default class GameLogic
                     webSocketManager.pingSocket();
                 }
                 else {
+                    debugger;
                     console.log("Ошибка");
                 }
             }.bind(this));

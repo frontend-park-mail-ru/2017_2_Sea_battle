@@ -18,6 +18,7 @@ export default class SecondGameScene extends GameScene
         if (gameController.getGame()) {
             let gameLogic = new GameLogic(move);
             gameLogic.changeMove(move);
+            gameLogic.messageOnGameLogic();
         }
         else {
             let gameLogicFront = new GameLogicFront();
