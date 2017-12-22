@@ -7,12 +7,10 @@ const cacheName = "SeaBattle";
 
 this.addEventListener("install", (event) =>
 {
-    console.log("Installed");
     event.waitUntil(
         caches.open(cacheName)
             .then((cache) =>
             {
-                console.log("Cached");
                 return cache.addAll(cacheList);
             })
     )
@@ -20,13 +18,12 @@ this.addEventListener("install", (event) =>
 
 this.addEventListener("fetch", (event) =>
 {
-    debugger;
     if(event.request.method != "GET")
         return;
 
     let result;
 
-    if(!navigator.onLine)
+    if(navigator.onLine)
         result = fetch(event.request);
 
     else
@@ -38,9 +35,17 @@ this.addEventListener("fetch", (event) =>
         result = result.then((cached) =>
         {
             if(cached)
+            {
+                console.log("Cached: " + event.request.url);
+
                 return cached;
+            }
             else
+            {
+                console.log("Request: " + event.request.url);
+
                 return fetch(event.request);
+            }
         });
     }
 
