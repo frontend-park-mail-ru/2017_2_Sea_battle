@@ -36,16 +36,11 @@ this.addEventListener("fetch", (event) =>
         {
             if(cached)
             {
-                console.log("Cached: " + event.request.url);
-
                 return cached;
             }
             else
-            {
-                console.log("Request: " + event.request.url);
-
                 return fetch(event.request);
-            }
+
         });
     }
 

@@ -3,6 +3,7 @@
 import StartGameMenuController from "./StartGameMenuController.js";
 import startGameMenuView from "../Views/StartGameMenuView/StartGameMenuView.js";
 import Services from "../Services.js";
+import MessageBox from "../Blocks/MessageBox/MessageBox.js";
 
 import EventBus from "../EventBus.js";
 
@@ -30,8 +31,11 @@ class StartGameMenuSelector
 
 
         })
-            .catch(exit =>
+            .catch(() =>
         {
+            let eventBus = new EventBus();
+            eventBus.emitEvent({type: "changeMenu", newMenuName: "/startGame/offline"});
+            new MessageBox("Offline", "You have gone offline; Standalone game agains bot");
         });
     }
 
