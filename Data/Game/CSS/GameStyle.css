@@ -11,6 +11,7 @@
 
 .table_field_td
 {
+    user-select: none;
     border: 2px solid #1d2d3b;
     text-align: center;
     border-collapse: collapse;
@@ -58,6 +59,20 @@
     display: inline-block;
 }
 
+.backButton
+{
+    cursor: pointer;
+    position: absolute;
+    top: 3%;
+    left: 2%;
+    width: 230px;
+    height: 50px;
+    font-family: 'Indie Flower', cursive;
+    font-size: xx-large;
+    font-weight: bolder;
+    outline:0;
+}
+
 .buttonAll
 {
     position: absolute;
@@ -67,29 +82,32 @@
 
 .turnButton
 {
+    cursor: pointer;
     width: 200px;
     height: 50px;
     font-family: 'Indie Flower', cursive;
     font-size: xx-large;
     font-weight: bold;
     position: absolute;
-
-
+    outline:0;
 }
 
 .randomButton
 {
+    cursor: pointer;
     width: 220px;
-    height: 55px;
+    height: 93px;
     font-family: 'Indie Flower', cursive;
     font-size: xx-large;
     font-weight: bolder;
     position: absolute;
     top: 190px;
+    outline:0;
 }
 
 .next_button
 {
+    cursor: pointer;
     width: 180px;
     height: 50px;
     font-family: 'Indie Flower', cursive;
@@ -97,10 +115,12 @@
     font-weight: bolder;
     position: absolute;
     top: 380px;
+    outline:0;
 }
 
 .shipX1
 {
+    user-select: none;
     border: 3px solid #008000;
     width: 35px;
     height: 35px;
@@ -110,6 +130,7 @@
 
 .shipX2
 {
+    user-select: none;
     border: 3px solid #008000;
     width: 74px;
     height: 35px;
@@ -119,6 +140,7 @@
 
 .shipX3
 {
+    user-select: none;
     border: 3px solid #008000;
     width: 112px;
     height: 35px;
@@ -128,6 +150,7 @@
 
 .shipX4
 {
+    user-select: none;
     border: 3px solid #008000;
     width: 152px;
     height: 35px;
@@ -296,26 +319,5 @@
     font-size: 400%;
 }
 
-.backButton
-{
-    position: absolute;
-    top: 3%;
-    left: 2%;
-
-    width: 230px;
-    height: 50px;
-    font-family: 'Indie Flower', cursive;
-    font-size: xx-large;
-    font-weight: bolder;
-}
-
-.randomButton
-{
-    width: 220px;
-    height: 93px;
-    font-family: 'Indie Flower', cursive;
-    font-size: xx-large;
-    font-weight: bolder;
-}
 
 
