@@ -51,10 +51,6 @@ function startFirstGameScene (e) {
     }
 }
 
-// false -  нет интернета, true - есть
-function connection() {
-    return true;
-}
 
 function startGame(message)
 {
@@ -62,24 +58,10 @@ function startGame(message)
     hideUserBlock(true);
 
     let gameContoller = new GameController();
+    gameContoller.setGame(message);
 
     // navigator.connection.rtt = 0 - нет интернета; все остальное - есть
     // navigator.connection.rtt - есть; !(navigator.connection.rtt) - нет
-
-    //проверка на интернет
-    let userScore = document.getElementsByClassName("userScore");
-    if (connection() && message) {
-        gameContoller.setGame(message);
-    }
-    else if (!connection() && message == 2 && userScore[0]) {
-        new MessageBox("There is no connection to the Internet. Only single player mode is available.");
-        BackMenu();
-        return;
-    }
-    else {
-        gameContoller.setGame(0);
-    }
-
 
 
     if (gameContoller.getGame()) {
