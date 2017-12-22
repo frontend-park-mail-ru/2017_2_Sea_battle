@@ -3,7 +3,7 @@ const cacheList = ["/main2.js", "/Resources/Textures/paper.jpg",
     "https://fonts.googleapis.com/css?family=Indie+Flower",
 ];
 
-const cacheName = "SeaBattle-v2";
+const cacheName = "SeaBattle-v3";
 
 this.addEventListener("install", (event) =>
 {
