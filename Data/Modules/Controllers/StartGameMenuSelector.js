@@ -35,7 +35,7 @@ class StartGameMenuSelector
         {
             let eventBus = new EventBus();
             eventBus.emitEvent({type: "changeMenu", newMenuName: "/startGame/offline"});
-            new MessageBox("Offline", "You have gone offline; Standalone game agains bot");
+            new MessageBox("Offline", "You have gone offline; Standalone game against bot");
         });
     }
 

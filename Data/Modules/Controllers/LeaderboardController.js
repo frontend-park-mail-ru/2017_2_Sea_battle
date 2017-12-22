@@ -32,10 +32,10 @@ class LeaderboardController extends BaseController
                 this.view.changeData({title: "Leaderboard", players: result, highlightIndex: highlight});
                 this.createBackButton();
             })
-            .catch(error =>
+            .catch(() =>
             {
                 this.deleteBackButton();
-                new MessageBox("Leaderboard error", "Can't get leaderboard: " + error);
+                new MessageBox("Network error", "Can't get leaderboard info");
                 this.createBackButton();
             });
     }
