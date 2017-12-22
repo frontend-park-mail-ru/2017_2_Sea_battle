@@ -2,7 +2,7 @@
 
 import BaseController from "./BaseController.js";
 import Services from "../Services.js";
-
+import MessageBox from "../Blocks/MessageBox/MessageBox.js";
 class AboutMenuController extends BaseController
 {
     constructor(view)
@@ -26,7 +26,7 @@ class AboutMenuController extends BaseController
             .catch((error) =>
             {
                 this.deleteBackButton();
-                this.view.changeData({title: "About", text: [error]});
+                new MessageBox("Network error", "Can't get about info");
                 this.createBackButton();
             });
     }
