@@ -60,6 +60,6 @@ class Http
     }
 }
 
-Http.BaseUrl = "https://sbattle.ru/api";
+Http.BaseUrl = "https://sea-battle-back.herokuapp.com/api";
 
 export default Http;
