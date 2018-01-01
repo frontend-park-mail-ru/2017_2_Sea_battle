@@ -14,7 +14,7 @@ export default class WebSocketManager {
 
     openSocket ()
     {
-        this.socket = new WebSocket("wss://sbattle.ru/game");
+        this.socket = new WebSocket("wss://top-sea-battle.herokuapp.com/game");
 
         this.onopenSocket();
         this.oncloseSocket();
