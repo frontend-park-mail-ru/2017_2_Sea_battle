@@ -12,7 +12,7 @@
 Mentor: [@nksoff](https://github.com/nksoff)
 
 
-Play: [Development1](http://top-sea-battle.herokuapp.com/) / [Development2](http://sea-battle-front.herokuapp.com/)
+Play: [Production](http://top-sea-battle.herokuapp.com/) / [Development](http://sea-battle-front.herokuapp.com/)
 
 
 
