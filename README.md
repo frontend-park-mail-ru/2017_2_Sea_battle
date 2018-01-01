@@ -1,6 +1,6 @@
 # Sea Battle
 
-- Frontend [Deploy](https://sbattle.ru) [Github](https://github.com/frontend-park-mail-ru/2017_2_Sea_battle)
+- Frontend [Deploy](http://top-sea-battle.herokuapp.com/) [Github](https://github.com/frontend-park-mail-ru/2017_2_Sea_battle)
 - Backend [Deploy](https://sea-battle-back.herokuapp.com/api/) [Github](https://github.com/java-park-mail-ru/SeaBattle-09-2017)
 
 ## Team
@@ -12,7 +12,7 @@
 Mentor: [@nksoff](https://github.com/nksoff)
 
 
-Play: [Production](https://sbattle.ru/) / [Development1](http://top-sea-battle.herokuapp.com/) / [Development2](http://sea-battle-front.herokuapp.com/)
+Play: [Development1](http://top-sea-battle.herokuapp.com/) / [Development2](http://sea-battle-front.herokuapp.com/)
 
 
 
